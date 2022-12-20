@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View,TemplateView
 from apps.AdminPanel_App.forms import EditUserPanelForms
+from apps.Course_app.models import Courses
 
 class AdminPanelView(View):
 
@@ -26,9 +27,17 @@ class DashboardView(TemplateView):
     template_name = "AdminPanel_App/dashboard.html"
 
 
-class CourseList(TemplateView):
+class CourseList(View):
 
-    template_name = "AdminPanel_App/course_list.html"
+
+
+
+    def get(self,request):
+
+        course=Courses.objects.all()
+
+
+        return render(request,"AdminPanel_App/course_list.html",{"course":course})
 
 
 class AddCourse(TemplateView):

@@ -149,195 +149,38 @@
 															</tr>
 														</thead>
 														<tbody>
+
+
+                                                        {% for item in course %}
+
+
 															<tr>
-																<th scope="row">1</th>
-																<td><h6>الگوی طراحی UI/UX برای برنامه های نرم افزاری موفق</h6><p>مدرس:<span>مصطفی اسلامی</span></p></td>
-																<td><div class="dhs_tags">مالی</div></td>
-																<td><div class="smalls">17 دوره</div></td>
-																<td><span class="smalls">کل: 12</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
+																<th scope="row">{{ item.id }}</th>
+																<td><h6>{{ item.titel }}</h6><p>مدرس:<span>{{ item.teacher.user.full_name }}</span></p></td>
+																<td><div class="dhs_tags">{{ item.category.all.0 }}</div></td>
+																<td><div class="smalls">{{ item.corses_child.all.count }} ویدیو</div></td>
+																<td><span class="smalls">کل: {{ item.user.all.count }}</span></td>
+																<td><span class="trip theme-cl theme-bg-light">{{ item.status }}</span></td>
+																<td><span class="trip theme-cl theme-bg-light">{{ item.price }}تومان </span></td>
 																<td>
 																	<div class="dropdown show">
 																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 																			<i class="fas fa-ellipsis-h"></i>
 																		</a>
 																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
+																			<a class="dropdown-item" href="{{ item.get_absulot_url }}">مشاهده</a>
 																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
 																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
 																		</div>
 																	</div>
 																</td>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td><h6>آموزش ساخت فروشگاه دیجی استایل با لاراول</h6><p>مدرس:<span>یکتا ناصری</span></p></td>
-																<td><div class="dhs_tags">Laravel</div></td>
-																<td><div class="smalls">22 دوره</div></td>
-																<td><span class="smalls">کل: 2</span></td>
-																<td><span class="trip text-danger bg-light-danger">منقضی</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td><h6>معرفی و مقایسه زبان های برنامه نویسی</h6><p>مدرس:<span>محمد کریمی</span></p></td>
-																<td><div class="dhs_tags">نرم افزار</div></td>
-																<td><span class="smalls">41 دوره</span></td>
-																<td><span class="smalls">کل: 4</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip gray">99 تومان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">4</th>
-																<td><h6>دوره کامل حسابداری و مالی بانکی 2021</h6><p>مدرس:<span>مژگان علیزاده</span></p></td>
-																<td><div class="dhs_tags">Magento</div></td>
-																<td><span class="smalls">56 دوره</span></td>
-																<td><span class="smalls">کل: 8</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">5</th>
-																<td><h6>دوره کامل طرح کسب و کار شامل 50 طرح</h6><p>مدرس:<span>حسین محمدی</span></p></td>
-																<td><div class="dhs_tags">استارت آپ</div></td>
-																<td><span class="smalls">40 دوره</span></td>
-																<td><span class="smalls">کل: 9</span></td>
-																<td><span class="trip text-danger bg-light-danger">منقضی</span></td>
-																<td><span class="trip gray">100 تومان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">6</th>
-																<td><h6>دوره کامل طراحی وب با 20 طراحی قالب وب</h6><p>مدرس:<span>مهراد حسینی</span></p></td>
-																<td><div class="dhs_tags">گرافیک</div></td>
-																<td><span class="smalls">22 دوره</span></td>
-																<td><span class="smalls">کل: 0</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">7</th>
-																<td><h6>دوره کامل میزبانی وب با 20 طراحی قالب وب</h6></h6><p>مدرس:<span>علی ساجدی</span></p></td>
-																<td><div class="dhs_tags">JavaScript</div></td>
-																<td><span class="smalls">32 دوره</span></td>
-																<td><span class="smalls">کل: 8</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip gray">49 تومان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">8</th>
-																<td><h6>فناوری پیشرفته دوره کدنویسی لاراول پیشرفته</h6><p>مدرس:<span>حسین سنایی</span></p></td>
-																<td><div class="dhs_tags">PHP</div></td>
-																<td><span class="smalls">20 دوره</span></td>
-																<td><span class="smalls">کل: 7</span></td>
-																<td><span class="trip text-danger bg-light-danger">منقضی</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">9</th>
-																<td><h6>دوره کامل طراحی وب با 20 طراحی قالب وب</h6><p>مدرس:<span>شیما فلاح</span></p></td>
-																<td><div class="dhs_tags">وردپرس</div></td>
-																<td><span class="smalls">10 دوره</span></td>
-																<td><span class="smalls">کل: 6</span></td>
-																<td><span class="trip theme-cl theme-bg-light">فعال</span></td>
-																<td><span class="trip theme-cl theme-bg-light">رایگان</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
+
+                                                        {% endfor %}
+
+
+
+
 														</tbody>
 													</table>
 												</div>
