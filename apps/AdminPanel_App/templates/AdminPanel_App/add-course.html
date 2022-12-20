@@ -50,17 +50,18 @@
 									<div class="dashboard_wrap">
 										
 										<div class="form_blocs_wrap">
-											<form>
+											<form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
 												<div class="row justify-content-between">
 													
 													<div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
 														<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 															<button class="nav-link active" id="v-pills-basic-tab" data-toggle="pill" data-target="#v-pills-basic" type="button" role="tab" aria-controls="v-pills-basic" aria-selected="true">اطلاعات پایه</button>
-															<button class="nav-link" id="v-pills-requirements-tab" data-toggle="pill" data-target="#v-pills-requirements" type="button" role="tab" aria-controls="v-pills-requirements" aria-selected="false">نیازمندی</button>
+
 															<button class="nav-link" id="v-pills-pricing-tab" data-toggle="pill" data-target="#v-pills-pricing" type="button" role="tab" aria-controls="v-pills-pricing" aria-selected="false">قیمت</button>
 															<button class="nav-link" id="v-pills-media-tab" data-toggle="pill" data-target="#v-pills-media" type="button" role="tab" aria-controls="v-pills-media" aria-selected="false">رسانه</button>
-															<button class="nav-link" id="v-pills-seo-tab" data-toggle="pill" data-target="#v-pills-seo" type="button" role="tab" aria-controls="v-pills-seo" aria-selected="false">سئو</button>
-															<button class="nav-link" id="v-pills-finish-tab" data-toggle="pill" data-target="#v-pills-finish" type="button" role="tab" aria-controls="v-pills-finish" aria-selected="false">ثبت نهایی</button>
+
+
 														</div>
 													</div>
 													
@@ -69,10 +70,20 @@
 														<div class="tab-content" id="v-pills-tabContent">
 															<!-- Basic -->
 															<div class="tab-pane fade show active" id="v-pills-basic" role="tabpanel" aria-labelledby="v-pills-basic-tab">
-																
+
+
+
+
 																<div class="form-group smalls">
 																	<label>عنوان دوره*</label>
 																	{{ form.titel }}
+																</div>
+
+
+
+                                                                <div class="form-group smalls">
+																	<label>وضعیت دوره</label>
+																	{{ form.status }}
 																</div>
 																
 																<div class="form-group smalls">
@@ -86,7 +97,7 @@
 																</div>
 																
 																<div class="form-group smalls">
-																	<label>دسته بندی*</label>
+																	<label>دسته بندی</label>
 																	<div class="simple-input">
 																		{{ form.category }}
 																	</div>
@@ -105,11 +116,7 @@
 																</div>
 																
 
-																
-																<div class="form-group smalls">
-																	<input id="l2l" class="checkbox-custom" name="l2l" type="checkbox">
-																	<label for="l2l" class="checkbox-custom-label">این را برای دوره ویژه بررسی کنید.</label>
-																</div>
+
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">
@@ -122,25 +129,9 @@
 															
 															<!-- requirements -->
 															<div class="tab-pane fade" id="v-pills-requirements" role="tabpanel" aria-labelledby="v-pills-requirements-tab">
-																<div class="form-group smalls">
-																	<label>نیازمندی</label>
-																	<div class="row m-0">
-																		<input type="text" class="col-9 col-sm-9 form-control" placeholder="نیازمندی های دوره">
-																		<div class="col-3 col-sm-3">
-																			<button class="btn theme-bg" type="button"><i class="fas fa-plus"></i></button>
-																		</div>
-																	</div>
-																</div>
+
 																
-																<div class="form-group smalls">
-																	<ul class="lists-4">
-																		<li>جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
-																		<li>جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
-																		<li>جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
-																		<li>جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
-																		<li>جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</li>
-																	</ul>
-																</div>
+
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">
@@ -153,12 +144,7 @@
 															<!-- pricing -->
 															<div class="tab-pane fade" id="v-pills-pricing" role="tabpanel" aria-labelledby="v-pills-pricing-tab">
 																
-																<div class="form-group smalls">
-																	<div class="drios">
-																		<input id="l23" class="checkbox-custom" name="l23" type="checkbox">
-																		<label for="l23" class="checkbox-custom-label">این را برای دوره ویژه بررسی کنید.</label>
-																	</div>
-																</div>
+
 																
 																<div class="form-group smalls">
 																	<label>قیمت دوره (تومان)</label>
@@ -167,11 +153,9 @@
 																
 																<div class="form-group smalls">
 																	<label>تخفیف (تومان)</label>
+
 																	{{ form.discount }}
-																	<div class="drios">
-																		<input id="l22" class="checkbox-custom" name="l22" type="checkbox">
-																		<label for="l22" class="checkbox-custom-label">این تخفیف را فعال کنید</label>
-																	</div>
+
 																</div>
 																
 																<div class="d-flex align-items-center justify-content-center">
@@ -191,7 +175,7 @@
 																	<label>کاور ویدیو</label>
 																	<div class="custom-file">
 																	  {{ form.cover }}
-																	  <label class="custom-file-label" for="customFile">انتخاب تصویر</label>
+																	  <label class="custom-file-label">انتخاب تصویر</label>
 																	</div>
 																</div>
 
@@ -199,14 +183,14 @@
 																	<label>تیزر معرفی دوره</label>
 																	<div class="custom-file">
 																	  {{ form.introduction_video }}
-																	  <label class="custom-file-label" for="customFile">انتخاب ویدیو</label>
+																	  <label class="custom-file-label">انتخاب ویدیو</label>
 																	</div>
 																</div>
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+
+                                                                        <button type="submit" class="btn btn_slide bg-blue">ثبت دوره</button>
 																	</ul>
 																</div>
 																

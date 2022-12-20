@@ -30,7 +30,7 @@ class Category(models.Model):
 class Courses(models.Model):
 
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name="Corses")
-    cover = models.ImageField(upload_to="media/video_cover")
+    cover = models.FileField(upload_to="media/video_cover")
     introduction_video = models.FileField(upload_to="media/Video")
     user = models.ManyToManyField(User, related_name="Corses", null=True, blank=True)
     titel = models.CharField(max_length=50)

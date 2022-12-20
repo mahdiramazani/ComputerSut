@@ -75,10 +75,14 @@ class AddCourseForm(forms.ModelForm):
     class Meta:
 
         model=Courses
-        exclude=("view","user","slug")
+        exclude=("view","user","slug","teacher")
+
 
 
         widgets={
+
+
+
 
             "titel":forms.TextInput(
                 attrs={
@@ -100,13 +104,19 @@ class AddCourseForm(forms.ModelForm):
                 }
             ),
 
-            "category":forms.Select(
+            "category":forms.SelectMultiple(
+                attrs={
+                    "class":"form-group"
+                }
+            ),
+
+            "level":forms.Select(
                 attrs={
                     "class":"form-control"
                 }
             ),
 
-            "level":forms.Select(
+            "status":forms.Select(
                 attrs={
                     "class":"form-control"
                 }
@@ -145,3 +155,4 @@ class AddCourseForm(forms.ModelForm):
                 }
             )
         }
+

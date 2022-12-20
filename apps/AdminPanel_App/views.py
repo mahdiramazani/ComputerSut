@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
-from django.views.generic import View,TemplateView,ListView
+from django.views.generic import View,TemplateView,ListView,UpdateView
 from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm
 from apps.Course_app.models import Courses
+from apps.Acount_app.models import User,Teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class AdminPanelView(View):
@@ -36,13 +37,35 @@ class CourseList(ListView):
 
 class AddCourse(View):
 
+    def post(self,request):
+
+        form=AddCourseForm(request.POST,request.FILES)
+
+        if form.is_valid():
+
+            user=request.user
+            teacher=Teacher.objects.get(user__id=user.id)
+            c=form.save(commit=False)
+            c.teacher=teacher
+            c.save()
+
+            return redirect("AdminPanel:Course_list")
+
+
+        return render(request,"AdminPanel_App/add-course.html",{"form":form})
+
+
     def get(self,request):
         form=AddCourseForm()
 
 
         return render(request,"AdminPanel_App/add-course.html",{"form":form})
 
+class EditCourse(UpdateView):
 
+    model = Courses
+    form_class = AddCourseForm
+    template_name = "AdminPanel_App/add-course.html"
 
 
 class CategoryCourse(TemplateView):
