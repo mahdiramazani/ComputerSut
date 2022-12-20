@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fa">
+
+{% include "include/head.html" %}
+
+<body dir="rtl">
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+    <!-- Start Navigation -->
+    {% include "include/Nevagation.html" %}
+    <!-- End Navigation -->
+    <div class="clearfix"></div>
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+
+    <!-- ============================ Hero Banner  Start================================== -->
+
+    <!-- ============================ Hero Banner End ================================== -->
+
+
+
+
+
+
+
+    {% block content %}
+
+
+    {% endblock %}
+
+
+
+    <!-- ============================ Footer Start ================================== -->
+    {% include "include/footer.html" %}
+    <!-- ============================ Footer End ================================== -->
+
+    <!-- Log In Modal -->
+    {% include "include/login.html" %}
+    <!-- End Modal -->
+
+    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+
+
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="{% static "assets/js/jquery.min.js" %}"></script>
+<script src="{% static "assets/js/popper.min.js" %}"></script>
+<script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+<script src="{% static "assets/js/select2.min.js" %}"></script>
+<script src="{% static "assets/js/slick.js" %}"></script>
+<script src="{% static "assets/js/moment.min.js" %}"></script>
+<script src="{% static "assets/js/daterangepicker.js" %}"></script>
+<script src="{% static "assets/js/summernote.min.js" %}"></script>
+<script src="{% static "assets/js/metisMenu.min.js" %}"></script>
+<script src="{% static "assets/js/custom.js" %}"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+
+</body>
+
+</html>

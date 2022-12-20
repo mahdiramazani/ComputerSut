@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa">
+
+{% include "include/head.html" %}
+
+<body dir="rtl">
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+    <!-- Start Navigation -->
+    {% include "include/Nevagation.html" %}
+    <!-- End Navigation -->
+    <div class="clearfix"></div>
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+    <!-- ============================ Page Title Start================================== -->
+    <div class="ed_detail_head">
+        <div class="container">
+            <div class="row align-items-center justify-content-between mb-2">
+
+                <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
+                    <div class="dlkio_452">
+                        <div class="ed_detail_wrap">
+                            <div class="crs_cates cl_1"><span>گرافیک</span></div>
+                            <div class="crs_cates cl_3"><span>پروژه محور</span></div>
+                            <div class="ed_header_caption">
+                                <h2 class="ed_title">{{ object.topic }}</h2>
+                            </div>
+                            <div class="d-flex align-items-center mt-4">
+                                <div class="rounded-circle d-flex align-items-center justify-content-center">
+                                    <img src="{{ object.parent.teacher.user.image.url }}" class="img-fluid circle" width="70" alt=""/>
+                                </div>
+                                <div class="mr-2 mr-md-3">
+                                    <span>مدرس</span>
+                                    <h6 class="m-0">{{ object.parent.teacher.user.full_name }}</h6>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!-- ============================ Page Title End ================================== -->
+
+    <!-- ============================ Course Detail ================================== -->
+    <section class="gray pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-12 order-lg-first">
+                    <div class="video-player-box">
+                        <div class="video-icon">
+                            <div class="btn video-btn" onclick="playvideo()" id="videobtn">
+                                <img src="{% static "assets/img/play-video-btn.png" %}" alt="ستتتتت">
+                            </div>
+                        </div>
+                        <div class="video">
+                            <video width="100%" id="myVideo" autoplay>
+                                <source src="{{ object.video.url }}" type="video/mp4">
+                            </video>
+                            <img src="{{ object.video_cover.url }}" width="100%" height="100%"
+                                 class="position-absolute video-poster" alt="{{ object.topic }}">
+
+                            <div class="video-overlay"></div>
+                            <div class="video-description px-2 text-white">
+
+                                <p>{{ object.time }}</p>
+                            </div>
+                            <h5 class="close-btn" onclick="stopPlayer()">X</h5>
+                        </div>
+                    </div>
+
+                    <!-- All Info Show in Tab -->
+                    <div class="tab_box_info mt-4">
+                        <ul class="nav nav-pills mb-3 light" id="pills-tab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="overview-tab" data-toggle="pill" href="#overview"
+                                   role="tab" aria-controls="overview" aria-selected="true">توضیحات</a>
+                            </li>
+
+
+                        <div class="tab-content" id="pills-tabContent">
+
+                            <!-- Overview Detail -->
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                                 aria-labelledby="overview-tab">
+                                <!-- Overview -->
+                                <div class="edu_wraper">
+                                    <h4 class="edu_title">توضیحات و جزئیات این قسمت</h4>
+                                    <p>{{ object.introduction }}</p>
+
+
+                                </div>
+
+
+
+                                <!-- Overview -->
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4 col-md-12 order-lg-last">
+
+                    <div class="ed_view_box style_2 border ovrlio stick_top min">
+
+                        <div class="ed_view_link">
+
+                            <a href="#" class="btn theme-bg enroll-btn">{{ object.parent.status }}<i class="ti-angle-left"></i></a>
+                        </div>
+                        <div class="ed_view_features">
+                            <div class="eld mb-3">
+                                <h6 class="font-medium">مشخصات آموزش</h6>
+                                <p>{{ object.parent.Introduction_of_the_valley }}</p>
+                            </div>
+                            <div class="eld mb-3">
+                                <ul class="edu_list right">
+                                    <li><i class="ti-user"></i>تعداد شرکت کننده:<strong>{{ object.parent.user.all.count }}</strong></li>
+                                    <li><i class="ti-files"></i>موضوع:<strong>{{ object.topic }}</strong></li>
+                                    <li><i class="ti-game"></i>تعداد پروژه:<strong>{{ object.parent.project_count }}</strong></li>
+                                    <li><i class="ti-time"></i>تعداد ویدیو ها:<strong>{{ object.parent.corses_child.all.count }}</strong></li>
+                                    <li><i class="ti-time"></i>تعداد بازدید ها:<strong>{{ object.parent.view }}</strong></li>
+                                    <li><i class="ti-tag"></i>سطح:<strong>{{ object.parent.level }}</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================ Course Detail ================================== -->
+
+    <!-- ============================ Related Cources ================================== -->
+    <section>
+
+    </section>
+    <!-- ============================ Related Cources ================================== -->
+
+    <!-- ============================ Call To Action ================================== -->
+    <section class="theme-bg call_action_wrap-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="call_action_wrap">
+                        <div class="call_action_wrap-head">
+                            <h3 class="font-2">آیا سوالی دارید؟</h3>
+                            <span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
+                        </div>
+                        <a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Call To Action End ================================== -->
+
+    <!-- ============================ Footer Start ================================== -->
+    <!-- ============================ Footer Start ================================== -->
+    {% include "include/footer.html" %}
+    <!-- ============================ Footer End ================================== -->
+
+    <!-- Log In Modal -->
+    {% include "include/login.html" %}
+    <!-- End Modal -->
+
+    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+
+
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+
+<script src="{% static "assets/js/jquery.min.js" %}"></script>
+<script src="{% static "assets/js/popper.min.js" %}"></script>
+<script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+<script src="{% static "assets/js/select2.min.js" %}"></script>
+<script src="{% static "assets/js/slick.js" %}"></script>
+<script src="{% static "assets/js/moment.min.js" %}"></script>
+<script src="{% static "assets/js/daterangepicker.js" %}"></script>
+<script src="{% static "assets/js/summernote.min.js" %}"></script>
+<script src="{% static "assets/js/metisMenu.min.js" %}"></script>
+<script src="{% static "assets/js/custom.js" %}"></script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+<script>
+    const videobtn = document.querySelector('.video-btn');
+    const video = document.querySelector('.video');
+    const videotag = document.querySelector('video')
+    const videoDescription = document.querySelector('.video-description')
+    const closeBtn = document.querySelector('.close-btn')
+    const videoPoster = document.querySelector('.video-poster')
+    const videoOverlay = document.querySelector('.video-overlay')
+
+    function stopPlayer() {
+        videobtn.style.display = "block";
+        closeBtn.style.display = 'none';
+        videoPoster.style.display = 'inline'
+        video.style.zIndex = '-1'
+        videotag.pause()
+        videotag.style.borderRadius = '20px'
+        videoDescription.style.display = 'flex'
+        videotag.controls = false
+        videotag.style.borderRadius = '15px'
+        videoOverlay.style.display = 'block'
+    };
+
+    function playvideo() {
+        videobtn.style.display = "none";
+        video.style.zIndex = '22222'
+        videotag.autoplay = true
+        videotag.play()
+        videotag.style.borderRadius = '20px'
+        videotag.controls = true
+        videoDescription.style.display = 'none'
+        closeBtn.style.display = 'block'
+        videoPoster.style.display = 'none'
+        videoOverlay.style.display = 'none'
+    }
+</script>
+
+
+</body>
+
+</html>

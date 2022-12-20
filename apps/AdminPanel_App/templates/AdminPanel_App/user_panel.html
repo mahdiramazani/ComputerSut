@@ -1,0 +1,162 @@
+{% extends "base2.html" %}
+{% load static %}
+
+
+{% block content %}
+			<!-- End Navigation -->
+			<div class="clearfix"></div>
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			<!-- ============================ Dashboard: Dashboard Start ================================== -->
+			<section class="gray pt-4">
+				<div class="container-fluid">
+										
+					<div class="row">
+					
+						{% include "include/dashboard_navbar.html" %}
+						
+						<div class="col-lg-9 col-md-9 col-sm-12">
+							
+							<!-- Row -->
+							<div class="row justify-content-between">
+								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
+										<div class="arion">
+											<nav class="transparent">
+												<ol class="breadcrumb">
+													<li class="breadcrumb-item"><a href="#">خانه</a></li>
+													<li class="breadcrumb-item active" aria-current="page">حساب کاربری</li>
+												</ol>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Row -->
+							
+							<div class="row">
+								<div class="col-xl-7 col-lg-6 col-md-12">
+									<div class="dashboard_wrap">
+										
+										<div class="row">
+											<div class="col-xl-12 col-lg-12 col-md-12 mb-4">
+												<h6 class="m-0">اطلاعات فردی</h6>
+											</div>
+										</div>
+
+
+										
+										<div class="row justify-content-center">
+											<div class="col-xl-12 col-lg-12 col-md-12">
+
+
+
+												<form method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+
+													<div class="form-group smalls">
+														<label>نام و نام خانوادگی</label>
+														{{ form.full_name }}
+													</div>
+													<div class="form-group smalls">
+														<label>شماره دانشجویی</label>
+														{{ form.student_number }}
+													</div>
+													<div class="form-group smalls">
+														<label>شماره تماس</label>
+														{{ form.phone }}
+													</div>
+													<div class="form-group smalls">
+														<label>توضیحات کوتاه</label>
+														{{ form.bio }}
+													</div>
+
+													<div class="form-group smalls">
+														<label>لینک Facebook</label>
+														{{ form.facebook }}
+													</div>
+													<div class="form-group smalls">
+														<label>لینک Twitter</label>
+														{{ form.twitter }}
+													</div>
+													<div class="form-group smalls">
+														<label>لینک LinkedIn</label>
+														{{ form.linkedin }}
+													</div>
+													<div class="form-group smalls">
+														<label>لینک Gplus</label>
+														{{ form.instagram }}
+													</div>
+													<div class="form-group smalls">
+														<button class="btn theme-bg text-white" type="submit">ذخیره</button>
+													</div>
+												</form>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+								
+								<div class="col-xl-5 col-lg-6 col-md-12">
+									<div class="dashboard_wrap">
+										
+										<div class="row justify-content-center">
+											<div class="col-xl-12 col-lg-12 col-md-12">
+												<form>
+													<div class="form-group smalls">
+														<label>رمز عبور فعلی</label>
+														<input type="password" class="form-control" />
+													</div>
+													<div class="form-group smalls">
+														<label>رمز عبور جدید</label>
+														<input type="password" class="form-control" />
+													</div>
+													<div class="form-group smalls">
+														<label>تایید رمز عبور</label>
+														<input type="password" class="form-control" />
+													</div>
+													<div class="form-group smalls">
+														<button class="btn theme-bg text-white" type="button">ذخیره</button>
+													</div>
+												</form>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+								
+							</div>
+							
+							
+						</div>
+					
+					</div>
+					
+				</div>
+			</section>
+			<!-- ============================ Dashboard: Dashboard End ================================== -->
+			
+		<!-- ============================ Call To Action ================================== -->
+			<section class="theme-bg call_action_wrap-wrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							
+							<div class="call_action_wrap">
+								<div class="call_action_wrap-head">
+									<h3 class="font-2">آیا سوالی دارید؟</h3>
+									<span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
+								</div>
+								<a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- ============================ Call To Action End ================================== -->
+			
+			<!-- ============================ Footer Start ================================== -->
+		{% endblock %}

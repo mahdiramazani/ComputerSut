@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="clearfix"></div>
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+    <!-- ============================ Page Title Start================================== -->
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+
+                    <div class="breadcrumbs-wrap">
+                        <h1 class="breadcrumb-title font-2">نمای تمام صفحه نسخه 3</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb p-0 bg-white">
+                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item active theme-cl" aria-current="page">نمای تمام صفحه نسخه 3
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Page Title End ================================== -->
+
+    <!-- ============================ Course Detail ================================== -->
+    <section class="gray">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="short_wraping">
+                        <div class="row m-0 align-items-center justify-content-between">
+
+                            <div class="col-lg-4 col-md-5 col-sm-12  col-sm-6">
+                                <div class="shorting_pagination_laft">
+                                    <h6 class="m-0">نمایش 1-25 از 72</h6>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-8 col-md-7 col-sm-12 col-sm-6">
+                                <div class="dlks_152">
+                                    <div class="shorting-right ml-2">
+                                        <label>مرتب سازی براساس:</label>
+                                        <div class="dropdown show">
+                                            <a class="btn btn-filter dropdown-toggle" href="#" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false">
+                                                <span class="selection">امتیاز بالا</span>
+                                            </a>
+                                            <div class="drp-select dropdown-menu">
+                                                <a class="dropdown-item" href="JavaScript:Void(0);">امتیاز بالا</a>
+                                                <a class="dropdown-item" href="JavaScript:Void(0);">بازدید بالا</a>
+                                                <a class="dropdown-item" href="JavaScript:Void(0);">دوره جدید</a>
+                                                <a class="dropdown-item" href="JavaScript:Void(0);">دوره منتخب</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="lmk_485">
+                                        <ul class="shorting_grid">
+                                            <li class="list-inline-item"><a href="grid-layout-full.html" class="active"><span
+                                                    class="ti-layout-grid2"></span></a></li>
+                                            <li class="list-inline-item"><a href="list-layout-with-full.html"><span
+                                                    class="ti-view-list"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row justify-content-center">
+
+
+                {% for item in object_list %}
+
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="crs_grid shadow_none brd">
+                            <div class="crs_grid_thumb">
+                                <a href="{{ item.get_absulot_url }}" class="crs_detail_link">
+                                    <img src="{{ item.cover.url }}" class="img-fluid rounded" alt="">
+                                </a>
+                                <div class="crs_video_ico">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                                <div class="crs_locked_ico">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="crs_grid_caption">
+                                <div class="crs_tutor_thumb overl_top"><a href="{{ item.get_absulot_url }}"><img
+                                        src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt=""></a>
+                                </div>
+                                <div class="crs_cates cl_4"><span>{{ item.category.all.0 }}</span></div>
+                                <div class="crs_title"><h4><a href="course-detail.html"
+                                                              class="crs_title_link">{{ item.titel }}</a></h4></div>
+                                <div class="crs_info_detail">
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-video"></i><span>{{ item.corses_child.all.count }} ویدئو</span>
+                                        </li>
+                                        <li><i class="fa fa-user"></i><span>{{ item.user.all.count }} کاربر</span></li>
+                                        <li><i class="fa fa-eye"></i><span>{{ item.view }} بازدید</span></li>
+                                    </ul>
+                                </div>
+                                <div class="preview_crs_info">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width:70%"
+                                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crs_grid_foot">
+                                <div class="crs_flex">
+                                    <div class="crs_fl_first">
+                                        <div class="crs_price"><h2><span class="theme-cl">{{ item.view }}</span><span
+                                                class="currency">بازدید</span></h2></div>
+                                    </div>
+                                    <form method="post">
+                                        {% csrf_token %}
+
+                                        <div class="crs_fl_last">
+                                            <div class="crs_linkview">
+                                                <button type="submit"
+                                                        class="btn btn_view_detail theme-bg text-light">{{ item.status }}
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+
+                    {% if object_list.has_other_pages %}
+
+                        <ul class="pagination p-center">
+
+                            <li class="page-item">
+
+                                {% if object_list.has_previous %}
+
+                                    <a class="page-link" href="?page={{ object_list.previous_page_number }}"
+                                       aria-label="Previous">
+                                        <span class="ti-arrow-right"></span>
+                                        <span class="sr-only">قبل</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </li>
+
+                            {% for i in object_list.paginator.page_range %}
+
+                                {% if  object_list.number == i %}
+
+                                    <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                                    </li>
+
+                                {% else %}
+
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                            <li class="page-item">
+
+                                {% if object_list.has_next %}
+
+                                    <a class="page-link" href="?page={{ object_list.next_page_number }}"
+                                       aria-label="Next">
+                                        <span class="ti-arrow-left"></span>
+                                        <span class="sr-only">بعد</span>
+                                    </a>
+
+                                {% endif %}
+                            </li>
+                        </ul>
+
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ============================ Course Detail ================================== -->
+
+    <!-- ============================ Call To Action ================================== -->
+    <section class="theme-bg call_action_wrap-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="call_action_wrap">
+                        <div class="call_action_wrap-head">
+                            <h3 class="font-2">آیا سوالی دارید؟</h3>
+                            <span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
+                        </div>
+                        <a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
