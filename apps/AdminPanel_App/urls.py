@@ -8,6 +8,7 @@ urlpatterns=[
     path("course_list",views.CourseList.as_view(),name="Course_list"),
     path("add_course",views.AddCourse.as_view(),name="Add_course"),
     path("edit_course/<int:pk>",views.EditCourse.as_view(),name="EditCourse"),
+    path("add_video_child",views.AddVideoChild.as_view(),name="Add_Video_Child"),
     path("course_category",views.CategoryCourse.as_view(),name="Category_course"),
     path("coupons",views.Coupons.as_view(),name="Coupons"),
     path("register_student",views.RegisterStudent.as_view(),name="Register_student"),

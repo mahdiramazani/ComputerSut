@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView
-from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm
+from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm
 from apps.Course_app.models import Courses
 from apps.Acount_app.models import User,Teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -68,6 +68,36 @@ class EditCourse(UpdateView):
     form_class = AddCourseForm
     template_name = "AdminPanel_App/add-course.html"
     success_url = reverse_lazy("AdminPanel:Course_list")
+
+
+
+class AddVideoChild(View):
+
+
+    def post(self,request):
+
+        form=AddVideoChildForm(request.POST,request.FILES)
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("/")
+
+        print(form.errors)
+
+        return render(request, "AdminPanel_App/add_video_cuorseChild.html", {"form": form})
+
+
+    def get(self,request):
+
+        form=AddVideoChildForm()
+
+
+        return render(request,"AdminPanel_App/add_video_cuorseChild.html",{"form":form})
+
+
+
 
 
 class CategoryCourse(TemplateView):

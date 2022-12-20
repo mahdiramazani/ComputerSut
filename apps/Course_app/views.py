@@ -8,9 +8,6 @@ class CoursesView(View):
     model = Courses
     template_name = "Course_app/course.html"
 
-
-
-
     def get(self, request):
 
         object_list = Courses.objects.all()

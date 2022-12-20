@@ -157,3 +157,53 @@ class AddCourseForm(forms.ModelForm):
             )
         }
 
+
+class AddVideoChildForm(forms.ModelForm):
+
+    class Meta:
+
+        model=CoursesChild
+        exclude=["topic_parent"]
+
+
+        widgets={
+
+
+
+            "introduction":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "video":forms.FileInput(
+
+                attrs={
+                    "class":"custom-file-input"
+                }
+            ),
+
+            "video_cover":forms.FileInput(
+                attrs={
+                    "class":"custom-file-input"
+                }
+            ),
+
+            "link_video":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "time":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "topic":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            )
+        }
