@@ -72,58 +72,39 @@
 																
 																<div class="form-group smalls">
 																	<label>عنوان دوره*</label>
-																	<input type="text" class="form-control" placeholder="تدریس ریاضی و آمار دهم انسانی">
+																	{{ form.titel }}
 																</div>
 																
 																<div class="form-group smalls">
 																	<label>توضیحات کوتاه</label>
-																	<input type="text" class="form-control">
+																	{{ form.Introduction_of_the_valley }}
 																</div>
 																
 																<div class="form-group smalls">
 																	<label>توضیحات</label>
-																	<textarea class="summernote"></textarea>
+																	{{ form.specifications }}
 																</div>
 																
 																<div class="form-group smalls">
 																	<label>دسته بندی*</label>
 																	<div class="simple-input">
-																		<select id="cates" class="form-control">
-																			<option value="">&nbsp;</option>
-																			<option value="1">برنامه نویسی</option>
-																			<option value="2">مالی</option>
-																			<option value="3">پزشکی</option>
-																			<option value="4">نرم افزار</option>
-																			<option value="5">معماری</option>
-																		</select>
+																		{{ form.category }}
 																	</div>
 																</div>
 																
 																<div class="form-group smalls">
 																	<label>سطح</label>
 																	<div class="simple-input">
-																		<select id="lvl" class="form-control">
-																			<option value="">&nbsp;</option>
-																			<option value="1">ابتدایی</option>
-																			<option value="2">مقدماتی</option>
-																			<option value="3">متوسط</option>
-																			<option value="4">پیشرفته</option>
-																		</select>
+																		{{ form.level }}
 																	</div>
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>تعداد پروژه های این دوره</label>
+																	{{ form.project_count }}
 																</div>
 																
-																<div class="form-group smalls">
-																	<label>زبان</label>
-																	<div class="simple-input">
-																		<select id="lgu" class="form-control">
-																			<option value="">&nbsp;</option>
-																			<option value="1">اسپانیایی</option>
-																			<option value="2">فرانسوی</option>
-																			<option value="3">انگلیسی</option>
-																			<option value="4">سایر</option>
-																		</select>
-																	</div>
-																</div>
+
 																
 																<div class="form-group smalls">
 																	<input id="l2l" class="checkbox-custom" name="l2l" type="checkbox">
@@ -181,12 +162,12 @@
 																
 																<div class="form-group smalls">
 																	<label>قیمت دوره (تومان)</label>
-																	<input type="text" class="form-control" placeholder="750 تومان">
+																	{{ form.price }}
 																</div>
 																
 																<div class="form-group smalls">
 																	<label>تخفیف (تومان)</label>
-																	<input type="text" class="form-control" placeholder="20%">
+																	{{ form.discount }}
 																	<div class="drios">
 																		<input id="l22" class="checkbox-custom" name="l22" type="checkbox">
 																		<label for="l22" class="checkbox-custom-label">این تخفیف را فعال کنید</label>
@@ -203,29 +184,22 @@
 															
 															<!-- media -->
 															<div class="tab-pane fade" id="v-pills-media" role="tabpanel" aria-labelledby="v-pills-media-tab">
+
+
+																
 																<div class="form-group smalls">
-																	<label>ارائه دهنده دوره</label>
-																	<div class="simple-input">
-																		<select id="vid" class="form-control">
-																			<option value="">&nbsp;</option>
-																			<option value="1">YouTube</option>
-																			<option value="2">Vivo</option>
-																			<option value="3">Facebook</option>
-																			<option value="4">سایر</option>
-																		</select>
+																	<label>کاور ویدیو</label>
+																	<div class="custom-file">
+																	  {{ form.cover }}
+																	  <label class="custom-file-label" for="customFile">انتخاب تصویر</label>
 																	</div>
 																</div>
-																
-																<div class="form-group smalls">
-																	<label>لینک ویدئو</label>
-																	<input type="text" class="form-control" placeholder="https://www.aparat.com/video/video/embed/videohash/DRqPF/vt/frame">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>تصویر</label>
+
+                                                                <div class="form-group smalls">
+																	<label>تیزر معرفی دوره</label>
 																	<div class="custom-file">
-																	  <input type="file" class="custom-file-input" id="customFile">
-																	  <label class="custom-file-label" for="customFile">انتخاب فایل</label>
+																	  {{ form.introduction_video }}
+																	  <label class="custom-file-label" for="customFile">انتخاب ویدیو</label>
 																	</div>
 																</div>
 																

@@ -6,221 +6,268 @@
 
 
     <section class="gray pt-4">
-				<div class="container-fluid">
+        <div class="container-fluid">
 
-					<div class="row">
+            <div class="row">
 
-                            {% include "include/dashboard_navbar.html" %}
+                {% include "include/dashboard_navbar.html" %}
 
-						<div class="col-lg-9 col-md-9 col-sm-12">
+                <div class="col-lg-9 col-md-9 col-sm-12">
 
-							<!-- Row -->
-							<div class="row justify-content-between">
-								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
-									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
-										<div class="arion">
-											<nav class="transparent">
-												<ol class="breadcrumb">
-													<li class="breadcrumb-item"><a href="#">خانه</a></li>
-													<li class="breadcrumb-item active" aria-current="page">لیست دوره ها</li>
-												</ol>
-											</nav>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Row -->
+                    <!-- Row -->
+                    <div class="row justify-content-between">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+                            <div class="dashboard_wrap d-flex align-items-center justify-content-between">
+                                <div class="arion">
+                                    <nav class="transparent">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">لیست دوره ها</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Row -->
 
-							<div class="row">
-								<div class="col-xl-12 col-lg-12 col-md-12">
-									<div class="dashboard_wrap">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="dashboard_wrap">
 
-										<div class="row">
-											<div class="col-xl-12 col-lg-12 col-md-12 mb-4">
-												<h6 class="m-0">لیست دوره ها</h6>
-											</div>
-										</div>
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
+                                        <h6 class="m-0">لیست دوره ها</h6>
+                                    </div>
+                                </div>
 
-										<div class="row align-items-end mb-5">
-											<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-												<div class="form-group">
-													<label>دسته بندی</label>
-													<div class="smalls">
-														<select id="cates" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">فناوری اطلاعات</option>
-															<option value="2">حسابداری</option>
-															<option value="3">برنامه نویسی</option>
-															<option value="4">مدیریت</option>
-															<option value="5">طراحی و گرافیک</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
-												<div class="form-group">
-													<label>مدرسین</label>
-													<div class="smalls">
-														<select id="ins" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">یکتا ناصری</option>
-															<option value="2">مصطفی اسلامی</option>
-															<option value="3">مژگان علیزاده</option>
-															<option value="4">محمد کریمی</option>
-															<option value="5">حسین محمدی</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-												<div class="form-group">
-													<label>وضعیت</label>
-													<div class="smalls">
-														<select id="sts" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">فعال</option>
-															<option value="2">درحال انتظار</option>
-															<option value="3">منقضی</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-												<div class="form-group">
-													<label>قیمت</label>
-													<div class="smalls">
-														<select id="prc" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">همه</option>
-															<option value="2">رایگان</option>
-															<option value="3">پولی</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
-												<div class="form-group">
-													<button type="button" class="btn text-white full-width theme-bg">فیلتر</button>
-												</div>
-											</div>
-										</div>
+                                <div class="row align-items-end mb-5">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>دسته بندی</label>
+                                            <div class="smalls">
+                                                <select id="cates" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">فناوری اطلاعات</option>
+                                                    <option value="2">حسابداری</option>
+                                                    <option value="3">برنامه نویسی</option>
+                                                    <option value="4">مدیریت</option>
+                                                    <option value="5">طراحی و گرافیک</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>مدرسین</label>
+                                            <div class="smalls">
+                                                <select id="ins" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">یکتا ناصری</option>
+                                                    <option value="2">مصطفی اسلامی</option>
+                                                    <option value="3">مژگان علیزاده</option>
+                                                    <option value="4">محمد کریمی</option>
+                                                    <option value="5">حسین محمدی</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>وضعیت</label>
+                                            <div class="smalls">
+                                                <select id="sts" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">فعال</option>
+                                                    <option value="2">درحال انتظار</option>
+                                                    <option value="3">منقضی</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>قیمت</label>
+                                            <div class="smalls">
+                                                <select id="prc" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">همه</option>
+                                                    <option value="2">رایگان</option>
+                                                    <option value="3">پولی</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-4 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <button type="button" class="btn text-white full-width theme-bg">فیلتر
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
 
-										<div class="row justify-content-between">
-											<div class="col-xl-2 col-lg-3 col-md-6">
-												<div class="form-group smalls row align-items-center">
-													<label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
-													<div class="col-xl-9 col-lg-9 col-sm-10">
-													  <select id="show" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">10</option>
-															<option value="2">25</option>
-															<option value="3">35</option>
-															<option value="3">50</option>
-															<option value="3">100</option>
-															<option value="3">250</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-4 col-lg-5 col-md-6">
-												<div class="form-group smalls row align-items-center">
-													<label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
-													<div class="col-xl-10 col-lg-10 col-sm-10">
-													  <input type="text" class="form-control">
-													</div>
-												</div>
-											</div>
-										</div>
+                                <div class="row justify-content-between">
+                                    <div class="col-xl-2 col-lg-3 col-md-6">
+                                        <div class="form-group smalls row align-items-center">
+                                            <label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
+                                            <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                <select id="show" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">10</option>
+                                                    <option value="2">25</option>
+                                                    <option value="3">35</option>
+                                                    <option value="3">50</option>
+                                                    <option value="3">100</option>
+                                                    <option value="3">250</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-5 col-md-6">
+                                        <div class="form-group smalls row align-items-center">
+                                            <label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
+                                            <div class="col-xl-10 col-lg-10 col-sm-10">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-										<div class="row">
-											<div class="col-xl-12 col-lg-12 col-md-12 mb-2">
-												<div class="table-responsive">
-													<table class="table dash_list">
-														<thead>
-															<tr>
-																<th scope="col">#</th>
-																<th scope="col">عنوان</th>
-																<th scope="col">دسته بندی</th>
-																<th scope="col">دوره</th>
-																<th scope="col">شرکت کننده</th>
-																<th scope="col">وضعیت</th>
-																<th scope="col">قیمت</th>
-																<th scope="col">عملیات</th>
-															</tr>
-														</thead>
-														<tbody>
-
-
-                                                        {% for item in course %}
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+                                        <div class="table-responsive">
+                                            <table class="table dash_list">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">عنوان</th>
+                                                    <th scope="col">دسته بندی</th>
+                                                    <th scope="col">دوره</th>
+                                                    <th scope="col">شرکت کننده</th>
+                                                    <th scope="col">وضعیت</th>
+                                                    <th scope="col">قیمت</th>
+                                                    <th scope="col">عملیات</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
 
 
-															<tr>
-																<th scope="row">{{ item.id }}</th>
-																<td><h6>{{ item.titel }}</h6><p>مدرس:<span>{{ item.teacher.user.full_name }}</span></p></td>
-																<td><div class="dhs_tags">{{ item.category.all.0 }}</div></td>
-																<td><div class="smalls">{{ item.corses_child.all.count }} ویدیو</div></td>
-																<td><span class="smalls">کل: {{ item.user.all.count }}</span></td>
-																<td><span class="trip theme-cl theme-bg-light">{{ item.status }}</span></td>
-																<td><span class="trip theme-cl theme-bg-light">{{ item.price }}تومان </span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="{{ item.get_absulot_url }}">مشاهده</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-
-                                                        {% endfor %}
+                                                {% for item in object_list %}
 
 
+                                                    <tr>
+                                                        <th scope="row">{{ item.id }}</th>
+                                                        <td><h6>{{ item.titel }}</h6>
+                                                            <p>مدرس:<span>{{ item.teacher.user.full_name }}</span></p>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dhs_tags">{{ item.category.all.0 }}</div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="smalls">{{ item.corses_child.all.count }}
+                                                                ویدیو
+                                                            </div>
+                                                        </td>
+                                                        <td><span class="smalls">کل: {{ item.user.all.count }}</span>
+                                                        </td>
+                                                        <td><span
+                                                                class="trip theme-cl theme-bg-light">{{ item.status }}</span>
+                                                        </td>
+                                                        <td><span class="trip theme-cl theme-bg-light">{{ item.price }}تومان </span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown show">
+                                                                <a class="btn btn-action" href="#"
+                                                                   data-toggle="dropdown" aria-haspopup="true"
+                                                                   aria-expanded="false">
+                                                                    <i class="fas fa-ellipsis-h"></i>
+                                                                </a>
+                                                                <div class="drp-select dropdown-menu">
+                                                                    <a class="dropdown-item"
+                                                                       href="{{ item.get_absulot_url }}">مشاهده</a>
+                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
+                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                {% endfor %}
 
 
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
 
-										<div class="row align-items-center justify-content-between">
-											<div class="col-xl-6 col-lg-6 col-md-12">
-												<p class="p-0">نمایش 1 تا 15 از 15</p>
-											</div>
-											<div class="col-xl-6 col-lg-6 col-md-12">
-												<nav class="float-right">
-													 <ul class="pagination smalls m-0">
-														<li class="page-item disabled">
-														  <a class="page-link" href="#" tabindex="-1"><i class="fas fa-arrow-circle-right"></i></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active">
-														  <a class="page-link" href="#">2 <span class="sr-only">(صفحه جاری)</span></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item">
-														  <a class="page-link" href="#"><i class="fas fa-arrow-circle-left"></i></a>
-														</li>
-													</ul>
-												</nav>
-											</div>
-										</div>
-
-									</div>
-								</div>
-							</div>
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <p class="p-0">نمایش 1 تا {{ object_list.all.count }} از {{ object_list.all.count }}</p>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
 
 
-						</div>
+                                        {% if page_obj.has_other_pages %}
 
-					</div>
+                                            <nav class="float-right">
+                                                <ul class="pagination smalls m-0">
 
-				</div>
-			</section>
+                                                    {% if page_obj.has_previous %}
+
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link"
+                                                               href="?page={{ page_obj.previous_page_number }}"
+                                                               tabindex="-1"><i
+                                                                    class="fas fa-arrow-circle-right"></i></a>
+                                                        </li>
+                                                    {% endif %}
+
+                                                    {% for item in paginator.page_range %}
+
+
+                                                        {% if item == page_obj.number %}
+
+                                                        <li class="page-item active">
+                                                            <a class="page-link" href="?page={{ item }}">{{ item }}<span class="sr-only">(صفحه جاری)</span></a>
+                                                        </li>
+                                                            {% else %}
+
+                                                            <li class="page-item"><a class="page-link"
+                                                                                 href="?page={{ item }}">{{ item }}</a></li>
+                                                        {% endif %}
+
+                                                    {% endfor %}
+
+
+
+                                                    {% if page_obj.has_next %}
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                               href="?page={{ page_obj.next_page_number }}"><i
+                                                                    class="fas fa-arrow-circle-left"></i></a>
+                                                        </li>
+
+                                                    {% endif %}
+
+                                                </ul>
+                                            </nav>
+
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
 
 

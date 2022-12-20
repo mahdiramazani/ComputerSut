@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
-from django.views.generic import View,TemplateView
-from apps.AdminPanel_App.forms import EditUserPanelForms
+from django.views.generic import View,TemplateView,ListView
+from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm
 from apps.Course_app.models import Courses
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 class AdminPanelView(View):
 
@@ -27,22 +28,21 @@ class DashboardView(TemplateView):
     template_name = "AdminPanel_App/dashboard.html"
 
 
-class CourseList(View):
+class CourseList(ListView):
+        model = Courses
+        template_name = "AdminPanel_App/course_list.html"
+        paginate_by = 3
 
 
-
+class AddCourse(View):
 
     def get(self,request):
-
-        course=Courses.objects.all()
-
-
-        return render(request,"AdminPanel_App/course_list.html",{"course":course})
+        form=AddCourseForm()
 
 
-class AddCourse(TemplateView):
+        return render(request,"AdminPanel_App/add-course.html",{"form":form})
 
-    template_name = "AdminPanel_App/add-course.html"
+
 
 
 class CategoryCourse(TemplateView):
