@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView
 from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm
 from apps.Course_app.models import Courses
@@ -66,6 +67,7 @@ class EditCourse(UpdateView):
     model = Courses
     form_class = AddCourseForm
     template_name = "AdminPanel_App/add-course.html"
+    success_url = reverse_lazy("AdminPanel:Course_list")
 
 
 class CategoryCourse(TemplateView):

@@ -1,0 +1,248 @@
+{% extends "base2.html" %}
+{% load static %}
+
+
+{% block content %}
+
+        <!-- ============================================================== -->
+        <!-- Main wrapper - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+
+		
+            <!-- ============================================================== -->
+            <!-- Top header  -->
+            <!-- ============================================================== -->
+            <!-- Start Navigation -->
+
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			<!-- ============================ Dashboard: Dashboard Start ================================== -->
+			<section class="gray pt-4">
+				<div class="container-fluid">
+										
+					<div class="row">
+					
+						{% include "include/dashboard_navbar.html" %}
+						
+						<div class="col-lg-9 col-md-9 col-sm-12">
+							
+							<!-- Row -->
+							<div class="row justify-content-between">
+								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
+										<div class="arion">
+											<nav class="transparent">
+												<ol class="breadcrumb">
+													<li class="breadcrumb-item"><a href="#">خانه</a></li>
+													<li class="breadcrumb-item active" aria-current="page">افزودن دوره جدید</li>
+												</ol>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Row -->
+							
+							<div class="row">
+								<div class="col-xl-12 col-lg-12 col-md-12">
+									<div class="dashboard_wrap">
+										
+										<div class="form_blocs_wrap">
+											<form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+												<div class="row justify-content-between">
+													
+													<div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
+														<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+															<button class="nav-link active" id="v-pills-basic-tab" data-toggle="pill" data-target="#v-pills-basic" type="button" role="tab" aria-controls="v-pills-basic" aria-selected="true">اطلاعات پایه</button>
+
+															<button class="nav-link" id="v-pills-pricing-tab" data-toggle="pill" data-target="#v-pills-pricing" type="button" role="tab" aria-controls="v-pills-pricing" aria-selected="false">قیمت</button>
+															<button class="nav-link" id="v-pills-media-tab" data-toggle="pill" data-target="#v-pills-media" type="button" role="tab" aria-controls="v-pills-media" aria-selected="false">رسانه</button>
+
+
+														</div>
+													</div>
+													
+													<div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
+															
+														<div class="tab-content" id="v-pills-tabContent">
+															<!-- Basic -->
+															<div class="tab-pane fade show active" id="v-pills-basic" role="tabpanel" aria-labelledby="v-pills-basic-tab">
+
+
+
+
+																<div class="form-group smalls">
+																	<label>عنوان دوره*</label>
+																	{{ form.titel }}
+																</div>
+
+
+
+                                                                <div class="form-group smalls">
+																	<label>وضعیت دوره</label>
+																	{{ form.status }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>توضیحات کوتاه</label>
+																	{{ form.Introduction_of_the_valley }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>توضیحات</label>
+																	{{ form.specifications }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>دسته بندی</label>
+																	<div class="simple-input">
+																		{{ form.category }}
+																	</div>
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>سطح</label>
+																	<div class="simple-input">
+																		{{ form.level }}
+																	</div>
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>تعداد پروژه های این دوره</label>
+																	{{ form.project_count }}
+																</div>
+																
+
+
+																
+																<div class="d-flex align-items-center justify-content-center">
+																	<ul class="alios_slide_nav">
+																		<li><a href="#" class="btn btn_slide disabled"><i class="fas fa-arrow-right"></i></a></li>
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+																	</ul>
+																</div>
+																
+															</div>
+															
+															<!-- requirements -->
+															<div class="tab-pane fade" id="v-pills-requirements" role="tabpanel" aria-labelledby="v-pills-requirements-tab">
+
+																
+
+																
+																<div class="d-flex align-items-center justify-content-center">
+																	<ul class="alios_slide_nav">
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<!-- pricing -->
+															<div class="tab-pane fade" id="v-pills-pricing" role="tabpanel" aria-labelledby="v-pills-pricing-tab">
+																
+
+																
+																<div class="form-group smalls">
+																	<label>قیمت دوره (تومان)</label>
+																	{{ form.price }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>تخفیف (تومان)</label>
+
+																	{{ form.discount }}
+
+																</div>
+																
+																<div class="d-flex align-items-center justify-content-center">
+																	<ul class="alios_slide_nav">
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+																	</ul>
+																</div>
+															</div>
+															
+															<!-- media -->
+															<div class="tab-pane fade" id="v-pills-media" role="tabpanel" aria-labelledby="v-pills-media-tab">
+
+
+																
+																<div class="form-group smalls">
+																	<label>کاور ویدیو</label>
+																	<div class="custom-file">
+																	  {{ form.cover }}
+																	  <label class="custom-file-label">انتخاب تصویر</label>
+																	</div>
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>تیزر معرفی دوره</label>
+																	<div class="custom-file">
+																	  {{ form.introduction_video }}
+																	  <label class="custom-file-label">انتخاب ویدیو</label>
+																	</div>
+																</div>
+																
+																<div class="d-flex align-items-center justify-content-center">
+																	<ul class="alios_slide_nav">
+
+                                                                        <button type="submit" class="btn btn_slide bg-blue">ثبت دوره</button>
+																	</ul>
+																</div>
+																
+															</div>
+															
+															<!-- seo -->
+															<div class="tab-pane fade" id="v-pills-seo" role="tabpanel" aria-labelledby="v-pills-seo-tab">
+																<div class="form-group smalls">
+																	<label>عنوان</label>
+																	<input type="text" class="form-control" placeholder="عنوان سئو">
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>توضیحات</label>
+																	<textarea class="form-control" placeholder="توضیحات دوره"></textarea>
+																</div>
+																
+																<div class="d-flex align-items-center justify-content-center">
+																	<ul class="alios_slide_nav">
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
+																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+																	</ul>
+																</div>
+																
+															</div>
+															
+															<!-- finish -->
+															<div class="tab-pane fade" id="v-pills-finish" role="tabpanel" aria-labelledby="v-pills-finish-tab">
+																<div class="succ_wrap">
+																	<div class="succ_121"><i class="fas fa-thumbs-up"></i></div>
+																	<div class="succ_122">
+																		<h4 class="font-2">دوره با موفقیت اضافه شد</h4>
+																		<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
+																	</div>
+																	<div class="succ_123"><a href="course-detail.html" class="btn theme-bg text-white">مشاهده دوره</a></div>
+																</div>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- ============================ Dashboard: Dashboard End ================================== -->
+			
+		<!-- ============================ Call To Action ================================== -->
+			{% endblock %}

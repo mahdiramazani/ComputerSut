@@ -185,7 +185,7 @@
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
                                                                        href="{{ item.get_absulot_url }}">مشاهده</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:EditCourse" item.id %}">ویرایش</a>
                                                                     <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
                                                                 </div>
                                                             </div>

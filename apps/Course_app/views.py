@@ -33,7 +33,6 @@ class CourseDetailView(View):
     def get(self, request, pk):
         context = {"student": False}
 
-
         object = Courses.objects.get(id=pk)
 
         object.view+=1

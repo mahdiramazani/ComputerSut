@@ -106,7 +106,8 @@ class AddCourseForm(forms.ModelForm):
 
             "category":forms.SelectMultiple(
                 attrs={
-                    "class":"form-group"
+                    "class":"form-select",
+                    "size":3
                 }
             ),
 
