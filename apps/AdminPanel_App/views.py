@@ -74,13 +74,16 @@ class EditCourse(UpdateView):
 class AddVideoChild(View):
 
 
-    def post(self,request):
+    def post(self,request,pk):
 
         form=AddVideoChildForm(request.POST,request.FILES)
 
         if form.is_valid():
+            parent=Courses.objects.get(id=pk)
 
-            form.save()
+            v=form.save(commit=False)
+            v.parent=parent
+            v.save()
 
             return redirect("/")
 
@@ -89,14 +92,12 @@ class AddVideoChild(View):
         return render(request, "AdminPanel_App/add_video_cuorseChild.html", {"form": form})
 
 
-    def get(self,request):
+    def get(self,request,pk):
 
         form=AddVideoChildForm()
 
 
         return render(request,"AdminPanel_App/add_video_cuorseChild.html",{"form":form})
-
-
 
 
 

@@ -163,7 +163,7 @@ class AddVideoChildForm(forms.ModelForm):
     class Meta:
 
         model=CoursesChild
-        exclude=["topic_parent"]
+        exclude=["topic_parent","parent"]
 
 
         widgets={
