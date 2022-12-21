@@ -141,40 +141,43 @@
                                                 <tr>
                                                     <th scope="col">#</th>
                                                     <th scope="col">عنوان</th>
-                                                    <th scope="col">دسته بندی</th>
-                                                    <th scope="col">دوره</th>
-                                                    <th scope="col">شرکت کننده</th>
+                                                    <th scope="col">زمان ویدیو</th>
                                                     <th scope="col">وضعیت</th>
-                                                    <th scope="col">قیمت</th>
                                                     <th scope="col">عملیات</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
 
 
-                                                {% for item in object_list %}
+                                                {% for item in page_obj %}
 
 
                                                     <tr>
                                                         <th scope="row">{{ item.id }}</th>
-                                                        <td><h6>{{ item.titel }}</h6>
-                                                            <p>مدرس:<span>{{ item.teacher.user.full_name }}</span></p>
+                                                        <td><h6>{{ item.topic }}</h6>
+                                                            <p>دوره:<span>{{ item.parent.titel }}</span></p>
                                                         </td>
-                                                        <td>
-                                                            <div class="dhs_tags">{{ item.category.all.0 }}</div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="smalls">{{ item.corses_child.all.count }}
-                                                                ویدیو
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="smalls">کل: {{ item.user.all.count }}</span>
-                                                        </td>
+
+
                                                         <td><span
-                                                                class="trip theme-cl theme-bg-light">{{ item.status }}</span>
+                                                                class="trip theme-cl theme-bg-light">{{ item.time }}</span>
                                                         </td>
-                                                        <td><span class="trip theme-cl theme-bg-light">{{ item.price }}تومان </span>
-                                                        </td>
+
+
+                                                        {% if item.status == True %}
+
+                                                            <td><span
+                                                                    class="trip theme-cl theme-bg-light">منتشر شده</span>
+                                                            </td>
+
+                                                        {% else %}
+
+                                                            <td><span
+                                                                    class="trip theme-cl theme-bg-light">پیشنویس</span>
+                                                            </td>
+
+                                                        {% endif %}
+
                                                         <td>
                                                             <div class="dropdown show">
                                                                 <a class="btn btn-action" href="#"
@@ -184,10 +187,9 @@
                                                                 </a>
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
-                                                                       href="{{ item.get_absulot_url }}">مشاهده</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:EditCourse" item.id %}">ویرایش</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:Add_Video_Child" item.id %}">اضافه کردن ویدیو به دوره</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:video_child_list" item.id %}">ویدیو های دوره</a>
+                                                                       href="{{ item.get_absolut_url }}">مشاهده</a>
+                                                                    <a class="dropdown-item"
+                                                                       href="{% url "AdminPanel:EditCourse" item.id %}">ویرایش</a>
                                                                     <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
                                                                 </div>
                                                             </div>
@@ -205,7 +207,8 @@
 
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
-                                        <p class="p-0">نمایش 1 تا {{ object_list.all.count }} از {{ object_list.all.count }}</p>
+                                        <p class="p-0">نمایش 1 تا {{ page_obj.all.count }}
+                                            از {{ page_obj.all.count }}</p>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12">
 
@@ -225,18 +228,21 @@
                                                         </li>
                                                     {% endif %}
 
-                                                    {% for item in paginator.page_range %}
+                                                    {% for item in page_obj.paginator.page_range %}
 
 
                                                         {% if item == page_obj.number %}
 
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="?page={{ item }}">{{ item }}<span class="sr-only">(صفحه جاری)</span></a>
-                                                        </li>
-                                                            {% else %}
+                                                            <li class="page-item active">
+                                                                <a class="page-link"
+                                                                   href="?page={{ item }}">{{ item }}<span
+                                                                        class="sr-only">(صفحه جاری)</span></a>
+                                                            </li>
+                                                        {% else %}
 
                                                             <li class="page-item"><a class="page-link"
-                                                                                 href="?page={{ item }}">{{ item }}</a></li>
+                                                                                     href="?page={{ item }}">{{ item }}</a>
+                                                            </li>
                                                         {% endif %}
 
                                                     {% endfor %}

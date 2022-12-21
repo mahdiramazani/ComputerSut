@@ -63,6 +63,7 @@ class CoursesChild(models.Model):
     topic = models.CharField(max_length=100)
     topic_parent = models.ForeignKey("self", related_name="Course_app_CoursesChild_topic_parent",
                                      on_delete=models.CASCADE, null=True, blank=True)
+    status=models.BooleanField(default=True)
 
     def get_absolut_url(self):
         return reverse("Course_app:video_detail", kwargs={"pk": self.id})

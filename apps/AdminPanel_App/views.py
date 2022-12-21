@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView
 from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm
-from apps.Course_app.models import Courses
+from apps.Course_app.models import Courses,CoursesChild
 from apps.Acount_app.models import User,Teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -98,6 +98,27 @@ class AddVideoChild(View):
 
 
         return render(request,"AdminPanel_App/add_video_cuorseChild.html",{"form":form})
+
+
+class VideoChildList(View):
+
+    def get(self,request,pk):
+
+        course_child=CoursesChild.objects.filter(parent_id=pk)
+
+        object_list=Paginator(course_child,1)
+        page=request.GET.get("page")
+
+        try:
+            page_obj = object_list.get_page(page)
+        except PageNotAnInteger:
+
+            page_obj = object_list.page(1)
+        except EmptyPage:
+
+            page_obj = object_list.page(object_list.num_pages)
+
+        return render(request,"AdminPanel_App/video_child_list.html",{"course":course_child,"page_obj":page_obj})
 
 
 
