@@ -12,6 +12,7 @@ urlpatterns=[
     path("video_child_list/<int:pk>",views.VideoChildList.as_view(),name="video_child_list"),
     path("edit_video_child/<int:pk>",views.EditVideoChild.as_view(),name="Edit_Video_Child"),
     path("course_category",views.CategoryCourse.as_view(),name="Category_course"),
+    path("create_category",views.CreateCategoryView.as_view(),name="Create_Category"),
     path("coupons",views.Coupons.as_view(),name="Coupons"),
     path("register_student",views.RegisterStudent.as_view(),name="Register_student"),
     path("admin_list",views.AdminList.as_view(),name="Admin_list"),

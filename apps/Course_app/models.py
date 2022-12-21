@@ -2,6 +2,7 @@ from django.db import models
 from apps.Acount_app.models import User, Teacher
 from django.urls import reverse
 from scripts.utils import jalali_convert
+from django.utils import timezone
 
 LEVEL = (
     ("مقدماتی", "مقدماتی"),
@@ -27,9 +28,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
     def get_jalali_date(self):
-
 
         return jalali_convert(self.created)
 
@@ -53,11 +52,14 @@ class Courses(models.Model):
     status = models.CharField(max_length=100, choices=STATUS,default="در حال برگزاری...")
     discount=models.IntegerField(null=True,blank=True)
 
+
     def get_absulot_url(self):
         return reverse("Course_app:Course_detail", kwargs={"pk": self.id})
 
     def __str__(self):
         return self.titel
+
+
 
 
 class CoursesChild(models.Model):
@@ -72,6 +74,7 @@ class CoursesChild(models.Model):
                                      on_delete=models.CASCADE, null=True, blank=True)
     status=models.BooleanField(default=True)
 
+
     def get_absolut_url(self):
         return reverse("Course_app:video_detail", kwargs={"pk": self.id})
 
@@ -79,13 +82,18 @@ class CoursesChild(models.Model):
         return self.topic
 
 
+
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Comment")
     corses = models.ForeignKey(Courses, on_delete=models.CASCADE, related_name="Comment")
     body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
+
 
 
     def __str__(self):
 
         return self.body[:10]
+
+
+

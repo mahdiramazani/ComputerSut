@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
-from django.views.generic import View,TemplateView,ListView,UpdateView
-from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm
+from django.views.generic import View,TemplateView,ListView,UpdateView,CreateView
+from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm,CreateCategoryForm
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Acount_app.models import User,Teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -125,6 +125,13 @@ class EditVideoChild(UpdateView):
 class CategoryCourse(ListView):
     model = Category
     template_name = "AdminPanel_App/course-category.html"
+
+
+class CreateCategoryView(CreateView):
+    model = Category
+    form_class = CreateCategoryForm
+    template_name = "AdminPanel_App/create_category.html"
+    success_url =reverse_lazy("AdminPanel:Category_course")
 
 
 class Coupons(TemplateView):

@@ -1,6 +1,6 @@
 from django import forms
 from apps.Acount_app.models import User,Teacher
-from apps.Course_app.models import Courses,CoursesChild
+from apps.Course_app.models import Courses,CoursesChild,Category
 
 
 
@@ -210,6 +210,30 @@ class AddVideoChildForm(forms.ModelForm):
             "topic":forms.TextInput(
                 attrs={
                     "class":"form-control"
+                }
+            )
+        }
+
+
+class CreateCategoryForm(forms.ModelForm):
+
+    class Meta:
+        model=Category
+
+        fields=["name","image"]
+
+
+        widgets={
+
+            "name":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "image":forms.FileInput(
+                attrs={
+                    "class":"custom-file-input"
                 }
             )
         }
