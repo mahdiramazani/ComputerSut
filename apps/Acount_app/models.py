@@ -64,6 +64,7 @@ class User(AbstractBaseUser):
     username=models.CharField(max_length=50,null=True,blank=True)
     image=models.ImageField(upload_to="media/user_image",null=True,blank=True)
     student_number = models.CharField(max_length=50,null=True,blank=True)
+    nation_code=models.CharField(max_length=50,null=True,blank=True)
     university_name = models.CharField(choices=UNIVERSITY_NAME,max_length=100,default="دانشگاه صنعتی سیرجان")
     major=models.CharField(max_length=50,choices=MAJOR,default="مهندسی کامپیوتر")
     is_active = models.BooleanField(default=True)
