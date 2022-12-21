@@ -24,17 +24,14 @@ class AdminPanelView(View):
 
         return render(request, "AdminPanel_App/user_panel.html",{"form":form})
 
-
 class DashboardView(TemplateView):
 
     template_name = "AdminPanel_App/dashboard.html"
-
 
 class CourseList(ListView):
         model = Courses
         template_name = "AdminPanel_App/course_list.html"
         paginate_by = 3
-
 
 class AddCourse(View):
 
@@ -69,8 +66,6 @@ class EditCourse(UpdateView):
     template_name = "AdminPanel_App/add-course.html"
     success_url = reverse_lazy("AdminPanel:Course_list")
 
-
-
 class AddVideoChild(View):
 
 
@@ -99,7 +94,6 @@ class AddVideoChild(View):
 
         return render(request,"AdminPanel_App/add_video_cuorseChild.html",{"form":form})
 
-
 class VideoChildList(View):
 
     def get(self,request,pk):
@@ -120,6 +114,11 @@ class VideoChildList(View):
 
         return render(request,"AdminPanel_App/video_child_list.html",{"course":course_child,"page_obj":page_obj})
 
+class EditVideoChild(UpdateView):
+    model = CoursesChild
+    form_class = AddVideoChildForm
+    template_name = "AdminPanel_App/add_video_cuorseChild.html"
+    success_url = "/"
 
 
 class CategoryCourse(TemplateView):

@@ -161,7 +161,7 @@
 						<div class="nav-menus-wrapper" style="transition-property: none;">
 							<ul class="nav-menu">
 
-								<li class="active"><a href="{% url "Home_app:Home" %}">خانه<span class="submenu-indicator"></span></a>
+								<li {% if request.resolver_match.url_name == "Home" %} class="active" {% endif %}><a href="{% url "Home_app:Home" %}">خانه<span class="submenu-indicator"></span></a>
 
 								</li>
 
@@ -169,7 +169,7 @@
 
 
 
-								<li><a href="{% url "AdminPanel:Userpanel" %}">حساب کاربری</a></li>
+								<li {% if request.resolver_match.url_name == "Userpanel" %}class="active" {% endif %}><a href="{% url "AdminPanel:Userpanel" %}">حساب کاربری</a></li>
 
 							</ul>
 
