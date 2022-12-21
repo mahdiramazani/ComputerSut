@@ -21,11 +21,13 @@
             <div class="nav-menus-wrapper">
                 <ul class="nav-menu">
 
-                    <li {% if request.resolver_match.url_name == "Home" %} class="active" {% endif %}><a href="{% url "Home_app:Home" %}">خانه<span class="submenu-indicator"></span></a>
+                    <li {% if request.resolver_match.url_name == "Home" %} class="active" {% endif %}><a
+                            href="{% url "Home_app:Home" %}">خانه<span class="submenu-indicator"></span></a>
 
                     </li>
 
-                    <li {% if request.resolver_match.url_name == "Course" %} class="active" {% endif %}><a href="{% url "Course_app:Course" %}">دوره های آموزشی<span class="submenu-indicator"></span></a>
+                    <li {% if request.resolver_match.url_name == "Course" %} class="active" {% endif %}><a
+                            href="{% url "Course_app:Course" %}">دوره های آموزشی<span class="submenu-indicator"></span></a>
 
                     </li>
 
@@ -54,7 +56,8 @@
                         </ul>
                     </li>
 
-                    <li {% if request.resolver_match.url_name == "Userpanel" %} class="active" {% endif %}><a href="{% url "AdminPanel:Userpanel" %}">حساب کاربری</a></li>
+                    <li {% if request.resolver_match.url_name == "Userpanel" %} class="active" {% endif %}><a
+                            href="{% url "AdminPanel:Userpanel" %}">حساب کاربری</a></li>
 
                 </ul>
 
@@ -63,35 +66,38 @@
 
                     <ul class="nav-menu nav-menu-social align-to-left">
 
-                            <li>
-                                <a href="#" data-toggle="modal">
-                                    <i class=" "></i><span
-                                        class="dn-lg"><p> خوش آمدید {{ request.user.full_name }} </p></span>
-                                </a>
-                            </li>
+                        <div class="btn-group account-drop">
+                            <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
 
-                            <li>
-                            <a href="" class="btn login-btn" type="button" id="dropdownMenuButton"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {% if request.user.iamge %}
-
-                                <img src="{{ request.user.image.url }}" width="50px" height="50px"
-                                     style="border-radius: 50px" alt="{{ request.user.full_name }}"/>
-
+                                {% if request.user.image %}
+                                    <img src="{{ request.user.image.url }}" class="avater-img" alt="">
+                                {% else %}
+                                    <img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
                                 {% endif %}
                             </a>
+                            <div class="dropdown-menu pull-right animated flipInX">
 
+                                {% if request.user.is_authenticated %}
 
-                            <div class="dropdown-menu account-menu-items custom-bg"
-                                 aria-labelledby="dropdownMenuButton">
-                                {% if is_teacher == True %}
-                                    <a class="" href="">پنل مدیریت</a>
+                                    <div class="drp_menu_headr">
+                                        <h4>سلام،{{ request.user.full_name }}</h4>
+                                    </div>
+
                                 {% endif %}
-                                <a class="" href=""> پروفایل</a>
-                                <a class="" href=""> مورد علاقه ها</a>
-                                <a class="" href="{% url "Acount_app:Logout" %}"> خروج</a>
+                                <ul>
 
+                                    <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل کاربری</a></li>
+                                    <li><a href="manage-course.html"><i class="fas fa-shopping-basket"></i>دوره های
+                                        من<span class="notti_coun style-2">7</span></a></li>
+
+
+                                    <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
+                                    <li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a>
+                                    </li>
+                                </ul>
                             </div>
+                        </div>
 
 
                         </li>

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     # my apps
-
+    "scripts",
     "apps.Home_app.apps.HomeAppConfig",
     "apps.Acount_app.apps.AcountAppConfig",
     "apps.Course_app.apps.CourseAppConfig",

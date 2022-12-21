@@ -1,6 +1,7 @@
 from django.db import models
 from apps.Acount_app.models import User, Teacher
 from django.urls import reverse
+from scripts.utils import jalali_convert
 
 LEVEL = (
     ("مقدماتی", "مقدماتی"),
@@ -25,6 +26,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    def get_jalali_date(self):
+
+
+        return jalali_convert(self.created)
 
 
 class Courses(models.Model):

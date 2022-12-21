@@ -9,7 +9,7 @@ class EditUserPanelForms(forms.ModelForm):
     class Meta:
         model=User
 
-        fields=["full_name","phone","student_number","bio","instagram","twitter","linkedin","facebook"]
+        fields=["full_name","phone","student_number","bio","instagram","twitter","linkedin","facebook","nation_code"]
 
         widgets={
             "full_name":forms.TextInput(
@@ -30,6 +30,12 @@ class EditUserPanelForms(forms.ModelForm):
                 attrs={
                     "class":"form-control",
                     "placeholder":"شماره دانشجویی"
+                }
+            ),
+
+            "nation_code":forms.TextInput(
+                attrs={
+                    "class":"form-control"
                 }
             ),
 

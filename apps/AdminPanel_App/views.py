@@ -2,9 +2,10 @@ from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView
 from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm
-from apps.Course_app.models import Courses,CoursesChild
+from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Acount_app.models import User,Teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 class AdminPanelView(View):
 
@@ -121,8 +122,8 @@ class EditVideoChild(UpdateView):
     success_url = "/"
 
 
-class CategoryCourse(TemplateView):
-
+class CategoryCourse(ListView):
+    model = Category
     template_name = "AdminPanel_App/course-category.html"
 
 

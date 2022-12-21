@@ -37,140 +37,32 @@
 							<!-- /Row -->
 							
 							<div class="row">
+
+                                {% for item in object_list %}
+
 								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
 									<div class="dash_crs_cat">
 										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
 										<div class="dash_crs_cat_thumb">
-											<img src="assets/img/cr-1.jpg" alt="" class="img-fluid" />
+											<img src="{{ item.image.url }}" alt="" class="img-fluid" />
 										</div>
 										<div class="dash_crs_cat_caption">
 											<div class="dash_crs_cat_head">
-												<h4>برنامه نویسی</h4>
-												<span>5 دسته بندی فرعی</span>
+												<h4>{{ item.name }}</h4>
+												<span>{{ item.get_jalali_date }}</span>
 											</div>
-											<div class="dash_crs_cat_body">
-												<ul>
-													<li><span>طراحی واکنشگرا</span></li>
-													<li><span>HTML5 & CSS3</span></li>
-													<li><span>Java Script</span></li>
-													<li><span>Bootstrap</span></li>
-													<li><span>PHP</span></li>
-												</ul>
-											</div>
+
 											<div class="dash_crs_cat_bottom">
 												<a href="#" class="btn full-width theme-bg-light theme-cl">ویرایش</a>
 											</div>
 										</div>
 									</div>
 								</div>
+
+
+                                {% endfor %}
 								
-								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-									<div class="dash_crs_cat">
-										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
-										<div class="dash_crs_cat_thumb">
-											<img src="assets/img/cr-2.jpg" alt="" class="img-fluid" />
-										</div>
-										<div class="dash_crs_cat_caption">
-											<div class="dash_crs_cat_head">
-												<h4>گرافیک</h4>
-												<span>5 دسته بندی فرعی</span>
-											</div>
-											<div class="dash_crs_cat_body">
-												<ul>
-													<li><span>Photoshop</span></li>
-													<li><span>Illustrator</span></li>
-													<li><span>InDesign</span></li>
-													<li><span>طراحی لوگو</span></li>
-													<li><span>Figma</span></li>
-												</ul>
-											</div>
-											<div class="dash_crs_cat_bottom">
-												<a href="#" class="btn full-width theme-bg-light theme-cl">ویرایش</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-									<div class="dash_crs_cat">
-										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
-										<div class="dash_crs_cat_thumb">
-											<img src="assets/img/cr-3.jpg" alt="" class="img-fluid" />
-										</div>
-										<div class="dash_crs_cat_caption">
-											<div class="dash_crs_cat_head">
-												<h4>مالی و حسابداری</h4>
-												<span>5 دسته بندی فرعی</span>
-											</div>
-											<div class="dash_crs_cat_body">
-												<ul>
-													<li><span>مالی</span></li>
-													<li><span>استارت آپ</span></li>
-													<li><span>برنامه ریزی کسب و کار</span></li>
-													<li><span>حسابداری</span></li>
-													<li><span>نرم افزار هلو</span></li>
-												</ul>
-											</div>
-											<div class="dash_crs_cat_bottom">
-												<a href="#" class="btn full-width theme-bg-light theme-cl">ویرایش</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-									<div class="dash_crs_cat">
-										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
-										<div class="dash_crs_cat_thumb">
-											<img src="assets/img/cr-4.jpg" alt="" class="img-fluid" />
-										</div>
-										<div class="dash_crs_cat_caption">
-											<div class="dash_crs_cat_head">
-												<h4>طراحی داخلی</h4>
-												<span>5 دسته بندی فرعی</span>
-											</div>
-											<div class="dash_crs_cat_body">
-												<ul>
-													<li><span>ترکیب رنگ</span></li>
-													<li><span>طراحی نور</span></li>
-													<li><span>بازسازی خانه</span></li>
-													<li><span>نورپردازی سه بعدی</span></li>
-													<li><span>تزیین اتاق خواب</span></li>
-												</ul>
-											</div>
-											<div class="dash_crs_cat_bottom">
-												<a href="#" class="btn full-width theme-bg-light theme-cl">ویرایش</a>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-									<div class="dash_crs_cat">
-										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
-										<div class="dash_crs_cat_thumb">
-											<img src="assets/img/cr-5.jpg" alt="" class="img-fluid" />
-										</div>
-										<div class="dash_crs_cat_caption">
-											<div class="dash_crs_cat_head">
-												<h4>انیمیشن دو بعدی / سه بعدی</h4>
-												<span>5 دسته بندی فرعی</span>
-											</div>
-											<div class="dash_crs_cat_body">
-												<ul>
-													<li><span>جلوه حرکت</span></li>
-													<li><span>بلندر</span></li>
-													<li><span>ابزارهای مایا</span></li>
-													<li><span>افتر افکت</span></li>
-													<li><span>ابزارهای حرفه ای</span></li>
-												</ul>
-																								</div>
-											<div class="dash_crs_cat_bottom">
-												<a href="#" class="btn full-width theme-bg-light theme-cl">ویرایش</a>
-											</div>
-										</div>
-									</div>
-								</div>
+
 							</div>
 							
 						</div>
