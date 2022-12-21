@@ -134,6 +134,13 @@ class CreateCategoryView(CreateView):
     success_url =reverse_lazy("AdminPanel:Category_course")
 
 
+class EditCategory(UpdateView):
+    model = Category
+    form_class = CreateCategoryForm
+    template_name = "AdminPanel_App/create_category.html"
+    success_url = reverse_lazy("AdminPanel:Category_course")
+
+
 class Coupons(TemplateView):
 
     template_name = "AdminPanel_App/coupons.html"
