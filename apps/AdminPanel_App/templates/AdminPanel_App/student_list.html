@@ -2,221 +2,193 @@
 {% load static %}
 
 {% block content %}
-			<!-- ============================================================== -->
-			<!-- Top header  -->
-			<!-- ============================================================== -->
-			
-			<!-- ============================ Dashboard: Dashboard Start ================================== -->
-			<section class="gray pt-4">
-				<div class="container-fluid">
-										
-					<div class="row">
-					
-						{% include "include/dashboard_navbar.html" %}
-						
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							
-							<!-- Row -->
-							<div class="row justify-content-between">
-								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
-									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
-										<div class="arion">
-											<nav class="transparent">
-												<ol class="breadcrumb">
-													<li class="breadcrumb-item"><a href="#">خانه</a></li>
-													<li class="breadcrumb-item active" aria-current="page">لیست هنرجویان</li>
-												</ol>
-											</nav>
-										</div>
-										<div class="elkios">
-											<a href="add-students.html" class="add_new_btn"><i class="fas fa-plus-circle ml-1"></i>افزودن هنرجو</a>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Row -->
-							
-							<div class="row">
-								<div class="col-xl-12 col-lg-12 col-md-12">
-									<div class="dashboard_wrap">
-										
-										<div class="row">
-											<div class="col-xl-12 col-lg-12 col-md-12 mb-4">
-												<h6 class="m-0">لیست هنرجویان</h6>
-											</div>
-										</div>
-										
-										<div class="row justify-content-between">
-											<div class="col-xl-2 col-lg-3 col-md-6">
-												<div class="form-group smalls row align-items-center">
-													<label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
-													<div class="col-xl-9 col-lg-9 col-sm-10">
-													  <select id="show" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">10</option>
-															<option value="2">25</option>
-															<option value="3">35</option>
-															<option value="3">50</option>
-															<option value="3">100</option>
-															<option value="3">250</option>
-														</select>
-													</div>
-												</div>
-											</div>
-											<div class="col-xl-4 col-lg-5 col-md-6">
-												<div class="form-group smalls row align-items-center">
-													<label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
-													<div class="col-xl-10 col-lg-10 col-sm-10">
-													  <input type="text" class="form-control">
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-xl-12 col-lg-12 col-md-12 mb-2">
-												<div class="table-responsive">
-													<table class="table dash_list">
-														<thead>
-															<tr>
-																<th scope="col">#</th>
-																<th scope="col">تصویر</th>
-																<th scope="col">نام</th>
-																<th scope="col">ایمیل</th>
-																<th scope="col">دوره ثبت نام شده</th>
-																<th scope="col">عملیات</th>
-															</tr>
-														</thead>
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td><img src="assets/img/user-5.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><div class="smalls lg">حسن علیزاده</div></td>
-																<td><span class="smalls lg">Beltran@teleworm.us</span></td>
-																<td><span class="smalls lg">طراحی سایت</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td><img src="assets/img/user-7.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><div class="smalls lg">علی مرادی</div></td>
-																<td><span class="smalls lg">Paxson@armyspy.com</span></td>
-																<td><span class="smalls lg">JavaScript</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td><img src="assets/img/user-6.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">لیندا قاسمی نیا</span></td>
-																<td><span class="smalls lg">FrankTFleck@rhyta.com</span></td>
-																<td><span class="smalls lg">انیمیشن سه بعدی</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">4</th>
-																<td><img src="assets/img/user-8.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">زهرا امیری</span></td>
-																<td><span class="smalls lg">CarloJone@armyspy.com</span></td>
-																<td><span class="smalls lg">Laravel</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">5</th>
-																<td><img src="assets/img/user-9.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">محمد کسایی</span></td>
-																<td><span class="smalls lg">LeonAarker@rhyta.com</span></td>
-																<td><span class="smalls lg">طراحی گرافیک</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-										</div>
-										
-										<div class="row align-items-center justify-content-between">
-											<div class="col-xl-6 col-lg-6 col-md-12">
-												<p class="p-0">نمایش 1 تا 1 از 1</p>
-											</div>
-											<div class="col-xl-6 col-lg-6 col-md-12">
-												<nav class="float-right">
-													 <ul class="pagination smalls m-0">
-														<li class="page-item disabled">
-														  <a class="page-link" href="#" tabindex="-1"><i class="fas fa-arrow-circle-right"></i></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active">
-														  <a class="page-link" href="#">2 <span class="sr-only">(صفحه جاری)</span></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item">
-														  <a class="page-link" href="#"><i class="fas fa-arrow-circle-left"></i></a>
-														</li>
-													</ul>
-												</nav>
-											</div>
-										</div>
-										
-									</div>
-								</div>
-							</div>
-							
-							
-						</div>
-					
-					</div>
-					
-				</div>
-			</section>
-			<!-- ============================ Dashboard: Dashboard End ================================== -->
-		{% endblock %}
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+    <!-- ============================ Dashboard: Dashboard Start ================================== -->
+    <section class="gray pt-4">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                {% include "include/dashboard_navbar.html" %}
+
+                <div class="col-lg-9 col-md-9 col-sm-12">
+
+                    <!-- Row -->
+                    <div class="row justify-content-between">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+                            <div class="dashboard_wrap d-flex align-items-center justify-content-between">
+                                <div class="arion">
+                                    <nav class="transparent">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">لیست هنرجویان</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                                <div class="elkios">
+                                    <a href="add-students.html" class="add_new_btn"><i
+                                            class="fas fa-plus-circle ml-1"></i>افزودن هنرجو</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Row -->
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="dashboard_wrap">
+
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
+                                        <h6 class="m-0">لیست هنرجویان</h6>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-between">
+                                    <div class="col-xl-2 col-lg-3 col-md-6">
+                                        <div class="form-group smalls row align-items-center">
+                                            <label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
+                                            <div class="col-xl-9 col-lg-9 col-sm-10">
+                                                <select id="show" class="form-control">
+                                                    <option value="">&nbsp;</option>
+                                                    <option value="1">10</option>
+                                                    <option value="2">25</option>
+                                                    <option value="3">35</option>
+                                                    <option value="3">50</option>
+                                                    <option value="3">100</option>
+                                                    <option value="3">250</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-lg-5 col-md-6">
+                                        <div class="form-group smalls row align-items-center">
+                                            <label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
+                                            <div class="col-xl-10 col-lg-10 col-sm-10">
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+                                        <div class="table-responsive">
+                                            <table class="table dash_list">
+                                                <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">تصویر</th>
+                                                    <th scope="col">نام</th>
+                                                    <th scope="col">شماره دانشجویی</th>
+                                                    <th scope="col">دوره ثبت نام شده</th>
+                                                    <th scope="col">عملیات</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                {% for item in users %}
+
+                                                    <tr>
+                                                        <th scope="row">1</th>
+                                                        <td><img src="{{ item.image.url }}" class="img-fluid circle"
+                                                                 width="40" alt=""/></td>
+                                                        <td>
+                                                            <div class="smalls lg">{{ item.full_name }}</div>
+                                                        </td>
+                                                        <td><span class="smalls lg">{{ item.student_number }}</span>
+                                                        </td>
+                                                        <td><span class="smalls lg">{{ item.Corses.all.0.titel }}</span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="dropdown show">
+                                                                <a class="btn btn-action" href="#"
+                                                                   data-toggle="dropdown" aria-haspopup="true"
+                                                                   aria-expanded="false">
+                                                                    <i class="fas fa-ellipsis-h"></i>
+                                                                </a>
+                                                                <div class="drp-select dropdown-menu">
+                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
+                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                {% endfor %}
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row align-items-center justify-content-between">
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <p class="p-0">نمایش 1 تا 1 از 1</p>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        {% if users.has_other_pages %}
+                                            <nav class="float-right">
+
+                                                <ul class="pagination smalls m-0">
+
+                                                    {% if users.has_previous %}
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                               href="?page={{ users.previous_page_number }}"
+                                                            ><i
+                                                                    class="fas fa-arrow-circle-right"></i></a>
+                                                        </li>
+                                                    {% endif %}
+
+                                                    {% for i in users.paginator.page_range %}
+
+
+                                                        {% if i == users.number %}
+                                                            <li class="page-item active">
+                                                                <a class="page-link" href="?page={{ i }}">{{ i }}<span
+                                                                        class="sr-only">(صفحه جاری)</span></a>
+                                                            </li>
+
+                                                        {% else %}
+
+                                                            <li class="page-item"><a class="page-link"
+                                                                                     href="?page={{ i }}">{{ i }}</a>
+                                                            </li>
+
+
+                                                        {% endif %}
+
+                                                    {% endfor %}
+
+                                                    {% if users.has_next %}
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                               href="?page={{ users.next_page_number }}"><i
+                                                                    class="fas fa-arrow-circle-left"></i></a>
+                                                        </li>
+                                                    {% endif %}
+                                                </ul>
+
+                                            </nav>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- ============================ Dashboard: Dashboard End ================================== -->
+{% endblock %}

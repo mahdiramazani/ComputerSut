@@ -129,6 +129,12 @@ class AddCourseForm(forms.ModelForm):
                 }
             ),
 
+            "how_to_hold": forms.Select(
+                attrs={
+                    "class": "form-control"
+                }
+            ),
+
             "price":forms.TextInput(
                 attrs={
                     "class":"form-control",
@@ -304,3 +310,6 @@ class EditTeacherForm(forms.ModelForm):
                 }
             )
         }
+
+
+

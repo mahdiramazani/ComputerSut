@@ -36,41 +36,38 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-12 col-md-12">
 									<div class="dashboard_wrap">
+                                    <form method="post">
+                                        {% csrf_token %}
 										<div class="row justify-content-center">
+
 											<div class="col-xl-8 col-lg-10 col-md-12">
 											
 												<div class="form-group smalls">
-													<label>انتخاب هنرجو*</label>
+													<label>شماره دانشجویی هنرجو</label>
 													<div class="simple-input">
-														<select id="user" class="form-control">
-															<option value="">&nbsp;</option>
-															<option value="1">علی مرادی</option>
-															<option value="2">مریم حسنی</option>
-															<option value="3">مسعود علیزاده</option>
-															<option value="4">مصطفی اسلامی</option>
-															<option value="5">یکتا ناصری</option>
-														</select>
+														<input type="text" class="form-control" name="user">
+
 													</div>
 												</div>
 												
 												<div class="form-group smalls">
 													<label>انتخاب دوره</label>
-													<select id="crss" class="form-control">
-														<option value="">&nbsp;</option>
-														<option value="1">فیزیک</option>
-														<option value="2">طراحی سایت</option>
-														<option value="3">برنامه نویسی</option>
-														<option value="4">گرافیک</option>
-														<option value="5">Laravel</option>
+													<select id="" name="course" class="form-control">
+                                                        {% for item in course %}
+														<option value="{{ item.id }}" id="{{ item.id }}" >{{ item.titel }}</option>
+                                                        {% endfor %}
 													</select>
 												</div>
 												
 												<div class="form-group smalls">
-													<button type="button" class="btn theme-bg text-white">ثبت نام</button>
+													<button type="submit" class="btn theme-bg text-white">ثبت نام</button>
 												</div>
 												
 											</div>
-										</div>
+
+
+										</div></form>
+
 									</div>
 								</div>
 							</div>

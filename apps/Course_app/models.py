@@ -16,7 +16,12 @@ STATUS = (
 
     ("درحال برگزاری...", "درحال برگزاری..."),
     ("تکمیل شده", "تکمیل شده"),
+    ("به زودی", "به زودی"),
 
+)
+How_TO_HOLD=(
+    ("آنلاین","آنلاین"),
+    ("حضوری","حضوری"),
 )
 
 
@@ -51,6 +56,12 @@ class Courses(models.Model):
     slug = models.SlugField(null=True, blank=True)
     status = models.CharField(max_length=100, choices=STATUS,default="در حال برگزاری...")
     discount=models.IntegerField(null=True,blank=True)
+    how_to_hold=models.CharField(max_length=100,choices=How_TO_HOLD,default="آنلاین")
+    created = models.DateTimeField(auto_now_add=True)
+
+    def get_jalali_date(self):
+
+        return jalali_convert(self.created)
 
 
     def get_absulot_url(self):
@@ -73,6 +84,10 @@ class CoursesChild(models.Model):
     topic_parent = models.ForeignKey("self", related_name="Course_app_CoursesChild_topic_parent",
                                      on_delete=models.CASCADE, null=True, blank=True)
     status=models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def get_jalali_date(self):
+        return jalali_convert(self.created)
 
 
     def get_absolut_url(self):
@@ -88,6 +103,10 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="Comment")
     corses = models.ForeignKey(Courses, on_delete=models.CASCADE, related_name="Comment")
     body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def get_jalali_date(self):
+        return jalali_convert(self.created)
 
 
 

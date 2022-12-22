@@ -26,6 +26,9 @@
 								<div class="d-navigation">
 									<ul id="side-menu">
 										<li class="active"><a href="{% url "AdminPanel:Dashboard" %}"><i class="fas fa-th"></i>پیشخوان</a></li>
+
+                                        {% if request.user.is_teacher == True %}
+
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>دوره های آموزش<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
@@ -35,6 +38,8 @@
 												<li><a href="{% url "AdminPanel:Coupons" %}">تخفیفات</a></li>
 											</ul>
 										</li>
+                                        {% endif %}
+
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-gem"></i>ثبت نام ها<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
@@ -60,7 +65,6 @@
 											<a href="javascript:void(0);"><i class="fas fa-toolbox"></i>مدرسین<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
 												<li><a href="{% url "AdminPanel:Teacher_list" %}">لیست مدرس</a></li>
-												<li><a href="{% url "AdminPanel:Add_teacher" %}">ثبت مدرس جدید</a></li>
 												<li><a href="#">لیست پرداخت ها</a></li>
 											</ul>
 										</li>
@@ -83,21 +87,10 @@
 												<li><a href="{% url "AdminPanel:Add_student" %}">ثبت هنرجو جدید</a></li>
 											</ul>
 										</li>
-										<li><a href="addon-manager.html"><i class="fas fa-layer-group"></i>افزونه های من</a></li>
-										<li><a href="themes.html"><i class="fas fa-paint-brush"></i>قالب ها</a></li>
+
 										<li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
 										<li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-address-card"></i>پروفایل کاربری</a></li>
-										<li class="dropdown">
-											<a href="javascript:void(0);"><i class="fas fa-cog"></i>تنظیمات<span class="ti-angle-left"></span></a>
-											<ul class="nav nav-second-level">
-												<li><a href="website-settings.html">وب سایت</a></li>
-												<li><a href="system-settings.html">سئو</a></li>
-												<li><a href="payment_settings.html">پرداخت</a></li>
-												<li><a href="social-login.html">شبکه های اجتماعی</a></li>
-												<li><a href="smtp-setting.html">ایمیل SMTP</a></li>
-												<li><a href="dash-about.html">درباره اپلیکیشن</a></li>
-											</ul>
-										</li>
+
 									</ul>
 								</div>
 

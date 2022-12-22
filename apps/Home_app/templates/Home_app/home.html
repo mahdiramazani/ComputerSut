@@ -67,20 +67,20 @@
 
                 {% for item in category %}
 
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="edu_cat_2 cat-1">
-                        <div class="edu_cat_icons">
-                            <a class="pic-main" href="#"><img src="{{ item.image.url }}"
-                                                              class="img-fluid" alt=""/></a>
-                        </div>
-                        <div class="edu_cat_data">
-                            <h4 class="title"><a href="#">{{ item.name }}</a></h4>
-                            <ul class="meta">
-                                <li class="video"><i class="ti-video-clapper"></i>{{ item.Corses.all.count }}</li>
-                            </ul>
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="edu_cat_2 cat-1">
+                            <div class="edu_cat_icons">
+                                <a class="pic-main" href="#"><img src="{{ item.image.url }}"
+                                                                  class="img-fluid" alt=""/></a>
+                            </div>
+                            <div class="edu_cat_data">
+                                <h4 class="title"><a href="#">{{ item.name }}</a></h4>
+                                <ul class="meta">
+                                    <li class="video"><i class="ti-video-clapper"></i>{{ item.Corses.all.count }}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
                 {% endfor %}
 
@@ -160,78 +160,88 @@
 
 
     <section class="min">
-				<div class="container">
-					<div class="row justify-content-center">
-						<div class="col-lg-7 col-md-8">
-							<div class="sec-heading center">
-								<h3 class="font-2">جدیدترین دوره های <span class="theme-cl">رایگان</span></h3>
-								<p>با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.</p>
-							</div>
-						</div>
-					</div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7 col-md-8">
+                    <div class="sec-heading center">
+                        <h3 class="font-2">جدیدترین دوره های <span class="theme-cl">رایگان</span></h3>
+                        <p>با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در
+                            زبان فارسی ایجاد کرد.</p>
+                    </div>
+                </div>
+            </div>
 
-					<div class="row justify-content-center">
+            <div class="row justify-content-center">
 
-						{% for c in coures %}
+                {% for c in coures %}
 
-						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-							<div class="crs_grid">
-								<div class="crs_grid_thumb">
-									<a href="{{ c.get_absulot_url }}" class="crs_detail_link">
-										<img src="{{ c.cover.url }}" class="img-fluid rounded" alt="" />
-									</a>
-									<div class="crs_video_ico">
-										<i class="fa fa-play"></i>
-									</div>
-									<div class="crs_locked_ico">
-										<i class="fa fa-lock"></i>
-									</div>
-								</div>
-								<div class="crs_grid_caption">
-									<div class="crs_tutor_thumb overl_top"><a href="{{ c.get_absulot_url }}"><img src="{{ c.teacher.user.image.url }}" class="img-fluid circle" alt="" /></a></div>
-									<div class="crs_cates cl_1"><span>{{ c.category.all.0 }}</span></div>
-									<div class="crs_title"><h4><a href="{{ c.get_absulot_url }}" class="crs_title_link">{{ c.titel }}</a></h4></div>
-									<div class="crs_info_detail">
-										<ul>
-											<li><i class="fa fa-video"></i><span>{{ c.corses_child.all.count }}</span></li>
-											<li><i class="fa fa-user"></i><span>{{ c.user.all.count }} کاربر</span></li>
-											<li><i class="fa fa-eye"></i><span>{{ c.view }} بازدید</span></li>
-										</ul>
-									</div>
-									<div class="preview_crs_info">
-										<div class="progress">
-											<div class="progress-bar" role="progressbar" style="width:50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-								</div>
-								<div class="crs_grid_foot">
-									<div class="crs_flex">
-										<div class="crs_fl_first">
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="crs_grid">
+                            <div class="crs_grid_thumb">
+                                <a href="{{ c.get_absulot_url }}" class="crs_detail_link">
+                                    <img src="{{ c.cover.url }}" class="img-fluid rounded" alt=""/>
+                                </a>
+                                <div class="crs_video_ico">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                                <div class="crs_locked_ico">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="crs_grid_caption">
+                                <div class="crs_tutor_thumb overl_top"><a href="{{ c.get_absulot_url }}"><img
+                                        src="{{ c.teacher.user.image.url }}" class="img-fluid circle" alt=""/></a></div>
+                                <div class="crs_cates cl_1"><span>{{ c.category.all.0 }}</span></div>
 
-                                            {% if c.discount == None %}
-											<div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span class="currency">تومان</span></h2></div>
-                                            {% else %}
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span class="currency">تومان</span></h2></div>
-                                            {% endif %}
+                                <span class="crs_cates cl_1 badge badge-success">{{ c.how_to_hold }}</span>
 
-										</div>
-										<div class="crs_fl_last">
+                                <div class="crs_title"><h4><a href="{{ c.get_absulot_url }}"
+                                                              class="crs_title_link">{{ c.titel }}</a></h4></div>
+                                <div class="crs_info_detail">
+                                    <ul>
+                                        <li><i class="fa fa-video"></i><span>{{ c.corses_child.all.count }}</span></li>
+                                        <li><i class="fa fa-user"></i><span>{{ c.user.all.count }} کاربر</span></li>
+                                        <li><i class="fa fa-eye"></i><span>{{ c.view }} بازدید</span></li>
+                                    </ul>
+                                </div>
+                                <div class="preview_crs_info">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width:50%"
+                                             aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crs_grid_foot">
+                                <div class="crs_flex">
+                                    <div class="crs_fl_first">
 
-											<div class="crs_linkview"><button  class="btn btn_view_detail theme-bg text-light">{{ c.status }}</button></div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                                        {% if c.discount == None %}
+                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span
+                                                    class="currency">تومان</span></h2></div>
+                                        {% else %}
+                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span
+                                                    class="currency">تومان</span></h2></div>
+                                        {% endif %}
 
-                        {% endfor %}
+                                    </div>
+                                    <div class="crs_fl_last">
+
+                                        <div class="crs_linkview">
+                                            <button class="btn btn_view_detail theme-bg text-light">{{ c.status }}</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
 
 
+            </div>
 
-					</div>
-
-				</div>
-			</section>
+        </div>
+    </section>
     <div class="clearfix"></div>
     <!-- ============================ Cources End ================================== -->
 
@@ -256,37 +266,37 @@
 
                         {% for t in teacher %}
 
-                        <div class="lios_item">
-                            <div class="crs_trt_grid shadow_none brd">
-                                <div class="crs_trt_thumb">
-                                    <a href="instructor-detail.html" class="crs_trt_thum_link"><img
-                                            src="{{ t.user.image.url }}" class="img-fluid" alt=""/></a>
-                                </div>
-                                <div class="crs_trt_caption large">
-                                    <div class="instructor_tag"><span>{{ t.position }}</span></div>
-                                    <div class="instructor_title"><h4><a href="instructor-detail.html">{{ t.user.full_name }}</a>
-                                    </h4></div>
+                            <div class="lios_item">
+                                <div class="crs_trt_grid shadow_none brd">
+                                    <div class="crs_trt_thumb">
+                                        <a href="instructor-detail.html" class="crs_trt_thum_link"><img
+                                                src="{{ t.user.image.url }}" class="img-fluid" alt=""/></a>
+                                    </div>
+                                    <div class="crs_trt_caption large">
+                                        <div class="instructor_tag"><span>{{ t.position }}</span></div>
+                                        <div class="instructor_title"><h4><a
+                                                href="instructor-detail.html">{{ t.user.full_name }}</a>
+                                        </h4></div>
 
-                                </div>
-                                <div class="crs_trt_footer">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_trt_ent"><i class="fa fa-user"></i> 2.5 شرکت کننده</div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <div class="crs_linkview"><a href="course-detail.html"
-                                                                             class="btn btn_view_detail theme-bg text-light">ثبت
-                                                    نام</a></div>
+                                    </div>
+                                    <div class="crs_trt_footer">
+                                        <div class="crs_flex">
+                                            <div class="crs_fl_first">
+                                                <div class="crs_trt_ent"><i class="fa fa-user"></i> 2.5 شرکت کننده</div>
+                                            </div>
+                                            <div class="crs_fl_last">
+                                                <div class="foot_list_info">
+                                                    <div class="crs_linkview"><a href="course-detail.html"
+                                                                                 class="btn btn_view_detail theme-bg text-light">ثبت
+                                                        نام</a></div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
                         {% endfor %}
-
 
 
                     </div>
