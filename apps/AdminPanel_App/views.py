@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView,CreateView
-from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm,CreateCategoryForm,RequestTeacherForm
+from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm,CreateCategoryForm,RequestTeacherForm,EditTeacherForm
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Acount_app.models import User,Teacher
 from apps.Acount_app.forms import SignForm
@@ -231,9 +231,18 @@ class RequestToTeacherView(View):
 
 
 
+class TeacherList(ListView):
 
+    template_name = "AdminPanel_App/list_teacher.html"
+    model = Teacher
+    paginate_by = 10
 
+class EditTeacherView(UpdateView):
 
+    model = Teacher
+    form_class = EditTeacherForm
+    template_name = "AdminPanel_App/edit_teacher.html"
+    success_url = reverse_lazy("AdminPanel:Teacher_list")
 
 
 
@@ -255,9 +264,6 @@ class AddTeacher(TemplateView):
 
     template_name = "AdminPanel_App/add-teacher.html"
 
-class TeacherList(TemplateView):
-
-    template_name = "AdminPanel_App/list_teacher.html"
 
 
 class StudentList(TemplateView):

@@ -244,9 +244,47 @@ class RequestTeacherForm(forms.ModelForm):
     class Meta:
 
         model=Teacher
-        exclude=("user",)
+        exclude=("user","status")
 
         widgets={
+
+            "resume":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "position":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "bio":forms.TextInput(
+                attrs={
+                    "class":"form-control summernote"
+                }
+            )
+        }
+
+
+class EditTeacherForm(forms.ModelForm):
+
+    class Meta:
+
+        model=Teacher
+        fields="__all__"
+
+        widgets={
+
+
+            "user":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+
 
             "resume":forms.FileInput(
                 attrs={
