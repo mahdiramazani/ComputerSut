@@ -16,6 +16,7 @@ urlpatterns=[
     path("edit_category/<int:pk>",views.EditCategory.as_view(),name="Edit_Category"),
     path("coupons",views.Coupons.as_view(),name="Coupons"),
     path("register_student",views.RegisterStudent.as_view(),name="Register_student"),
+    path("request_to_teacher",views.RequestToTeacherView.as_view(),name="Request_Teacher"),
     path("admin_list",views.AdminList.as_view(),name="Admin_list"),
     path("add_admin",views.AddAdmin.as_view(),name="Add_admin"),
     path("add_teacher",views.AddTeacher.as_view(),name="Add_teacher"),

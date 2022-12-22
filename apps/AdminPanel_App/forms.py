@@ -237,3 +237,32 @@ class CreateCategoryForm(forms.ModelForm):
                 }
             )
         }
+
+
+class RequestTeacherForm(forms.ModelForm):
+
+    class Meta:
+
+        model=Teacher
+        exclude=("user",)
+
+        widgets={
+
+            "resume":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "position":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "bio":forms.TextInput(
+                attrs={
+                    "class":"form-control summernote"
+                }
+            )
+        }

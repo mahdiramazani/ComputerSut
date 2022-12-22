@@ -46,8 +46,20 @@ class SignForm(forms.Form):
         }
     ))
 
-    university_name=forms.ChoiceField(choices=UNIVERSITY_NAME,)
-    major=forms.ChoiceField(choices=MAJOR,)
+
+
+
+    university_name=forms.ChoiceField(choices=UNIVERSITY_NAME,widget=forms.Select(
+        attrs={
+            "class":"form-control"
+        }
+    ))
+
+    major=forms.ChoiceField(choices=MAJOR,widget=forms.Select(
+        attrs={
+            "class":"form-control",
+        }
+    ))
 
 
 

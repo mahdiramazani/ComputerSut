@@ -11,7 +11,7 @@ class HomeView(TemplateView):
 
         context=super().get_context_data(**kwargs)
         coures=Courses.objects.all()
-        teacher=Teacher.objects.all()
+        teacher=Teacher.objects.filter(status=True)
         category=Category.objects.all()
 
         context["coures"]=coures

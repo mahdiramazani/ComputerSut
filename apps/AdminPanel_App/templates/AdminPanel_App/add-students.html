@@ -39,16 +39,14 @@
 									<div class="dashboard_wrap">
 										
 										<div class="form_blocs_wrap">
-											<form>
+											<form method="post">
+                                                {% csrf_token %}
 												<div class="row justify-content-between">
 													
 													<div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
 														<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 															<button class="nav-link active" id="v-pills-basic-tab" data-toggle="pill" data-target="#v-pills-basic" type="button" role="tab" aria-controls="v-pills-basic" aria-selected="true">اطلاعات پایه</button>
 															<button class="nav-link" id="v-pills-login-tab" data-toggle="pill" data-target="#v-pills-login" type="button" role="tab" aria-controls="v-pills-login" aria-selected="false">اطلاعات ورود</button>
-															<button class="nav-link" id="v-pills-social-tab" data-toggle="pill" data-target="#v-pills-social" type="button" role="tab" aria-controls="v-pills-social" aria-selected="false">شبکه اجتماعی</button>
-															<button class="nav-link" id="v-pills-payout-tab" data-toggle="pill" data-target="#v-pills-payout" type="button" role="tab" aria-controls="v-pills-payout" aria-selected="false">اطلاعات پرداخت</button>
-															<button class="nav-link" id="v-pills-finish-tab" data-toggle="pill" data-target="#v-pills-finish" type="button" role="tab" aria-controls="v-pills-finish" aria-selected="false">ثبت نهایی</button>
 														</div>
 													</div>
 													
@@ -59,27 +57,31 @@
 															<div class="tab-pane fade show active" id="v-pills-basic" role="tabpanel" aria-labelledby="v-pills-basic-tab">
 																
 																<div class="form-group smalls">
-																	<label>نام*</label>
-																	<input type="text" class="form-control" placeholder="علی">
+																	<label>نام و نام خانوادگی</label>
+																	{{ form.full_name }}
+																</div>
+																
+                                                                <div class="form-group smalls">
+																	<label>شماره تلفن</label>
+																	{{ form.phone}}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>شماره دانشجویی</label>
+																	{{ form.student_number}}
 																</div>
 																
 																<div class="form-group smalls">
-																	<label>نام خانوادگی*</label>
-																	<input type="text" class="form-control" placeholder="حسینی">
+																	<label>نام دانشگاه</label>
+																	{{ form.university_name }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>رشته تحصیلی</label>
+																	{{ form.major }}
 																</div>
 																
-																<div class="form-group smalls">
-																	<label>توضیحات</label>
-																	<textarea class="summernote"></textarea>
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>تصویر پروفایل</label>
-																	<div class="custom-file">
-																	  <input type="file" class="custom-file-input" id="customFile">
-																	  <label class="custom-file-label" for="customFile">انتخاب فایل</label>
-																	</div>
-																</div>
+
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">
@@ -93,101 +95,29 @@
 															<!-- login -->
 															<div class="tab-pane fade" id="v-pills-login" role="tabpanel" aria-labelledby="v-pills-login-tab">
 																<div class="form-group smalls">
-																	<label>نام کاربری</label>
-																	<input type="text" class="form-control" placeholder="نام کاربری یا ایمیل">
-																</div>
-																
-																<div class="form-group smalls">
 																	<label>رمز عبور</label>
-																	<input type="password" class="form-control" placeholder="*******">
+																	{{ form.password1 }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>تکرار رمز عبور</label>
+																	{{ form.password2 }}
 																</div>
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
+
+                                                                        <button type="submit" class="btn btn_slide bg-blue">ثبت نام دانشجو</button>
 																	</ul>
 																</div>
 															</div>
 															
-															<!-- social -->
-															<div class="tab-pane fade" id="v-pills-social" role="tabpanel" aria-labelledby="v-pills-social-tab">
-																
-																<div class="form-group smalls">
-																	<label>Facebook</label>
-																	<input type="text" class="form-control" placeholder="لینک Facebook">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>Twitter</label>
-																	<input type="text" class="form-control" placeholder="لینک Twitter">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>YouTube</label>
-																	<input type="text" class="form-control" placeholder="لینک YouTube">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>Dribbble</label>
-																	<input type="text" class="form-control" placeholder="لینک Dribbble">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>LinkedIN</label>
-																	<input type="text" class="form-control" placeholder="لینک LinkedIN">
-																</div>
-																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
-															</div>
+
 															
-															<!-- payout -->
-															<div class="tab-pane fade" id="v-pills-payout" role="tabpanel" aria-labelledby="v-pills-payout-tab">
-																
-																<div class="form-group smalls">
-																	<label>شماره کارت*</label>
-																	<input type="text" class="form-control">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>کد CVV2*</label>
-																	<input type="text" class="form-control">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>شماره کارت</label>
-																	<input type="text" class="form-control">
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>کد CVV2</label>
-																	<input type="text" class="form-control">
-																</div>
-																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
-															</div>
+
 															
 															<!-- finish -->
-															<div class="tab-pane fade" id="v-pills-finish" role="tabpanel" aria-labelledby="v-pills-finish-tab">
-																<div class="succ_wrap">
-																	<div class="succ_121"><i class="fas fa-thumbs-up"></i></div>
-																	<div class="succ_122">
-																		<h4 class="font-2">هنرجو باموفقیت اضافه شد</h4>
-																		<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-																	</div>
-																	<div class="succ_123"><a href="#" class="btn theme-bg text-white">مشاهده</a></div>
-																</div>
-															</div>
+
 														</div>
 													</div>
 													

@@ -29,7 +29,7 @@ class SignUpView(View):
             user.set_password(password1)
             user.save()
 
-            login(request,user)
+            login(request,user,backend="allauth.account.auth_backends.AuthenticationBackend")
             return redirect("Home_app:Home")
 
 

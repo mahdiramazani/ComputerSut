@@ -1,9 +1,10 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse,reverse_lazy
 from django.views.generic import View,TemplateView,ListView,UpdateView,CreateView
-from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm,CreateCategoryForm
+from apps.AdminPanel_App.forms import EditUserPanelForms,AddCourseForm,AddVideoChildForm,CreateCategoryForm,RequestTeacherForm
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Acount_app.models import User,Teacher
+from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -145,8 +146,99 @@ class Coupons(TemplateView):
 
     template_name = "AdminPanel_App/coupons.html"
 
-class RegisterStudent(TemplateView):
-    template_name = "AdminPanel_App/register_student.html"
+
+class RegisterStudent(View):
+
+
+    def post(self,request):
+        form=SignForm(request.POST,request.FILES)
+
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            phone = cd.get("phone")
+            full_name = cd.get("full_name")
+            student_number = cd.get("student_number")
+            password1 = cd.get("password1")
+            password2 = cd.get("password2")
+            university_name = cd.get("university_name")
+            major = cd.get("major")
+
+            user = User.objects.create(phone=phone, full_name=full_name, student_number=student_number,
+                                       password=password1, university_name=university_name, major=major)
+
+            user.set_password(password1)
+            user.save()
+
+            return redirect("/")
+
+
+        return render(request,"AdminPanel_App/add-students.html",{"form":form})
+
+
+    def get(self,request):
+        form=SignForm()
+
+
+        return render(request,"AdminPanel_App/add-students.html",{"form":form})
+
+
+
+
+class RequestToTeacherView(View):
+
+
+
+    def post(self,request):
+        form=RequestTeacherForm(request.POST,request.FILES)
+
+
+        user=request.user
+        teacher=Teacher.objects.filter(user=user).exists()
+
+        if not teacher:
+            if form.is_valid():
+
+                user=request.user
+
+                t=form.save(commit=False)
+
+                t.user=user
+                t.save()
+
+                return redirect("/")
+
+
+        return render(request,"AdminPanel_App/request_to_teacher.html",{"form":form})
+
+    def get(self,request):
+
+        form=RequestTeacherForm()
+
+        user = request.user
+        if Teacher.objects.filter(user=user,status=False).exists():
+            t=False
+
+            return render(request, "AdminPanel_App/request_to_teacher.html", {"form": form, "teacher": t})
+
+
+        elif Teacher.objects.filter(user=user,status=True).exists():
+
+            t = True
+            return render(request, "AdminPanel_App/request_to_teacher.html", {"form": form, "teacher": t})
+
+        return render(request,"AdminPanel_App/request_to_teacher.html",{"form":form})
+
+
+
+
+
+
+
+
+
+
+
 
 
 class AdminList(TemplateView):
