@@ -27,7 +27,7 @@
 									<ul id="side-menu">
 										<li class="active"><a href="{% url "AdminPanel:Dashboard" %}"><i class="fas fa-th"></i>پیشخوان</a></li>
 
-                                        {% if request.user.is_teacher == True %}
+                                        {% if request.user.is_teacher == True or request.user.is_admin == True %}
 
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>دوره های آموزش<span class="ti-angle-left"></span></a>
@@ -40,6 +40,7 @@
 										</li>
                                         {% endif %}
 
+                                    {% if request.user.is_admin == True %}
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-gem"></i>ثبت نام ها<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
@@ -47,6 +48,7 @@
 												<li><a href="{% url "AdminPanel:Register_student" %}">ثبت نام هنرجو</a></li>
 											</ul>
 										</li>
+
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-archive"></i>گزارشات<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
@@ -69,6 +71,8 @@
 											</ul>
 										</li>
 
+                                    {% endif %}
+
 
                                         <li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-toolbox"></i>درخواست مدرس شدن<span class="ti-angle-left"></span></a>
@@ -79,7 +83,7 @@
 										</li>
 
 
-
+                                        {% if request.user.is_admin == True %}
 										<li class="dropdown">
 											<a href="javascript:void(0);"><i class="fas fa-user"></i>هنرجویان<span class="ti-angle-left"></span></a>
 											<ul class="nav nav-second-level">
@@ -87,6 +91,7 @@
 												<li><a href="{% url "AdminPanel:Add_student" %}">ثبت هنرجو جدید</a></li>
 											</ul>
 										</li>
+                                    {% endif %}
 
 										<li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
 										<li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-address-card"></i>پروفایل کاربری</a></li>

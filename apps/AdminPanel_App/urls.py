@@ -6,6 +6,7 @@ urlpatterns=[
     path("",views.AdminPanelView.as_view(),name="Userpanel"),
     path("admin",views.DashboardView.as_view(),name="Dashboard"),
     path("course_list",views.CourseList.as_view(),name="Course_list"),
+    path("students_of_the_course/<int:pk>",views.Students_Of_The_Course.as_view(),name="students_of_the_course"),
     path("add_course",views.AddCourse.as_view(),name="Add_course"),
     path("edit_course/<int:pk>",views.EditCourse.as_view(),name="EditCourse"),
     path("add_video_child/<int:pk>",views.AddVideoChild.as_view(),name="Add_Video_Child"),

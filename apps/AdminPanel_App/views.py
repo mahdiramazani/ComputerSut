@@ -7,7 +7,7 @@ from apps.Course_app.models import Courses, CoursesChild, Category
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from apps.AdminPanel_App.mixins import CheckTeacherMixin
+from apps.AdminPanel_App.mixins import CheckTeacherMixin,CheckAdmin,CheckIsTeacherMixin
 
 class AdminPanelView(View):
 
@@ -36,6 +36,30 @@ class CourseList(CheckTeacherMixin,ListView):
     template_name = "AdminPanel_App/course_list.html"
     paginate_by = 10
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+
+        if self.request.user.is_admin == True:
+
+            return qs
+
+        else:
+            user=self.request.user
+            teacher=Teacher.objects.get(user=user)
+            qs=super().get_queryset()
+
+            return qs.filter(teacher=teacher)
+
+
+class Students_Of_The_Course(CheckIsTeacherMixin,View):
+
+    def get(self,request,pk):
+
+        course=Courses.objects.get(id=pk)
+        users=course.user.all()
+
+        return render(request,"AdminPanel_App/student_list.html",{"users":users})
+
 
 class AddCourse(CheckTeacherMixin,View):
 
@@ -59,14 +83,14 @@ class AddCourse(CheckTeacherMixin,View):
         return render(request, "AdminPanel_App/add-course.html", {"form": form})
 
 
-class EditCourse(CheckTeacherMixin,UpdateView):
+class EditCourse(CheckIsTeacherMixin,UpdateView):
     model = Courses
     form_class = AddCourseForm
     template_name = "AdminPanel_App/add-course.html"
     success_url = reverse_lazy("AdminPanel:Course_list")
 
 
-class AddVideoChild(View):
+class AddVideoChild(CheckIsTeacherMixin,View):
 
     def post(self, request, pk):
         form = AddVideoChildForm(request.POST, request.FILES)
@@ -90,7 +114,7 @@ class AddVideoChild(View):
         return render(request, "AdminPanel_App/add_video_cuorseChild.html", {"form": form})
 
 
-class VideoChildList(View):
+class VideoChildList(CheckIsTeacherMixin,View):
 
     def get(self, request, pk):
 
@@ -111,37 +135,37 @@ class VideoChildList(View):
         return render(request, "AdminPanel_App/video_child_list.html", {"course": course_child, "page_obj": page_obj})
 
 
-class EditVideoChild(UpdateView):
+class EditVideoChild(CheckIsTeacherMixin,UpdateView):
     model = CoursesChild
     form_class = AddVideoChildForm
     template_name = "AdminPanel_App/add_video_cuorseChild.html"
     success_url = "/"
 
 
-class CategoryCourse(ListView):
+class CategoryCourse(CheckAdmin,ListView):
     model = Category
     template_name = "AdminPanel_App/course-category.html"
 
 
-class CreateCategoryView(CreateView):
+class CreateCategoryView(CheckAdmin,CreateView):
     model = Category
     form_class = CreateCategoryForm
     template_name = "AdminPanel_App/create_category.html"
     success_url = reverse_lazy("AdminPanel:Category_course")
 
 
-class EditCategory(UpdateView):
+class EditCategory(CheckAdmin,UpdateView):
     model = Category
     form_class = CreateCategoryForm
     template_name = "AdminPanel_App/create_category.html"
     success_url = reverse_lazy("AdminPanel:Category_course")
 
 
-class Coupons(TemplateView):
+class Coupons(CheckAdmin,TemplateView):
     template_name = "AdminPanel_App/coupons.html"
 
 
-class RegisterStudent(View):
+class RegisterStudent(CheckAdmin,View):
 
     def post(self, request):
         form = SignForm(request.POST, request.FILES)
@@ -212,13 +236,13 @@ class RequestToTeacherView(View):
         return render(request, "AdminPanel_App/request_to_teacher.html", {"form": form})
 
 
-class TeacherList(ListView):
+class TeacherList(CheckAdmin,ListView):
     template_name = "AdminPanel_App/list_teacher.html"
     model = Teacher
     paginate_by = 10
 
 
-class EditTeacherView(View):
+class EditTeacherView(CheckAdmin,View):
 
 
 
@@ -259,17 +283,15 @@ class EditTeacherView(View):
 
 
 
-
-
-class AdminList(TemplateView):
+class AdminList(CheckAdmin,TemplateView):
     template_name = "AdminPanel_App/kist-admins.html"
 
 
-class AddAdmin(TemplateView):
+class AddAdmin(CheckAdmin,TemplateView):
     template_name = "AdminPanel_App/add-admin.html"
 
 
-class AddTeacher(TemplateView):
+class AddTeacher(CheckAdmin,TemplateView):
     template_name = "AdminPanel_App/add-teacher.html"
 
 
@@ -285,7 +307,7 @@ class StudentList(View):
 
 
 
-class AddStudent(View):
+class AddStudent(CheckAdmin,View):
 
     def post(self, request):
         context = {}
