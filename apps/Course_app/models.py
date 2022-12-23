@@ -1,3 +1,5 @@
+import os
+from django.conf import settings
 from django.db import models
 from apps.Acount_app.models import User, Teacher
 from django.urls import reverse
@@ -120,6 +122,8 @@ class CertificatesOfCourses(models.Model):
     course=models.ForeignKey(Courses,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
     document=models.FileField(upload_to="media/course/document")
     created=models.DateTimeField(auto_now_add=True)
+
+
 
 
     def __str__(self):

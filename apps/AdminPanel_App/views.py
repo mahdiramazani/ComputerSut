@@ -3,7 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
     RequestTeacherForm, EditTeacherForm
-from apps.Course_app.models import Courses, CoursesChild, Category
+from apps.Course_app.models import Courses, CoursesChild, Category,CertificatesOfCourses
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -165,6 +165,46 @@ class Coupons(CheckAdmin,TemplateView):
     template_name = "AdminPanel_App/coupons.html"
 
 
+class CertificatesOfCoursesView(CheckTeacherMixin,View):
+
+
+    def post(self,request):
+        user = request.user
+        teacher = Teacher.objects.get(user=user)
+        course = Courses.objects.get(teacher=teacher)
+
+        student=request.POST.get("student")
+        courses=request.POST.get("course")
+        document=request.FILES.get("document")
+        student_user=User.objects.get(student_number=student)
+
+        if User.objects.filter(id=user.id).exists():
+
+            if Courses.objects.filter(user=student_user).exists():
+                c=Courses.objects.get(id=courses)
+
+                CertificatesOfCourses.objects.create(user=student_user,course=c,document=document)
+
+                return redirect("/")
+
+        return render(request, "AdminPanel_App/madrak.html", {"course": course})
+
+
+    def get(self,request):
+
+        user=request.user
+
+        if request.user.is_admin == True:
+            course = Courses.objects.all()
+
+        else:
+            teacher=Teacher.objects.get(user=user)
+            course=Courses.objects.filter(teacher=teacher)
+
+        return render(request,"AdminPanel_App/madrak.html",{"course":course})
+
+
+
 class RegisterStudent(CheckAdmin,View):
 
     def post(self, request):
@@ -306,7 +346,6 @@ class StudentList(View):
         return render(request,"AdminPanel_App/student_list.html",{"users":users})
 
 
-
 class AddStudent(CheckAdmin,View):
 
     def post(self, request):
@@ -332,3 +371,21 @@ class AddStudent(CheckAdmin,View):
         context["course"] = courses
 
         return render(request, "AdminPanel_App/register_student.html", context=context)
+
+
+class MyDocumentsView(ListView):
+
+    model = CertificatesOfCourses
+    template_name ="AdminPanel_App/my_doucument.html"
+
+    def get_queryset(self):
+        user = self.request.user
+        qs = super().get_queryset()
+
+        if user.is_admin:
+
+            return qs
+
+        else:
+
+            return qs.filter(user=user)

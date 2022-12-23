@@ -2,6 +2,8 @@ from apps.Acount_app.models import User,Teacher
 from django.shortcuts import redirect
 from apps.Course_app.models import Courses,CoursesChild
 
+
+
 class CheckTeacherMixin:
 
     def dispatch(self,request,*args,**kwargs):

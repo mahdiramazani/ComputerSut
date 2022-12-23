@@ -1,0 +1,84 @@
+{% extends "base2.html" %}
+{% load static %}
+
+{% block content %}
+			<!-- ============================================================== -->
+			<!-- Top header  -->
+			<!-- ============================================================== -->
+			
+			<!-- ============================ Dashboard: Dashboard Start ================================== -->
+			<section class="gray pt-4">
+				<div class="container-fluid">
+										
+					<div class="row">
+					
+						{% include "include/dashboard_navbar.html" %}
+						
+						<div class="col-lg-9 col-md-9 col-sm-12">
+							
+							<!-- Row -->
+							<div class="row justify-content-between">
+								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
+										<div class="arion">
+											<nav class="transparent">
+												<ol class="breadcrumb">
+													<li class="breadcrumb-item"><a href="#">خانه</a></li>
+													<li class="breadcrumb-item active" aria-current="page">دسته بندی دوره</li>
+												</ol>
+											</nav>
+										</div>
+										<div class="elkios">
+											<a href="{% url "AdminPanel:Create_Category" %}" class="add_new_btn"><i class="fas fa-plus-circle ml-1"></i>افزودن دسته بندی</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Row -->
+							
+							<div class="row">
+
+                                {% for item in object_list %}
+
+								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+									<div class="dash_crs_cat">
+										<a href="#" {% if request.user.is_admin == True %} class="remove_tools" {% endif %}><i class="fas fa-trash-alt"></i></a>
+										<div class="dash_crs_cat_thumb">
+											<img src="{{ item.document.url }}" alt="" class="img-fluid" />
+										</div>
+										<div class="dash_crs_cat_caption">
+											<div class="dash_crs_cat_head">
+												<h4>{{ item.course.titel }}</h4>
+												<span>تاریخ صدور مدرک:{{ item.get_jalali_date }}</span>
+                                                {% if request.user.is_admin == True %}
+
+                                                <hr>
+												<span>نام دانشجو:{{ item.user.full_name }}</span>
+                                                <hr>
+												<span>شماره دانشجویی:{{ item.user.student_number }}</span>
+
+                                                {% endif %}
+											</div>
+
+											<div class="dash_crs_cat_bottom">
+												<a href="{{ item.document.url }}" class="btn full-width theme-bg-light theme-cl">دانلود</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+                                {% endfor %}
+								
+
+							</div>
+							
+						</div>
+					
+					</div>
+					
+				</div>
+			</section>
+			<!-- ============================ Dashboard: Dashboard End ================================== -->
+			
+		{% endblock %}

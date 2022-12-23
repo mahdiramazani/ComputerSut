@@ -16,6 +16,7 @@ urlpatterns=[
     path("create_category",views.CreateCategoryView.as_view(),name="Create_Category"),
     path("edit_category/<int:pk>",views.EditCategory.as_view(),name="Edit_Category"),
     path("coupons",views.Coupons.as_view(),name="Coupons"),
+    path("certificates",views.CertificatesOfCoursesView.as_view(),name="CertificatesOfCourses"),
     path("register_student",views.RegisterStudent.as_view(),name="Register_student"),
     path("request_to_teacher",views.RequestToTeacherView.as_view(),name="Request_Teacher"),
     path("edit_teacher/<int:pk>",views.EditTeacherView.as_view(),name="edit_teacher"),
@@ -24,5 +25,6 @@ urlpatterns=[
     path("add_teacher",views.AddTeacher.as_view(),name="Add_teacher"),
     path("teacher_list",views.TeacherList.as_view(),name="Teacher_list"),
     path("student_list",views.StudentList.as_view(),name="Student_list"),
-    path("add_student",views.AddStudent.as_view(),name="Add_student")
+    path("add_student",views.AddStudent.as_view(),name="Add_student"),
+    path("my_documents",views.MyDocumentsView.as_view(),name="MyDocuments"),
 ]

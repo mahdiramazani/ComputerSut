@@ -41,6 +41,7 @@
                         <ul class="nav nav-second-level">
                             <li><a href="{% url "AdminPanel:Course_list" %}">لیست دوره ها</a></li>
                             <li><a href="{% url "AdminPanel:Add_course" %}">افزودن دوره جدید</a></li>
+                            <li><a href="{% url "AdminPanel:CertificatesOfCourses" %}">صدور مدرک</a></li>
 
                             {% if request.user.is_admin == True %}
 
@@ -113,6 +114,8 @@
 
                 <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
                 <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-address-card"></i>پروفایل کاربری</a>
+                </li>
+            <li><a href="{% url "AdminPanel:MyDocuments" %}"><i class="fas fa-address-card"></i>مدارک من</a>
                 </li>
 
             </ul>
