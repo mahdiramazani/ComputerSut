@@ -115,4 +115,21 @@ class Comment(models.Model):
         return self.body[:10]
 
 
+class CertificatesOfCourses(models.Model):
+    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
+    course=models.ForeignKey(Courses,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
+    document=models.FileField(upload_to="media/course/document")
+    created=models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+
+
+        return self.user.full_name
+
+    def get_jalali_date(self):
+
+        return jalali_convert(self.created)
+
+
 
