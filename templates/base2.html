@@ -137,11 +137,11 @@
 									<li>
 										<div class="btn-group account-drop">
 											<a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-												<img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
+												<img src="{{ request.user.image.url }}" class="avater-img" alt="">
 											</a>
 											<div class="dropdown-menu pull-right animated flipInX">
 												<div class="drp_menu_headr">
-													<h4>سلام، مهرداد</h4>
+													<h4>سلام، {{ request.user.full_name }}</h4>
 												</div>
 												<ul>
 													<li><a href="dashboard.html"><i class="fa fa-tachometer-alt"></i>پیشخوان<span class="notti_coun style-1">4</span></a></li>
@@ -150,7 +150,7 @@
 													<li><a href="manage-instructor.html"><i class="fas fa-toolbox"></i>مدرسین من</a></li>
 													<li><a href="manage-students.html"><i class="fa fa-envelope"></i>هنرجویان من<span class="notti_coun style-3">3</span></a></li>
 													<li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
-													<li><a href="login.html"><i class="fa fa-unlock-alt"></i>خروج</a></li>
+													<li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a></li>
 												</ul>
 											</div>
 										</div>
@@ -286,7 +286,7 @@
 								<li>
 									<div class="btn-group account-drop">
 										<a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											<img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
+											<img src="{{ request.user.image.url }}" class="avater-img" alt="">
 										</a>
 										<div class="dropdown-menu pull-right animated flipInX">
 

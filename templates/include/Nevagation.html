@@ -31,6 +31,16 @@
 
                     </li>
 
+                    <li {% if request.resolver_match.url_name == "Teacher_List" %} class="active" {% endif %}><a
+                            href="{% url "Teacher_app:Teacher_List" %}">مدرسین<span class="submenu-indicator"></span></a>
+
+                    </li>
+
+                <li {% if request.resolver_match.url_name == "technical_team" %} class="active" {% endif %}><a
+                            href="{% url "TechnicalTeam_app:technical_team" %}">تیم فنی<span class="submenu-indicator"></span></a>
+
+                    </li>
+
                     <li><a href="#">صفحات<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
                             <li><a href="#">فروشگاه<span class="submenu-indicator"></span></a>
@@ -87,7 +97,8 @@
                                 {% endif %}
                                 <ul>
 
-                                    <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل کاربری</a></li>
+                                    <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
+                                        کاربری</a></li>
                                     <li><a href="manage-course.html"><i class="fas fa-shopping-basket"></i>دوره های
                                         من<span class="notti_coun style-2">7</span></a></li>
 

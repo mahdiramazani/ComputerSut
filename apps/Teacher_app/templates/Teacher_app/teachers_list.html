@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+    <!-- ============================ Page Title Start================================== -->
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+
+                    <div class="breadcrumbs-wrap">
+                        <h1 class="breadcrumb-title font-2">لیست مدرسین</h1>
+                        <nav class="transparent">
+                            <ol class="breadcrumb p-0 bg-white">
+                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item active theme-cl" aria-current="page">لیست مدرسین</li>
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Page Title End ================================== -->
+
+    <!-- ============================ Course Detail ================================== -->
+    <section class="gray">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-xl-4 col-lg-4 col-md-12">
+                    <div class="page-sidebar p-0">
+                        <a class="filter_links" data-toggle="collapse" href="#fltbox" role="button"
+                           aria-expanded="false" aria-controls="fltbox">فیلتر پیشرفته<i
+                                class="fa fa-sliders-h mr-2"></i></a>
+                        <div class="collapse" id="fltbox">
+                            <!-- Find New Property -->
+                            <div class="sidebar-widgets p-4">
+
+                                <div class="form-group">
+                                    <div class="input-with-icon">
+                                        <input type="text" class="form-control" placeholder="نام دوره...">
+                                        <i class="ti-search"></i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="simple-input">
+                                        <select id="cates" class="form-control">
+                                            <option value="">&nbsp;</option>
+                                            <option value="1">فناوری و اطلاعات</option>
+                                            <option value="2">حسابداری</option>
+                                            <option value="3">شبکه اجتماعی</option>
+                                            <option value="4">طراحی اپلیکیشن</option>
+                                            <option value="5">حسابداری ومالی</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>مدرسین برتر</h6>
+                                    <ul class="no-ul-list mb-3">
+                                        <li>
+                                            <input id="aa-41" class="checkbox-custom" name="aa-41" type="checkbox">
+                                            <label for="aa-41" class="checkbox-custom-label">مصطفی اسلامی<i
+                                                    class="count">12</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="aa-2" class="checkbox-custom" name="aa-2" type="checkbox">
+                                            <label for="aa-2" class="checkbox-custom-label">نرگس حسینی<i class="count">10</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="aa-3" class="checkbox-custom" name="aa-3" type="checkbox">
+                                            <label for="aa-3" class="checkbox-custom-label">سروش نجفی نژاد<i
+                                                    class="count">56</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="aa-71" class="checkbox-custom" name="aa-71" type="checkbox">
+                                            <label for="aa-71" class="checkbox-custom-label">متین کفاشیان<i
+                                                    class="count">42</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="aa-81" class="checkbox-custom" name="aa-81" type="checkbox">
+                                            <label for="aa-81" class="checkbox-custom-label">نادیا ناصری<i
+                                                    class="count">12</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="aa-91" class="checkbox-custom" name="aa-91" type="checkbox">
+                                            <label for="aa-91" class="checkbox-custom-label">مرضیه قاسمی نیا<i
+                                                    class="count">36</i></label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>سطح مهارت</h6>
+                                    <ul class="no-ul-list mb-3">
+                                        <li>
+                                            <input id="l1" class="checkbox-custom" name="l1" type="checkbox">
+                                            <label for="l1" class="checkbox-custom-label">ابتدایی</label>
+                                        </li>
+                                        <li>
+                                            <input id="l2" class="checkbox-custom" name="l2" type="checkbox">
+                                            <label for="l2" class="checkbox-custom-label">سطح پایه</label>
+                                        </li>
+                                        <li>
+                                            <input id="l3" class="checkbox-custom" name="l3" type="checkbox">
+                                            <label for="l3" class="checkbox-custom-label">سطح ممدرس</label>
+                                        </li>
+                                        <li>
+                                            <input id="l4" class="checkbox-custom" name="l4" type="checkbox">
+                                            <label for="l4" class="checkbox-custom-label">سطح پیشرفته</label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="form-group">
+                                    <h6>قیمت</h6>
+                                    <ul class="no-ul-list mb-3">
+                                        <li>
+                                            <input id="p1" class="checkbox-custom" name="p1" type="checkbox">
+                                            <label for="p1" class="checkbox-custom-label">همه<i
+                                                    class="count">89</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="p2" class="checkbox-custom" name="p2" type="checkbox">
+                                            <label for="p2" class="checkbox-custom-label">رایگان<i class="count">56</i></label>
+                                        </li>
+                                        <li>
+                                            <input id="p3" class="checkbox-custom" name="p3" type="checkbox">
+                                            <label for="p3" class="checkbox-custom-label">پولی<i
+                                                    class="count">42</i></label>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 pt-4">
+                                        <button class="btn theme-bg rounded full-width">فیلتر</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sidebar End -->
+
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-xl-8 col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="short_wraping">
+                                <div class="row m-0 align-items-center justify-content-between">
+
+                                    <div class="col-lg-4 col-md-5 col-sm-12  col-sm-6">
+                                        <div class="shorting_pagination_laft">
+                                            <h6 class="m-0">نمایش 1-25 از 72</h6>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-8 col-md-7 col-sm-12 col-sm-6">
+                                        <div class="dlks_152">
+                                            <div class="shorting-right ml-2">
+                                                <label>مرتب سازی براساس:</label>
+                                                <div class="dropdown show">
+                                                    <a class="btn btn-filter dropdown-toggle" href="#"
+                                                       data-toggle="dropdown" aria-haspopup="true"
+                                                       aria-expanded="false">
+                                                        <span class="selection">امتیاز بالا</span>
+                                                    </a>
+                                                    <div class="drp-select dropdown-menu">
+                                                        <a class="dropdown-item" href="JavaScript:Void(0);">امتیاز
+                                                            بالا</a>
+                                                        <a class="dropdown-item" href="JavaScript:Void(0);">بازدید
+                                                            بالا</a>
+                                                        <a class="dropdown-item" href="JavaScript:Void(0);">دوره
+                                                            جدید</a>
+                                                        <a class="dropdown-item" href="JavaScript:Void(0);">دوره
+                                                            منتخب</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+
+                        {% for item in object_list %}
+
+                            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                                <div class="crs_trt_grid">
+                                    <div class="crs_trt_thumb circle">
+                                        <a href="instructor-detail.html" class="crs_trt_thum_link"><img
+                                                src="{{ item.user.image.url }}" class="img-fluid circle" alt=""></a>
+                                    </div>
+                                    <div class="crs_trt_caption">
+                                        <div class="instructor_tag dark"><span>{{ item.position }}</span></div>
+                                        <div class="instructor_title"><h4><a
+                                                href="instructor-detail.html">{{ item.user.full_name }}</a></h4></div>
+                                        <div class="trt_rate_inf">
+                                            <i class="fa fa-star filled"></i>
+                                            <i class="fa fa-star filled"></i>
+                                            <i class="fa fa-star filled"></i>
+                                            <i class="fa fa-star filled"></i>
+                                            <i class="fa fa-star-half filled"></i>
+                                            <span class="alt_rates">(244 امتیاز)</span>
+                                        </div>
+                                    </div>
+                                    <div class="crs_trt_footer">
+                                        <div class="crs_trt_ent"><i class="fa fa-user"></i>تعداد دوره
+                                            ها: {{ item.Corses.count }}</div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        {% endfor %}
+
+
+                    </div>
+
+                    <div class="row align-items-center justify-content-center">
+                        {% if page_obj.has_other_pages %}
+                            <div class="col-xl-12 col-lg-12 col-md-12">
+                                <nav class="float-none">
+
+                                    <ul class="pagination smalls">
+
+                                        {% if page_obj.has_previous %}
+
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
+                                                   tabindex="-1"><i class="fas fa-arrow-circle-right"></i></a>
+                                            </li>
+
+                                        {% endif %}
+
+                                        {% for i in page_obj.paginator.page_range %}
+
+
+
+                                            {% if i == page_obj.number %}
+
+                                                <li class="page-item active">
+                                                    <a class="page-link" href="?page={{ i }}">{{ i }}<span
+                                                            class="sr-only">(صفحه جاری)</span></a>
+                                                </li>
+                                            {% else %}
+                                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    {% if page_obj.has_next %}
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fas fa-arrow-circle-left"></i></a>
+                                        </li>
+
+                                        {% endif %}
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Course Detail ================================== -->
+
+    <!-- ============================ Call To Action ================================== -->
+    <section class="theme-bg call_action_wrap-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="call_action_wrap">
+                        <div class="call_action_wrap-head">
+                            <h3 class="font-2">آیا سوالی دارید؟</h3>
+                            <span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
+                        </div>
+                        <a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Call To Action End ================================== -->
+
+    <!-- ============================ Footer Start ================================== -->
+{% endblock %}

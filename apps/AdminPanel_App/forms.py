@@ -1,4 +1,5 @@
 from django import forms
+from .models import RequestsModel
 from apps.Acount_app.models import User,Teacher
 from apps.Course_app.models import Courses,CoursesChild,Category
 
@@ -9,9 +10,15 @@ class EditUserPanelForms(forms.ModelForm):
     class Meta:
         model=User
 
-        fields=["full_name","phone","student_number","bio","instagram","twitter","linkedin","facebook","nation_code"]
+        fields=["image","full_name","phone","student_number","bio","instagram","twitter","linkedin","facebook","nation_code"]
 
         widgets={
+
+            "image":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
             "full_name":forms.TextInput(
                 attrs={
                     "class":"form-control",
@@ -309,6 +316,83 @@ class EditTeacherForm(forms.ModelForm):
                     "class":"form-control summernote"
                 }
             )
+        }
+
+
+class RequestsForm(forms.ModelForm):
+
+    class Meta:
+        model=RequestsModel
+        exclude=("user","is_blogger","is_technical_team")
+
+
+        widgets={
+
+
+
+
+
+            "resume":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "position":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "introduction": forms.Textarea(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+
+
+
+        }
+
+
+class RequestsUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model=RequestsModel
+        exclude=("user",)
+
+
+        widgets={
+
+
+
+
+            "is_blogger":forms.CheckboxInput(),
+            "is_technical_team":forms.CheckboxInput(),
+
+
+            "resume":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "position":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "introduction": forms.Textarea(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+
+
+
         }
 
 

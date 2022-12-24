@@ -27,4 +27,7 @@ urlpatterns=[
     path("student_list",views.StudentList.as_view(),name="Student_list"),
     path("add_student",views.AddStudent.as_view(),name="Add_student"),
     path("my_documents",views.MyDocumentsView.as_view(),name="MyDocuments"),
+    path("requests",views.RequestsView.as_view(),name="requests"),
+    path("request_list",views.RequestListView.as_view(),name="request_list"),
+    path("request_list_update/<int:pk>",views.RequestListUpdate.as_view(),name="request_list_update"),
 ]
