@@ -45,11 +45,11 @@
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 							<div class="blg_grid_box">
 								<div class="blg_grid_thumb">
-									<a href="blog-detail.html"><img src="{{ item.image.url }}" class="img-fluid" alt="" /></a>
+									<a href="{{ item.get_absolut_url }}"><img src="{{ item.image.url }}" class="img-fluid" alt="" /></a>
 								</div>
 								<div class="blg_grid_caption">
 									<div class="blg_tag"><span>{{ item.category.all.0 }}</span></div>
-									<div class="blg_title"><h4><a href="blog-detail.html">{{ item.titel }}</a></h4></div>
+									<div class="blg_title"><h4><a href="{{ item.get_absolut_url }}">{{ item.titel }}</a></h4></div>
 									<div class="blg_desc"><p>لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد</p></div>
 								</div>
 								<div class="crs_grid_foot">

@@ -2,6 +2,7 @@ from django.db import models
 from apps.Acount_app.models import User
 from apps.Course_app.models import Category
 from scripts.utils import jalali_convert
+from django.urls import reverse
 
 
 class Tag(models.Model):
@@ -26,6 +27,11 @@ class BlogModel(models.Model):
     text=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
     category=models.ManyToManyField(Category,related_name="blog")
+
+    def get_absolut_url(self):
+
+
+        return reverse("Blog_App:blog_detail",kwargs={"pk":self.id})
 
 
     def get_jalali_date(self):
