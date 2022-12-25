@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "apps.AdminPanel_App.apps.AdminpanelAppConfig",
     "apps.Teacher_app.apps.TeacherAppConfig",
     "apps.TechnicalTeam_app.apps.TechnicalteamAppConfig",
+    "apps.AboutUs_app.apps.AboutusAppConfig",
 ]
 
 MIDDLEWARE = [

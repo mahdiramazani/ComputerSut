@@ -465,10 +465,26 @@ class RequestListUpdate(View):
 
         return render(request,"AdminPanel_App/requests.html",{"form":form})
 
+
 class BlogListView(ListView):
     model = BlogModel
     template_name = "AdminPanel_App/blog_list.html"
-    paginate_by = 1
+    paginate_by = 20
+
+
+    def get_queryset(self):
+
+        user=self.request.user
+        qs=super(BlogListView, self).get_queryset()
+
+        if user.is_admin == True:
+
+            return qs
+
+        else:
+
+            return qs.filter(user=user)
+
 
 
 class CreateBlogView(View):
