@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "apps.Teacher_app.apps.TeacherAppConfig",
     "apps.TechnicalTeam_app.apps.TechnicalteamAppConfig",
     "apps.AboutUs_app.apps.AboutusAppConfig",
+    "apps.CountactByMe_app.apps.CountactbymeAppConfig",
 ]
 
 MIDDLEWARE = [

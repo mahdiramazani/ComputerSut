@@ -28,7 +28,8 @@ urlpatterns = [
     path("user_panel/",include("apps.AdminPanel_App.urls")),
     path("teacher/",include("apps.Teacher_app.urls")),
     path("technical_team",include("apps.TechnicalTeam_app.urls")),
-    path("about_us/",include("apps.AboutUs_app.urls"))
+    path("about_us/",include("apps.AboutUs_app.urls")),
+    path("contact/",include("apps.CountactByMe_app.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
