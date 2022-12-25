@@ -2,8 +2,7 @@ from django import forms
 from .models import RequestsModel
 from apps.Acount_app.models import User,Teacher
 from apps.Course_app.models import Courses,CoursesChild,Category
-
-
+from apps.Blog_App.models import BlogModel
 
 class EditUserPanelForms(forms.ModelForm):
 
@@ -366,8 +365,6 @@ class RequestsUpdateForm(forms.ModelForm):
         widgets={
 
 
-
-
             "is_blogger":forms.CheckboxInput(),
             "is_technical_team":forms.CheckboxInput(),
 
@@ -395,5 +392,41 @@ class RequestsUpdateForm(forms.ModelForm):
 
         }
 
+class CreateBlogForm(forms.ModelForm):
 
+    class Meta:
+
+        model=BlogModel
+        exclude=("user","view","created",)
+
+        widgets={
+
+            "titel":forms.TextInput(
+                attrs={
+                    "class":"form-control",
+                    "placeholder":"عنوان مقاله را وارد کنید"
+                }
+            ),
+
+            "image":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "text":forms.Textarea(
+                attrs={
+                    "class":"form-control summernote"
+                }
+            ),
+
+            "category":forms.SelectMultiple(
+
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+
+        }
 

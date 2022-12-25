@@ -27,6 +27,7 @@ class BlogModel(models.Model):
     text=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
     category=models.ManyToManyField(Category,related_name="blog")
+    status=models.BooleanField(default=True)
 
     def get_absolut_url(self):
 

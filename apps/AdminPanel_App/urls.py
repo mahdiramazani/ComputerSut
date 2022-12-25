@@ -30,4 +30,7 @@ urlpatterns=[
     path("requests",views.RequestsView.as_view(),name="requests"),
     path("request_list",views.RequestListView.as_view(),name="request_list"),
     path("request_list_update/<int:pk>",views.RequestListUpdate.as_view(),name="request_list_update"),
+    path("blog_list",views.BlogListView.as_view(),name="blog_list"),
+    path("create_blog",views.CreateBlogView.as_view(),name="create_blog"),
+    path("update_blog/<int:pk>",views.UpdateBlogView.as_view(),name="update_blog"),
 ]

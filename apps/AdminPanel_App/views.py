@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
-    RequestTeacherForm, EditTeacherForm,RequestsForm,RequestsUpdateForm
+    RequestTeacherForm, EditTeacherForm,RequestsForm,RequestsUpdateForm,CreateBlogForm
 from apps.Course_app.models import Courses, CoursesChild, Category,CertificatesOfCourses
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.AdminPanel_App.mixins import CheckTeacherMixin,CheckAdmin,CheckIsTeacherMixin
 from .models import RequestsModel
+from apps.Blog_App.models import Category,BlogModel
 
 class AdminPanelView(View):
 
@@ -203,7 +204,6 @@ class CertificatesOfCoursesView(CheckTeacherMixin,View):
             course=Courses.objects.filter(teacher=teacher)
 
         return render(request,"AdminPanel_App/madrak.html",{"course":course})
-
 
 
 class RegisterStudent(CheckAdmin,View):
@@ -465,3 +465,42 @@ class RequestListUpdate(View):
 
         return render(request,"AdminPanel_App/requests.html",{"form":form})
 
+class BlogListView(ListView):
+    model = BlogModel
+    template_name = "AdminPanel_App/blog_list.html"
+    paginate_by = 1
+
+
+class CreateBlogView(View):
+
+
+
+    def post(self,request):
+        form=CreateBlogForm(request.POST,request.FILES)
+
+        if form.is_valid():
+            user=request.user
+            b=form.save(commit=False)
+            b.user=user
+            b.save()
+
+            return redirect(reverse("AdminPanel:blog_list"))
+
+
+        return render(request,"AdminPanel_App/create_blog.html",{"form":form})
+
+
+    def get(self,request):
+
+        form=CreateBlogForm()
+
+
+        return render(request,"AdminPanel_App/create_blog.html",{"form":form})
+
+
+class UpdateBlogView(UpdateView):
+
+    model = BlogModel
+    template_name = "AdminPanel_App/create_blog.html"
+    form_class = CreateBlogForm
+    success_url = reverse_lazy("AdminPanel:blog_list")
