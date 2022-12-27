@@ -21,7 +21,8 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a>
+                                            </li>
                                             <li class="breadcrumb-item active" aria-current="page">لیست دوره ها</li>
                                         </ol>
                                     </nav>
@@ -185,11 +186,8 @@
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
                                                                        href="{{ item.get_absulot_url }}">مشاهده</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:EditCourse" item.id %}">ویرایش</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:Add_Video_Child" item.id %}">اضافه کردن ویدیو به دوره</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:video_child_list" item.id %}">ویدیو های دوره</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:students_of_the_course" item.id %}">دانشجویان دوره</a>
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:delete_course" item.id  %}">حذف</a>
+                                                                   
+
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -206,7 +204,8 @@
 
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
-                                        <p class="p-0">نمایش 1 تا {{ object_list.all.count }} از {{ object_list.all.count }}</p>
+                                        <p class="p-0">نمایش 1 تا {{ object_list.all.count }}
+                                            از {{ object_list.all.count }}</p>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12">
 
@@ -231,13 +230,16 @@
 
                                                         {% if item == page_obj.number %}
 
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="?page={{ item }}">{{ item }}<span class="sr-only">(صفحه جاری)</span></a>
-                                                        </li>
-                                                            {% else %}
+                                                            <li class="page-item active">
+                                                                <a class="page-link"
+                                                                   href="?page={{ item }}">{{ item }}<span
+                                                                        class="sr-only">(صفحه جاری)</span></a>
+                                                            </li>
+                                                        {% else %}
 
                                                             <li class="page-item"><a class="page-link"
-                                                                                 href="?page={{ item }}">{{ item }}</a></li>
+                                                                                     href="?page={{ item }}">{{ item }}</a>
+                                                            </li>
                                                         {% endif %}
 
                                                     {% endfor %}

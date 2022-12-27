@@ -542,3 +542,16 @@ class DeleteTeacherView(DeleteView):
 
     model = Teacher
     success_url = reverse_lazy("AdminPanel:Teacher_list")
+
+class MyCourseView(ListView):
+
+    model = Courses
+    template_name = "AdminPanel_App/MyCourse.html"
+
+
+    def get_queryset(self):
+
+        qs=super(MyCourseView, self).get_queryset()
+
+
+        return qs.filter(user=self.request.user)

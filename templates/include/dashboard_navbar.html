@@ -56,17 +56,17 @@
 
                 {% if request.user.is_blogger == True %}
 
-                <li class="dropdown">
-                    <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>وبلاگ<span
-                            class="ti-angle-left"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="{% url "AdminPanel:blog_list" %}">لیست مقاله ها</a></li>
-                        <li><a href="{% url "AdminPanel:create_blog" %}">افزودن مقاله</a></li>
+                    <li class="dropdown">
+                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>وبلاگ<span
+                                class="ti-angle-left"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="{% url "AdminPanel:blog_list" %}">لیست مقاله ها</a></li>
+                            <li><a href="{% url "AdminPanel:create_blog" %}">افزودن مقاله</a></li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
 
-            {% endif %}
+                {% endif %}
 
 
                 {% if request.user.is_admin == True %}
@@ -136,6 +136,12 @@
                 <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
                 <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-address-card"></i>پروفایل کاربری</a>
                 </li>
+
+
+                <li><a href="{% url "AdminPanel:my_course" %}"><i class="fas fa-address-card"></i>دوره های من</a>
+                </li>
+
+
                 <li><a href="{% url "AdminPanel:MyDocuments" %}"><i class="fas fa-address-card"></i>مدارک من</a>
                 </li>
 
