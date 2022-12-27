@@ -108,8 +108,8 @@
 
                                     <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
                                         کاربری</a></li>
-                                    <li><a href="manage-course.html"><i class="fas fa-shopping-basket"></i>دوره های
-                                        من<span class="notti_coun style-2">7</span></a></li>
+                                    <li><a href="{% url "AdminPanel:my_course" %}"><i class="fas fa-shopping-basket"></i>دوره های
+                                        من<span class="notti_coun style-2">{{ c_count }}</span></a></li>
 
 
                                     <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
