@@ -30,6 +30,7 @@ urlpatterns = [
     path("technical_team",include("apps.TechnicalTeam_app.urls")),
     path("about_us/",include("apps.AboutUs_app.urls")),
     path("contact/",include("apps.CountactByMe_app.urls")),
+    path("message/",include("apps.Message_App.urls"))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

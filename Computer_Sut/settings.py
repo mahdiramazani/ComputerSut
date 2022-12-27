@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "apps.TechnicalTeam_app.apps.TechnicalteamAppConfig",
     "apps.AboutUs_app.apps.AboutusAppConfig",
     "apps.CountactByMe_app.apps.CountactbymeAppConfig",
+    "apps.Message_App.apps.MessageAppConfig",
 ]
 
 MIDDLEWARE = [
