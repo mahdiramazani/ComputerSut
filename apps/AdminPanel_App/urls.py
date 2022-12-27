@@ -36,4 +36,5 @@ urlpatterns=[
     path("delete_course/<int:pk>",views.DeleteCourseView.as_view(),name="delete_course"),
     path("delet_video_child/<int:pk>",views.DeleteCourseChild.as_view(),name="delete_video_child"),
     path("delete_category/<int:pk>",views.DeleteCategory.as_view(),name="delete_category"),
+    path("delete_teacher/<int:pk>",views.DeleteTeacherView.as_view(),name="delete_teacher")
 ]

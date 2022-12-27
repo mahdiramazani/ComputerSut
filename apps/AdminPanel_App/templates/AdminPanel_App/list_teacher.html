@@ -122,7 +122,7 @@
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
                                                                        href="{% url "AdminPanel:edit_teacher" user.id %}">ویرایش</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:delete_teacher" user.id %}">حذف</a>
                                                                 </div>
                                                             </div>
                                                         </td>
