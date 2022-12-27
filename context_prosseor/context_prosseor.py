@@ -1,5 +1,5 @@
 from apps.Acount_app.models import User
-from apps.Course_app.models import Courses
+from apps.Course_app.models import Courses,Category
 
 def count_course(request):
 
@@ -18,4 +18,19 @@ def count_course(request):
 
 
     return None
+
+def category_list(request):
+
+
+    try:
+        cat = Category.objects.all()
+
+        return {"category": cat}
+
+    except TypeError:
+
+        return None
+
+
+
 

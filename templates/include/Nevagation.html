@@ -28,26 +28,13 @@
 
                     <li><a href="#">دسته بندی ها<span class="submenu-indicator"></span></a>
                         <ul class="nav-dropdown nav-submenu">
-                            <li><a href="#">فروشگاه<span class="submenu-indicator"></span></a>
-                                <ul class="nav-dropdown nav-submenu">
-                                    <li><a href="shop-with-sidebar.html">سایدبار راست</a></li>
-                                    <li><a href="shop-with-left-sidebar.html">سایدبار چپ</a></li>
-                                    <li><a href="list-shop-with-sidebar.html">نمای لیستی با سایدبار</a></li>
-                                    <li><a href="wishlist.html">موردعلاقه ها</a></li>
-                                    <li><a href="checkout.html">تسویه حساب</a></li>
-                                    <li><a href="product-detail.html">جزئیات محصول</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about.html">درباره ما</a></li>
-                            <li><a href="contact.html">تماس با ما</a></li>
-                            <li><a href="blogs.html">لیست وبلاگ</a></li>
-                            <li><a href="pricing.html">قیمت گذاری</a></li>
-                            <li><a href="404.html">صفحه 404</a></li>
-                            <li><a href="component.html">المان ها</a></li>
-                            <li><a href="faq.html">سوالات متداول</a></li>
-                            <li><a href="login.html">ورود</a></li>
-                            <li><a href="signup.html">ثبت نام</a></li>
-                            <li><a href="forgot.html">فراوشی رمز عبور</a></li>
+
+
+                            {% for iten in category %}
+                            <li><a href="about.html">{{ iten.name }}</a></li>
+
+                            {% endfor %}
+
                         </ul>
                     </li>
 
