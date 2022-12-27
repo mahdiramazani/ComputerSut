@@ -34,5 +34,6 @@ urlpatterns=[
     path("create_blog",views.CreateBlogView.as_view(),name="create_blog"),
     path("update_blog/<int:pk>",views.UpdateBlogView.as_view(),name="update_blog"),
     path("delete_course/<int:pk>",views.DeleteCourseView.as_view(),name="delete_course"),
-    path("delet_video_child/<int:pk>",views.DeleteCourseChild.as_view(),name="delete_video_child")
+    path("delet_video_child/<int:pk>",views.DeleteCourseChild.as_view(),name="delete_video_child"),
+    path("delete_category/<int:pk>",views.DeleteCategory.as_view(),name="delete_category"),
 ]

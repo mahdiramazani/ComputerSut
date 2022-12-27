@@ -42,7 +42,7 @@
 
 								<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
 									<div class="dash_crs_cat">
-										<a href="#" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
+										<a href="{% url "AdminPanel:delete_category" item.id %}" class="remove_tools"><i class="fas fa-trash-alt"></i></a>
 										<div class="dash_crs_cat_thumb">
 											<img src="{{ item.image.url }}" alt="" class="img-fluid" />
 										</div>

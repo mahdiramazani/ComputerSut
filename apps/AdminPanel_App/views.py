@@ -531,3 +531,9 @@ class DeleteCourseChild(DeleteView):
 
     model = CoursesChild
     success_url = reverse_lazy("AdminPanel:video_child_list")
+
+class DeleteCategory(DeleteView):
+
+    model = Category
+
+    success_url = reverse_lazy("AdminPanel:Category_course")

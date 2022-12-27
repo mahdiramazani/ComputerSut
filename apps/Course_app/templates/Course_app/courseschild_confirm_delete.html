@@ -2,11 +2,17 @@
 
 {% block content %}
 
-    <form method="post">{% csrf_token %}
-        <p>آیا میخواید این آموزش را حذف کنید "{{ object }}"?</p>
-        {{ form }}
-        <input type="submit" value="حذف">
-    </form>
+<section class="gray pt-4">
+        <div class="container-fluid">
 
+
+
+    <form method="post" >{% csrf_token %}
+        <p >آیا میخواید این آموزش را حذف کنید "{{ object }}"?</p>
+        {{ form }}
+        <input class="btn-danger" type="submit" value="حذف">
+    </form>
+        </div>
+</section>
 {% endblock %}
 
