@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView
+from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView,DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
     RequestTeacherForm, EditTeacherForm,RequestsForm,RequestsUpdateForm,CreateBlogForm
 from apps.Course_app.models import Courses, CoursesChild, Category,CertificatesOfCourses
@@ -520,3 +520,14 @@ class UpdateBlogView(UpdateView):
     template_name = "AdminPanel_App/create_blog.html"
     form_class = CreateBlogForm
     success_url = reverse_lazy("AdminPanel:blog_list")
+
+
+class DeleteCourseView(DeleteView):
+
+    model = Courses
+    success_url = reverse_lazy("AdminPanel:Course_list")
+
+class DeleteCourseChild(DeleteView):
+
+    model = CoursesChild
+    success_url = reverse_lazy("AdminPanel:video_child_list")

@@ -189,7 +189,7 @@
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:Add_Video_Child" item.id %}">اضافه کردن ویدیو به دوره</a>
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:video_child_list" item.id %}">ویدیو های دوره</a>
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:students_of_the_course" item.id %}">دانشجویان دوره</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:delete_course" item.id  %}">حذف</a>
                                                                 </div>
                                                             </div>
                                                         </td>

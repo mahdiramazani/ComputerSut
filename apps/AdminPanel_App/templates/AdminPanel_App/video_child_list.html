@@ -190,7 +190,7 @@
                                                                        href="{{ item.get_absolut_url }}">مشاهده</a>
                                                                     <a class="dropdown-item"
                                                                        href="{% url "AdminPanel:Edit_Video_Child" item.id %}">ویرایش</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:delete_video_child" item.id %}">حذف</a>
                                                                 </div>
                                                             </div>
                                                         </td>
