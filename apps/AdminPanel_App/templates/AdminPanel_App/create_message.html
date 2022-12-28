@@ -59,7 +59,7 @@
 															<button class="nav-link active" id="v-pills-basic-tab" data-toggle="pill" data-target="#v-pills-basic" type="button" role="tab" aria-controls="v-pills-basic" aria-selected="true">اطلاعات پایه</button>
 
 
-															<button class="nav-link" id="v-pills-media-tab" data-toggle="pill" data-target="#v-pills-media" type="button" role="tab" aria-controls="v-pills-media" aria-selected="false">رسانه</button>
+
 
 
 														</div>
@@ -74,57 +74,32 @@
 
 
 																<div class="form-group smalls">
-																	<label>نام دسته بندی</label>
-																	{{ form.name }}
+																	<label>خاطبین پیام</label>
+																	{{ form.user }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>ارسال کننده پیام</label>
+																	{{ form.sender }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>عنوان پیام</label>
+																	{{ form.titel }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>متن پیام</label>
+																	{{ form.body }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>پیام مربوط به کدام دوره ست؟</label>
+																	{{ form.courses }}
 																</div>
 
 
-																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide disabled"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
-																
-															</div>
-															
-															<!-- requirements -->
-															<div class="tab-pane fade" id="v-pills-requirements" role="tabpanel" aria-labelledby="v-pills-requirements-tab">
 
-																
-
-																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
-															</div>
-															
-															<!-- pricing -->
-															<div class="tab-pane fade" id="v-pills-pricing" role="tabpanel" aria-labelledby="v-pills-pricing-tab">
-																
-
-																
-
-																
-
-															</div>
-															
-															<!-- media -->
-															<div class="tab-pane fade" id="v-pills-media" role="tabpanel" aria-labelledby="v-pills-media-tab">
-
-
-																
-																<div class="form-group smalls">
-																	<label>تصویر دسته بندی</label>
-																	<div class="custom-file">
-																	  {{ form.image }}
-																	  <label class="custom-file-label">انتخاب تصویر</label>
-																	</div>
-																</div>
 
 																
 																<div class="d-flex align-items-center justify-content-center">
@@ -136,38 +111,16 @@
 																
 															</div>
 															
-															<!-- seo -->
-															<div class="tab-pane fade" id="v-pills-seo" role="tabpanel" aria-labelledby="v-pills-seo-tab">
-																<div class="form-group smalls">
-																	<label>عنوان</label>
-																	<input type="text" class="form-control" placeholder="عنوان سئو">
-																</div>
+
 																
-																<div class="form-group smalls">
-																	<label>توضیحات</label>
-																	<textarea class="form-control" placeholder="توضیحات دوره"></textarea>
-																</div>
+
 																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
+
 																
+
 															</div>
 															
-															<!-- finish -->
-															<div class="tab-pane fade" id="v-pills-finish" role="tabpanel" aria-labelledby="v-pills-finish-tab">
-																<div class="succ_wrap">
-																	<div class="succ_121"><i class="fas fa-thumbs-up"></i></div>
-																	<div class="succ_122">
-																		<h4 class="font-2">دوره با موفقیت اضافه شد</h4>
-																		<p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. </p>
-																	</div>
-																	<div class="succ_123"><a href="course-detail.html" class="btn theme-bg text-white">مشاهده دوره</a></div>
-																</div>
-															</div>
+
 														</div>
 													</div>
 													

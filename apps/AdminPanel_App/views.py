@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView, DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
-    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm
+    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm
 from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
@@ -526,15 +526,17 @@ class MyCourseView(ListView):
         return qs.filter(user=self.request.user)
 
 
-class CreateMessage(View):
+class CreateMessageView(View):
 
     def post(self,request):
+        form=CreateMessageForm(request.POST,request.FILES)
 
 
-        return render(request,"AdminPanel_App/create_message.html")
+        return render(request,"AdminPanel_App/create_message.html",{"form":form})
 
 
     def get(self,request):
+        form=CreateMessageForm()
 
 
-        return render(request,"AdminPanel_App/create_message.html")
+        return render(request,"AdminPanel_App/create_message.html",{"form":form})

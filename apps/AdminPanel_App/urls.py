@@ -38,4 +38,5 @@ urlpatterns=[
     path("delete_category/<int:pk>",views.DeleteCategory.as_view(),name="delete_category"),
     path("delete_teacher/<int:pk>",views.DeleteTeacherView.as_view(),name="delete_teacher"),
     path("my_course",views.MyCourseView.as_view(),name="my_course"),
+    path("create_message",views.CreateMessageView.as_view(),name="create_message")
 ]

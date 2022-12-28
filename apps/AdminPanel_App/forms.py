@@ -3,6 +3,7 @@ from .models import RequestsModel
 from apps.Acount_app.models import User,Teacher
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Blog_App.models import BlogModel
+from apps.Message_App.models import MessageModel
 
 class EditUserPanelForms(forms.ModelForm):
 
@@ -430,3 +431,19 @@ class CreateBlogForm(forms.ModelForm):
 
         }
 
+
+class CreateMessageForm(forms.ModelForm):
+
+
+    class Meta:
+
+        model=MessageModel
+
+        exclude=("created",)
+
+
+        widgets={
+            "courses":forms.CheckboxSelectMultiple()
+        }
+
+    # courses=forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,queryset=Courses.objects.all())
