@@ -17,7 +17,7 @@ def count_course(request):
             return {"c_count":0}
 
 
-    return None
+    return {"c_count":0}
 
 def category_list(request):
 

@@ -3,8 +3,7 @@ from apps.Acount_app.models import User
 from apps.Course_app.models import Category
 from scripts.utils import jalali_convert
 from django.urls import reverse
-
-
+from PIL import Image
 class Tag(models.Model):
     name=models.CharField(max_length=100)
     created=models.DateTimeField(auto_now_add=True)
@@ -33,6 +32,17 @@ class BlogModel(models.Model):
 
 
         return reverse("Blog_App:blog_detail",kwargs={"pk":self.id})
+
+    def save(self,*args,**kwargs):
+
+        super().save(*args,**kwargs)
+
+        img = Image.open(self.image.path)
+
+        if img.height > 300 or img.width > 300:
+            new_img = (300, 300)
+            img.thumbnail(new_img)
+            img.save(self.image.path)
 
 
     def get_jalali_date(self):

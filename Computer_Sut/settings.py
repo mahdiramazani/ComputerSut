@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "django_cleanup",
+    # "storages",
 
     'allauth',
     'allauth.account',
@@ -172,3 +173,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+# AWS_ACCESS_KEY_ID = '74cc5484-d659-4a33-b745-692ca89d37a9'
+# AWS_SECRET_ACCESS_KEY = '4c6305c22e40c0744e9414a5175cc10b0f815adc'
+# AWS_STORAGE_BUCKET_NAME = 'cmputersut'
+# AWS_SERVICE_NAME = 's3'
+# AWS_S3_ENDPOINT_URL = 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'
+# AWS_S3_FILE_OVERWRITE = False

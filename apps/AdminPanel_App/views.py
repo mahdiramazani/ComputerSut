@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.AdminPanel_App.mixins import CheckTeacherMixin,CheckAdmin,CheckIsTeacherMixin
 from .models import RequestsModel
 from apps.Blog_App.models import Category,BlogModel
+from PIL import Image
 
 class AdminPanelView(View):
 
