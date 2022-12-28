@@ -524,3 +524,17 @@ class MyCourseView(ListView):
         qs = super(MyCourseView, self).get_queryset()
 
         return qs.filter(user=self.request.user)
+
+
+class CreateMessage(View):
+
+    def post(self,request):
+
+
+        return render(request,"AdminPanel_App/create_message.html")
+
+
+    def get(self,request):
+
+
+        return render(request,"AdminPanel_App/create_message.html")
