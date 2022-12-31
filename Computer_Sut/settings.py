@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 from os import path
 
+from datetime import timedelta
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
     "apps.AboutUs_app.apps.AboutusAppConfig",
     "apps.CountactByMe_app.apps.CountactbymeAppConfig",
     "apps.Message_App.apps.MessageAppConfig",
+
 ]
 
 MIDDLEWARE = [
@@ -67,7 +70,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+
 
 ROOT_URLCONF = 'Computer_Sut.urls'
 
@@ -85,6 +90,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'context_prosseor.context_prosseor.count_course',
                 'context_prosseor.context_prosseor.category_list',
+
             ],
         },
     },
@@ -153,13 +159,13 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend'
 ]
 
-#Login With google
+# Login With google
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 # Additional configuration settings
 SOCIALACCOUNT_QUERY_EMAIL = True
-ACCOUNT_LOGOUT_ON_GET= True
+ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_PROVIDERS = {
@@ -173,7 +179,6 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #

@@ -64,8 +64,9 @@ class User(AbstractBaseUser):
     phone = models.CharField(
         verbose_name='شماره تلفن',
         max_length=13,
-        unique=True
+
     )
+    email=models.EmailField(null=True,blank=True)
     bio=models.TextField(null=True,blank=True)
     instagram=models.CharField(max_length=200,default="https://www.instagram.com/")
     twitter=models.CharField(max_length=200,default="https://www.twitter.com/")

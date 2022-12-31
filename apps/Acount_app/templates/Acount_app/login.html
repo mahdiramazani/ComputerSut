@@ -1,5 +1,6 @@
 
 {% extends "base.html" %}
+
 {% load socialaccount %}
 {% load static %}
 <!DOCTYPE html>
@@ -75,7 +76,7 @@
 										<div class="rcs_log_126">
 											<ul class="social_log_45 row">
 												<li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="javascript:void(0);" class="sl_btn"><i class="ti-facebook text-info"></i>Facebook</a></li>
-												<li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="{% provider_login_url 'google' %}" class="sl_btn"><i class="ti-google text-danger"></i>Google</a></li>
+												<li class="col-xl-4 col-lg-4 col-md-4 col-4"><a  onclick="submit_google()" class="sl_btn"><i onclick="submit_google()" class="ti-google text-danger"></i>Google</a></li>
 												<li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="javascript:void(0);" class="sl_btn"><i class="ti-twitter theme-cl"></i>Twitter</a></li>
 											</ul>
 										</div>
@@ -92,5 +93,18 @@
 				</div>
 			</section>
 			<!-- ============================ Login Wrap ================================== -->
-			
+
+
+
+    <form method="post"  action="/accounts/google/login/" id="google_login">
+    {% csrf_token %}
+
+    </form>
+
+    <script>
+    function submit_google(){
+        document.getElementById("google_login").submit()
+    }
+</script>
 		{% endblock %}
+
