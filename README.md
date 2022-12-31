@@ -1,12 +1,12 @@
 # ComputerSut
 
 
-<image src="https://s2.uupload.ir/files/2022-12-26_fx1j.png">
+
 
 <div align=center>
-    
+    <img src="https://s6.uupload.ir/files/logo_74y9.png" alt="Logo TipHub" width="200">
     <img src="https://s2.uupload.ir/files/2022-12-26_fx1j.png" algin="center" width="1000">
-    <h1 align=center>Tiphub</h1>
+    <h1 align=center>انجمن علمی مهندسی کامپیوتر دانشگاه صنعتی سیرجان</h1>
     <h3 align=center>I'm Tiphub, a Video Sharing Service for Developers</h3>
 </div>
 <hr>
@@ -34,5 +34,5 @@
 - [8] Others...
 
 <div align=center>
-    <h3>Template By <a href="https://github.com/samanOlia/tip-hub">Saman Olia<h3>
+    <h3>Template By <a href="">Mahdi Ramazani<h3>
 </div>
