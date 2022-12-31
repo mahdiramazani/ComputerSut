@@ -41,18 +41,16 @@
 
                                     {% if form.errors %}
 
-                                            {% for e in form.non_field_errors %}
+                                        {% for e in form.non_field_errors %}
 
 
-                                                <p class="alert-danger text text-center text-dark">{{ e }}</p>
-                                                <br>
-                                                <hr>
-                                            {% endfor %}
+                                            <p class="alert-danger text text-center text-dark">{{ e }}</p>
+                                            <br>
+                                            <hr>
+                                        {% endfor %}
 
-                                        {% endif %}
+                                    {% endif %}
                                     <div class="form-group row mb-0">
-
-
 
 
                                         <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -110,18 +108,14 @@
                                 <div class="rcs_log_125">
                                     <span>یا ورود از طریق شبکه های اجتماعی</span>
                                 </div>
-                                <div class="rcs_log_126">
-                                    <ul class="social_log_45 row">
-                                        <li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="javascript:void(0);"
-                                                                                        class="sl_btn"><i
-                                                class="ti-facebook text-info"></i>Facebook</a></li>
-                                        <li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="javascript:void(0);"
-                                                                                        class="sl_btn"><i
-                                                class="ti-google text-danger"></i>Google</a></li>
-                                        <li class="col-xl-4 col-lg-4 col-md-4 col-4"><a href="javascript:void(0);"
-                                                                                        class="sl_btn"><i
-                                                class="ti-twitter theme-cl"></i>Twitter</a></li>
-                                    </ul>
+                                <div class="rcs_log_126 ">
+
+
+                                    <a onclick="submit_google()"
+                                       class="sl_btn form-control"><i
+                                            class="ti-google text-danger f"></i>Google</a>
+
+
                                 </div>
                             </div>
                             <div class="crs_log__footer d-flex justify-content-between">
@@ -139,5 +133,16 @@
         </div>
     </section>
     <!-- ============================ Signup Wrap ================================== -->
+
+    <form method="post" action="/accounts/google/login/" id="google_form">
+        {% csrf_token %}
+    </form>
+
+    <script>
+        function submit_google() {
+
+            document.getElementById("google_form").submit();
+        }
+    </script>
 
 {% endblock %}
