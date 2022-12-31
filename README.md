@@ -4,8 +4,8 @@
 <image src="https://s2.uupload.ir/files/2022-12-26_fx1j.png">
 
 <div align=center>
-    <img src="https://s6.uupload.ir/files/logo_74y9.png" alt="Logo TipHub" width="200">
-    <img src="https://s6.uupload.ir/files/bandicam_2022-11-21_14-52-49-617_qozk.jpg" algin="center" width="1000">
+    
+    <img src="https://s2.uupload.ir/files/2022-12-26_fx1j.png" algin="center" width="1000">
     <h1 align=center>Tiphub</h1>
     <h3 align=center>I'm Tiphub, a Video Sharing Service for Developers</h3>
 </div>
