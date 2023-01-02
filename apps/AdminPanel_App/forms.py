@@ -4,6 +4,12 @@ from apps.Acount_app.models import User,Teacher
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Blog_App.models import BlogModel
 from apps.Message_App.models import MessageModel
+from ckeditor.fields import RichTextFormField,CKEditorWidget
+
+from ckeditor.fields import RichTextFormField
+from ckeditor.widgets import CKEditorWidget
+from ckeditor_uploader.fields import RichTextUploadingFormField
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 class EditUserPanelForms(forms.ModelForm):
 
@@ -394,6 +400,7 @@ class RequestsUpdateForm(forms.ModelForm):
         }
 
 class CreateBlogForm(forms.ModelForm):
+
 
     class Meta:
 

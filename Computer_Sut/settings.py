@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     "django_cleanup",
     # "storages",
 
+
+    "ckeditor",
+    "ckeditor_uploader",
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -75,6 +78,8 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = 'Computer_Sut.urls'
+#Ck editor setting
+CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
 
 TEMPLATES = [
     {
