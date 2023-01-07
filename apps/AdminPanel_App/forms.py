@@ -373,7 +373,6 @@ class RequestsUpdateForm(forms.ModelForm):
 
 
             "is_blogger":forms.CheckboxInput(),
-            "is_technical_team":forms.CheckboxInput(),
             "is_teacher":forms.CheckboxInput(),
             "is_employee":forms.CheckboxInput(),
 

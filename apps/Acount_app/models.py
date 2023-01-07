@@ -78,6 +78,7 @@ class User(AbstractBaseUser):
     nation_code=models.CharField(max_length=50,null=True,blank=True)
     university_name = models.CharField(choices=UNIVERSITY_NAME,max_length=100,default="دانشگاه صنعتی سیرجان")
     major=models.CharField(max_length=50,choices=MAJOR,default="مهندسی کامپیوتر")
+    position=models.CharField(max_length=150,default="دانشجو",choices=POSITION)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_teacher=models.BooleanField(default=False)

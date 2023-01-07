@@ -2,11 +2,12 @@ from django.db import models
 from apps.Acount_app.models import User
 
 POSITION=(
-    ("عضویت در کادر فنی","عضویت در کادر فنی"),
     ("وبلاگ نویس","وبلاگ نویس"),
     ("مدرس","مدرس"),
     ("کارمند","کارمند"),
 )
+
+
 
 class RequestsModel(models.Model):
 
@@ -14,7 +15,6 @@ class RequestsModel(models.Model):
     introduction=models.TextField()
     position=models.CharField(max_length=100,choices=POSITION)
     resume=models.FileField(upload_to="media/request")
-    is_technical_team = models.BooleanField(default=False)
     is_blogger = models.BooleanField(default=False)
     is_teacher=models.BooleanField(default=False)
     is_employee=models.BooleanField(default=False)

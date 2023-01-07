@@ -426,9 +426,11 @@ class RequestListUpdate(View):
             if req.is_blogger == True:
 
                 user.is_blogger = True
+                user.position="وبلاگ نویس"
 
             else:
                 user.is_blogger = False
+                user.position = "دانشجو"
 
 
             #request to teacher
@@ -438,29 +440,33 @@ class RequestListUpdate(View):
                 user.is_teacher = True
                 teacher=Teacher.objects.get(user_id=user.id)
                 teacher.status = True
+                user.position = "مدرس"
                 teacher.save()
 
             else:
                 user.is_teacher = False
                 teacher = Teacher.objects.get(user_id=user.id)
                 teacher.status = False
+                user.position = "دانشجو"
                 teacher.save()
 
             #request to employ
             if req.is_employee == True:
 
                 user.is_employee = True
+                user.position = "کارمند وبسایت"
 
             else:
                 user.is_employee = False
+                user.position = "دانشجو"
 
-            #request to technical
+            """#request to technical
             if req.is_technical_team == True:
 
                 user.is_technical_team = True
 
             else:
-                user.is_technical_team = False
+                user.is_technical_team = False"""
 
             user.save()
             return redirect("AdminPanel:request_list")
