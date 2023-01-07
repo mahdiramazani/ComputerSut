@@ -2,111 +2,126 @@
 {% load static %}
 
 {% block content %}
-			<!-- ============================================================== -->
-			<!-- Top header  -->
-			<!-- ============================================================== -->
-			
-			<!-- ============================ Dashboard: Dashboard Start ================================== -->
-			<section class="gray pt-4">
-				<div class="container-fluid">
-										
-					<div class="row">
-					
-						{% include "include/dashboard_navbar.html" %}
-						
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							
-							<!-- Row -->
-							<div class="row justify-content-between">
-								<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
-									<div class="dashboard_wrap d-flex align-items-center justify-content-between">
-										<div class="arion">
-											<nav class="transparent">
-												<ol class="breadcrumb">
-													<li class="breadcrumb-item"><a href="#">خانه</a></li>
-													<li class="breadcrumb-item active" aria-current="page">ثبت نام هنرجو</li>
-												</ol>
-											</nav>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Row -->
-							
-							<div class="row">
-								<div class="col-xl-12 col-lg-12 col-md-12">
-									<div class="dashboard_wrap">
-                                    <form method="post" enctype="multipart/form-data">
-                                        {% csrf_token %}
-										<div class="row justify-content-center">
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
 
-											<div class="col-xl-8 col-lg-10 col-md-12">
+    <!-- ============================ Dashboard: Dashboard Start ================================== -->
+    <section class="gray pt-4">
+        <div class="container-fluid">
+
+            <div class="row">
+
+                {% include "include/dashboard_navbar.html" %}
+
+                <div class="col-lg-9 col-md-9 col-sm-12">
+
+                    <!-- Row -->
+                    <div class="row justify-content-between">
+                        <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
+                            <div class="dashboard_wrap d-flex align-items-center justify-content-between">
+                                <div class="arion">
+                                    <nav class="transparent">
+                                        <ol class="breadcrumb">
+                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">ثبت نام هنرجو</li>
+                                        </ol>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Row -->
+
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12">
+                            <div class="dashboard_wrap">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row justify-content-center">
+
+                                        <div class="col-xl-8 col-lg-10 col-md-12">
+
+
+                                            {% if request.user.is_admin == True %}
 
 
 
-                                                {% if request.user.is_admin == True %}
+                                                <div class="form-group smalls">
+                                                    <label>وبلاگ نویس است؟</label>
 
+                                                    {{ form.is_blogger }}
+
+
+                                                </div>
+
+                                                <div class="form-group smalls">
+                                                    <label>عضو کادر فنی؟؟</label>
+
+                                                    {{ form.is_technical_team }}
+
+                                                </div>
 
 
                                                 <div class="form-group smalls">
-													<label>وبلاگ نویس است؟</label>
+                                                    <label>مدرس است؟</label>
 
-														{{ form.is_blogger }}
-
-
-												</div>
-
-                                                <div class="form-group smalls">
-													<label>عضو کادر فنی؟؟</label>
-
-														{{ form.is_technical_team }}
-
-												</div>
-
-                                                {% endif %}
-											
-												<div class="form-group smalls">
-													<label>رزومه خود را آپلود کنید</label>
-
-														{{ form.resume }}
+                                                    {{ form.is_teacher }}
 
 
-												</div>
+                                                </div>
 
                                                 <div class="form-group smalls">
-													<label>خود را معرفی کنید</label>
+                                                    <label>کارمند وبسایت است؟؟</label>
 
-														{{ form.introduction }}
+                                                    {{ form.is_employee }}
 
+                                                </div>
 
-												</div>
+                                            {% endif %}
 
-                                                <div class="form-group smalls">
-													<label>موقعیت خود را وارد کنید</label>
+                                            <div class="form-group smalls">
+                                                <label>رزومه خود را آپلود کنید</label>
 
-														{{ form.position }}
-
-												</div>
-												
-
-												
-												<div class="form-group smalls">
-													<button type="submit" class="btn theme-bg text-white">ثبت نام</button>
-												</div>
-												
-											</div>
+                                                {{ form.resume }}
 
 
-										</div></form>
+                                            </div>
 
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</section>
-			<!-- ============================ Dashboard: Dashboard End ================================== -->
-			
-		{% endblock %}
+                                            <div class="form-group smalls">
+                                                <label>خود را معرفی کنید</label>
+
+                                                {{ form.introduction }}
+
+
+                                            </div>
+
+                                            <div class="form-group smalls">
+                                                <label>موقعیت خود را وارد کنید</label>
+
+                                                {{ form.position }}
+
+                                            </div>
+
+
+                                            <div class="form-group smalls">
+                                                <button type="submit" class="btn theme-bg text-white">ثبت نام</button>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Dashboard: Dashboard End ================================== -->
+
+{% endblock %}

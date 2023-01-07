@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "apps.CountactByMe_app.apps.CountactbymeAppConfig",
     "apps.Message_App.apps.MessageAppConfig",
 
+
 ]
 
 MIDDLEWARE = [

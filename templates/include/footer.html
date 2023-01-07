@@ -15,7 +15,7 @@
 										<div class="input-group">
 										  <input type="text" class="form-control" placeholder="ایمیل">
 											<div class="input-group-append">
-												<button type="button" class="input-group-text theme-bg b-0 text-light">عضویت</button>
+												<button href="{% url "CountactByMe_app:contact" %}" class="input-group-text theme-bg b-0 text-light">عضویت</button>
 											</div>
 										</div>
 									</div>
@@ -27,14 +27,14 @@
 
 									<div class="col-lg-4 col-md-4">
 										<div class="footer_widget">
-											<h4 class="widget_title">صفحات</h4>
+											<h4 class="widget_title">انجمن علمی</h4>
 											<ul class="footer-menu">
-												<li><a href="#">صفحه اصلی</a></li>
-												<li><a href="#">درباره ما</a></li>
-												<li><a href="#">خدمات</a></li>
-												<li><a href="#">دوره های آموزشی</a></li>
-												<li><a href="#">تماس با ما</a></li>
-												<li><a href="#">لیست وبلاگ</a></li>
+												<li><a href="{% url "Home_app:Home" %}">صفحه اصلی</a></li>
+												<li><a href="{% url "AboutUs_app:about_us" %}">درباره ما</a></li>
+												<li><a href="{% url "Home_app:faq" %}">سوالات متداول</a></li>
+												<li><a href="{% url "Course_app:Course" %}">دوره های آموزشی</a></li>
+												<li><a href="{% url "CountactByMe_app:contact" %}">تماس با ما</a></li>
+												<li><a href="{% url "Blog_App:blog" %}">لیست وبلاگ</a></li>
 											</ul>
 										</div>
 									</div>

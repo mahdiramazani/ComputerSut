@@ -86,6 +86,8 @@
                                                     <th scope="col">شماره دانشجویی</th>
                                                     <th scope="col">وبلاگ نویس</th>
                                                     <th scope="col"> تیم فنی</th>
+                                                    <th scope="col">مدرس</th>
+                                                    <th scope="col">کارمند</th>
                                                     <th scope="col">عملیات</th>
                                                 </tr>
                                                 </thead>
@@ -104,7 +106,8 @@
                                                         </td>
 
                                                         {% if item.is_blogger == True %}
-                                                            <td><span class="smalls lg badge badge-primary">عضو هست</span>
+                                                            <td><span
+                                                                    class="smalls lg badge badge-primary">عضو هست</span>
                                                             </td>
                                                         {% else %}
                                                             <td><span
@@ -119,6 +122,29 @@
                                                             <td><span
                                                                     class="smalls lg badge badge-danger">عضو نیست</span>
                                                             </td>
+                                                    {% endif %}
+
+
+                                                        {% if item.is_teacher == True %}
+                                                        <td><span class="smalls lg badge badge-primary">عضو هست</span>
+                                                        </td>
+                                                        {% else %}
+                                                        <td><span
+                                                                class="smalls lg badge badge-danger">عضو نیست</span>
+                                                        </td>
+                                                    {% endif %}
+
+
+                                                        {% if item.is_employee == True %}
+                                                            <td><span
+                                                                    class="smalls lg badge badge-primary">عضو هست</span>
+                                                            </td>
+                                                        {% else %}
+                                                            <td><span
+                                                                    class="smalls lg badge badge-danger">عضو نیست</span>
+                                                            </td>
+
+
                                                         {% endif %}
 
                                                         <td>
@@ -129,7 +155,8 @@
                                                                     <i class="fas fa-ellipsis-h"></i>
                                                                 </a>
                                                                 <div class="drp-select dropdown-menu">
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:request_list_update" item.id %}">ویرایش</a>
+                                                                    <a class="dropdown-item"
+                                                                       href="{% url "AdminPanel:request_list_update" item.id %}">ویرایش</a>
                                                                     <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
                                                                 </div>
                                                             </div>

@@ -21,3 +21,8 @@ class HomeView(TemplateView):
         return context
 
     template_name = "Home_app/home.html"
+
+
+class FaqQuestionView(TemplateView):
+
+    template_name = "Home_app/faq.html"

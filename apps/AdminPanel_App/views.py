@@ -421,6 +421,8 @@ class RequestListUpdate(View):
 
             form.save()
 
+
+            #requset to blogger
             if req.is_blogger == True:
 
                 user.is_blogger = True
@@ -428,6 +430,31 @@ class RequestListUpdate(View):
             else:
                 user.is_blogger = False
 
+
+            #request to teacher
+
+            if req.is_teacher == True:
+
+                user.is_teacher = True
+                teacher=Teacher.objects.get(user_id=user.id)
+                teacher.status = True
+                teacher.save()
+
+            else:
+                user.is_teacher = False
+                teacher = Teacher.objects.get(user_id=user.id)
+                teacher.status = False
+                teacher.save()
+
+            #request to employ
+            if req.is_employee == True:
+
+                user.is_employee = True
+
+            else:
+                user.is_employee = False
+
+            #request to technical
             if req.is_technical_team == True:
 
                 user.is_technical_team = True
