@@ -93,8 +93,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'phone'
 
     def __str__(self):
-        return f"{self.id} | {self.phone}"
-    
+        return self.phone
+
     def has_perm(self, perm, obj=None):
 
         return True
