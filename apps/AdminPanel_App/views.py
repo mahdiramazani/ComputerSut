@@ -173,7 +173,7 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
     def post(self, request):
         user = request.user
         teacher = Teacher.objects.get(user=user)
-        course = Courses.objects.get(teacher=teacher)
+        course = Courses.objects.filter(teacher=teacher)
 
         student = request.POST.get("student")
         courses = request.POST.get("course")

@@ -85,6 +85,7 @@ class User(AbstractBaseUser):
     is_technical_team=models.BooleanField(default=False)
     is_blogger=models.BooleanField(default=False)
     is_employee=models.BooleanField(default=False)
+    created=models.DateTimeField(auto_now_add=True)
 
 
     objects = MyUserManager()
@@ -92,8 +93,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'phone'
 
     def __str__(self):
-        return self.phone
-
+        return f"{self.id} | {self.phone}"
+    
     def has_perm(self, perm, obj=None):
 
         return True
