@@ -16,4 +16,13 @@ class TeacherListView(ListView):
         return q.filter(status = True)
 
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+
+        context=super(TeacherListView, self).get_context_data(**kwargs)
+
+        context["best_teacher"]=Teacher.objects.all()
+
+        return context
+
+
 

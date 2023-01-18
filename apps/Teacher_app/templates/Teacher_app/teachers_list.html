@@ -63,35 +63,14 @@
                                 <div class="form-group">
                                     <h6>مدرسین برتر</h6>
                                     <ul class="no-ul-list mb-3">
+                                        {% for item in best_teacher %}
                                         <li>
                                             <input id="aa-41" class="checkbox-custom" name="aa-41" type="checkbox">
-                                            <label for="aa-41" class="checkbox-custom-label">مصطفی اسلامی<i
-                                                    class="count">12</i></label>
+                                            <label for="aa-41" class="checkbox-custom-label">{{ item.user.full_name }}<i
+                                                    class="count">{{ item.user.Corses.all.count }}</i></label>
                                         </li>
-                                        <li>
-                                            <input id="aa-2" class="checkbox-custom" name="aa-2" type="checkbox">
-                                            <label for="aa-2" class="checkbox-custom-label">نرگس حسینی<i class="count">10</i></label>
-                                        </li>
-                                        <li>
-                                            <input id="aa-3" class="checkbox-custom" name="aa-3" type="checkbox">
-                                            <label for="aa-3" class="checkbox-custom-label">سروش نجفی نژاد<i
-                                                    class="count">56</i></label>
-                                        </li>
-                                        <li>
-                                            <input id="aa-71" class="checkbox-custom" name="aa-71" type="checkbox">
-                                            <label for="aa-71" class="checkbox-custom-label">متین کفاشیان<i
-                                                    class="count">42</i></label>
-                                        </li>
-                                        <li>
-                                            <input id="aa-81" class="checkbox-custom" name="aa-81" type="checkbox">
-                                            <label for="aa-81" class="checkbox-custom-label">نادیا ناصری<i
-                                                    class="count">12</i></label>
-                                        </li>
-                                        <li>
-                                            <input id="aa-91" class="checkbox-custom" name="aa-91" type="checkbox">
-                                            <label for="aa-91" class="checkbox-custom-label">مرضیه قاسمی نیا<i
-                                                    class="count">36</i></label>
-                                        </li>
+                                        {% endfor %}
+
                                     </ul>
                                 </div>
 
