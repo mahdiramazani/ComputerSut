@@ -78,6 +78,18 @@
                             <li><a href="{% url "AdminPanel:Register_student" %}">ثبت نام هنرجو</a></li>
                         </ul>
                     </li>
+            {% endif %}
+
+
+                    {% if request.user.is_admin == True %}
+                    <li class="dropdown">
+                        <a href="javascript:void(0);"><i class="fas fa-gem"></i>دسترسی ها<span
+                                class="ti-angle-left"></span></a>
+                        <ul class="nav nav-second-level">
+
+                            <li><a href="{% url "AdminPanel:add_accses" %}">اضافه کردن دسترسی</a></li>
+                        </ul>
+                    </li>
 
                     <li class="dropdown">
                         <a href="javascript:void(0);"><i class="fas fa-archive"></i>گزارشات<span
@@ -112,10 +124,7 @@
                             class="ti-angle-left"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a href="{% url "AdminPanel:Request_Teacher" %}">درخواست مدرس شدن</a></li>
-                        <li><a href="{% url "AdminPanel:requests" %}">درخواست عضویت در کادر فنی</a></li>
-                        {% if request.user.is_admin == True %}
-                            <li><a href="{% url "AdminPanel:request_list" %}">لیست در خواست ها</a></li>
-                        {% endif %}
+
 
 
                     </ul>

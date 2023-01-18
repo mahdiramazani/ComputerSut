@@ -455,3 +455,11 @@ class CreateMessageForm(forms.ModelForm):
         }
 
     # courses=forms.ModelMultipleChoiceField(widget=forms.CheckboxSelectMultiple,queryset=Courses.objects.all())
+
+
+class AddAcsess(forms.ModelForm):
+
+    class Meta:
+
+        model=User
+        exclude=("password","facebook","twitter","instagram","linkedin")

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView, DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
-    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm
+    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm,AddAcsess
 from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
@@ -380,105 +380,105 @@ class MyDocumentsView(ListView):
             return qs.filter(user=user)
 
 
-class RequestsView(View):
-
-    def post(self, request):
-        form = RequestsForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            user = request.user
-
-            f = form.save(commit=False)
-            f.user = user
-            f.save()
-
-            return redirect(reverse("AdminPanel:Userpanel"))
-
-        print(form.errors)
-
-        return render(request, "AdminPanel_App/requests.html", {"form": form})
-
-    def get(self, request):
-        form = RequestsForm()
-
-        return render(request, "AdminPanel_App/requests.html", {"form": form})
-
-
-class RequestListView(ListView):
-    model = RequestsModel
-    template_name = "AdminPanel_App/request_list.html"
-    paginate_by = 10
-
-
-class RequestListUpdate(View):
-
-    def post(self, request, pk):
-        req = RequestsModel.objects.get(id=pk)
-        form = RequestsUpdateForm(request.POST, request.FILES, instance=req)
-        user = User.objects.get(id=req.user.id)
-
-        if form.is_valid():
-
-            form.save()
-
-
-            #requset to blogger
-            if req.is_blogger == True:
-
-                user.is_blogger = True
-                user.position="وبلاگ نویس"
-
-            else:
-                user.is_blogger = False
-                user.position = "دانشجو"
-
-
-            #request to teacher
-
-            if req.is_teacher == True:
-
-                user.is_teacher = True
-                teacher=Teacher.objects.get(user_id=user.id)
-                teacher.status = True
-                user.position = "مدرس"
-                teacher.save()
-
-            else:
-                user.is_teacher = False
-                teacher = Teacher.objects.get(user_id=user.id)
-                teacher.status = False
-                user.position = "دانشجو"
-                teacher.save()
-
-            #request to employ
-            if req.is_employee == True:
-
-                user.is_employee = True
-                user.position = "کارمند وبسایت"
-
-            else:
-                user.is_employee = False
-                user.position = "دانشجو"
-
-            """#request to technical
-            if req.is_technical_team == True:
-
-                user.is_technical_team = True
-
-            else:
-                user.is_technical_team = False"""
-
-            user.save()
-            return redirect("AdminPanel:request_list")
-
-        return render(request, "AdminPanel_App/requests.html", {"form": form})
-
-    def get(self, request, pk):
-
-        req = RequestsModel.objects.get(id=pk)
-        form = RequestsUpdateForm(instance=req)
-
-        return render(request, "AdminPanel_App/requests.html", {"form": form})
+# class RequestsView(View):
+#
+#     def post(self, request):
+#         form = RequestsForm(request.POST, request.FILES)
+#
+#         if form.is_valid():
+#             user = request.user
+#
+#             f = form.save(commit=False)
+#             f.user = user
+#             f.save()
+#
+#             return redirect(reverse("AdminPanel:Userpanel"))
+#
+#         print(form.errors)
+#
+#         return render(request, "AdminPanel_App/requests.html", {"form": form})
+#
+#     def get(self, request):
+#         form = RequestsForm()
+#
+#         return render(request, "AdminPanel_App/requests.html", {"form": form})
+#
+#
+# class RequestListView(ListView):
+#     model = RequestsModel
+#     template_name = "AdminPanel_App/request_list.html"
+#     paginate_by = 10
+#
+#
+# class RequestListUpdate(View):
+#
+#     def post(self, request, pk):
+#         req = RequestsModel.objects.get(id=pk)
+#         form = RequestsUpdateForm(request.POST, request.FILES, instance=req)
+#         user = User.objects.get(id=req.user.id)
+#
+#         if form.is_valid():
+#
+#             form.save()
+#
+#
+#             #requset to blogger
+#             if req.is_blogger == True:
+#
+#                 user.is_blogger = True
+#                 user.position="وبلاگ نویس"
+#
+#             else:
+#                 user.is_blogger = False
+#                 user.position = "دانشجو"
+#
+#
+#             #request to teacher
+#
+#             if req.is_teacher == True:
+#
+#                 user.is_teacher = True
+#                 teacher=Teacher.objects.get(user_id=user.id)
+#                 teacher.status = True
+#                 user.position = "مدرس"
+#                 teacher.save()
+#
+#             else:
+#                 user.is_teacher = False
+#                 teacher = Teacher.objects.get(user_id=user.id)
+#                 teacher.status = False
+#                 user.position = "دانشجو"
+#                 teacher.save()
+#
+#             #request to employ
+#             if req.is_employee == True:
+#
+#                 user.is_employee = True
+#                 user.position = "کارمند وبسایت"
+#
+#             else:
+#                 user.is_employee = False
+#                 user.position = "دانشجو"
+#
+#             """#request to technical
+#             if req.is_technical_team == True:
+#
+#                 user.is_technical_team = True
+#
+#             else:
+#                 user.is_technical_team = False"""
+#
+#             user.save()
+#             return redirect("AdminPanel:request_list")
+#
+#         return render(request, "AdminPanel_App/requests.html", {"form": form})
+#
+#     def get(self, request, pk):
+#
+#         req = RequestsModel.objects.get(id=pk)
+#         form = RequestsUpdateForm(instance=req)
+#
+#         return render(request, "AdminPanel_App/requests.html", {"form": form})
 
 
 class BlogListView(ListView):
@@ -573,3 +573,52 @@ class CreateMessageView(View):
 
 
         return render(request,"AdminPanel_App/create_message.html",{"form":form})
+
+class Accses(View):
+
+    def get(self,request):
+
+
+
+
+        return render(request,"AdminPanel_App/accses.html")
+
+    def post(self,request):
+
+        student_number = request.POST.get("user")
+
+
+
+        if student_number:
+            return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
+
+
+
+        return render(request,"AdminPanel_App/accses.html")
+
+
+class AddAcsesToUser(View):
+
+    def get(self,request):
+        student_number = request.GET.get("student_number")
+        user_id = User.objects.get(student_number=student_number)
+        form = AddAcsess(instance=user_id)
+
+        return render(request, "AdminPanel_App/add_acses_to_user.html", {"form": form})
+
+
+    def post(self,request):
+        student_number=request.GET.get("student_number")
+        user_id=User.objects.get(student_number=student_number)
+        form=AddAcsess(request.POST,request.FILES,instance=user_id)
+
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect("AdminPanel:add_accses")
+
+        print(form.errors)
+
+        return render(request,"AdminPanel_App/add_acses_to_user.html",{"form":form})
