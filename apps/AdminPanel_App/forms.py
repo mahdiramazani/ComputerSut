@@ -463,3 +463,53 @@ class AddAcsess(forms.ModelForm):
 
         model=User
         exclude=("password","facebook","twitter","instagram","linkedin")
+
+        widgets={
+            "full_name":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "phone":forms.TextInput(attrs={
+                "class":"form-control"
+            }),
+
+            "email":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "bio":forms.TextInput(
+                attrs={
+                    "class":"form-control summernote"
+                }
+            ),
+
+            "student_number":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "university_name":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "major":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "position":forms.Select(
+
+                attrs={
+                    "class":"form-control"
+                }
+            )
+
+        }
