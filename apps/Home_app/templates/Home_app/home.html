@@ -323,26 +323,24 @@
 
             <div class="row justify-content-center">
 
-                <!-- Single Item -->
+                {% for item in object_list %}
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     <div class="blg_grid_box">
                         <div class="blg_grid_thumb">
-                            <a href="blog-detail.html"><img src="{% static "assets/img/b-4.png" %}" class="img-fluid"
+                            <a href="{{ item.get_absolut_url }}"><img src="{{ item.image.url }}" class="img-fluid"
                                                             alt=""/></a>
                         </div>
                         <div class="blg_grid_caption">
-                            <div class="blg_tag"><span>بازاریابی</span></div>
-                            <div class="blg_title"><h4><a href="blog-detail.html">چطور زبان انگلیسی را سریع یاد
-                                بگیریم؟</a></h4></div>
-                            <div class="blg_desc"><p>لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
-                                هدف بهبود ابزارهای کاربردی می باشد.</p></div>
+                            <div class="blg_tag"><span>{{ item.category.all.0 }}</span></div>
+                            <div class="blg_title"><h4><a href="{{ item.get_absolut_url }}">{{ item.titel }}</a></h4></div>
+                            <div class="blg_desc"><p>{{ item.text | truncatewords:15 | safe }}</p></div>
                         </div>
                         <div class="crs_grid_foot">
                             <div class="crs_flex">
                                 <div class="crs_fl_first">
                                     <div class="crs_tutor">
                                         <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                src="{% static "assets/img/team-5.jpg" %}" class="img-fluid circle"
+                                                src="{{ item.user.image.url }}" class="img-fluid circle"
                                                 alt=""/></a></div>
                                     </div>
                                 </div>
@@ -351,11 +349,11 @@
                                         <ul>
                                             <li>
                                                 <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                <div class="elsio_tx">10 بازدید</div>
+                                                <div class="elsio_tx">{{ item.view }} بازدید</div>
                                             </li>
                                             <li>
                                                 <div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
-                                                <div class="elsio_tx">10 آبان 1400</div>
+                                                <div class="elsio_tx">{{ item.created }}</div>
                                             </li>
                                         </ul>
                                     </div>
@@ -364,90 +362,9 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
-                <!-- Single Item -->
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="blg_grid_box">
-                        <div class="blg_grid_thumb">
-                            <a href="blog-detail.html"><img src="{% static "assets/img/b-5.png" %}" class="img-fluid"
-                                                            alt=""/></a>
-                        </div>
-                        <div class="blg_grid_caption">
-                            <div class="blg_tag"><span>کسب و کار</span></div>
-                            <div class="blg_title"><h4><a href="blog-detail.html">کلید سوالات کنکور برای رشته های
-                                مختلف</a></h4></div>
-                            <div class="blg_desc"><p>لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
-                                هدف بهبود ابزارهای کاربردی می باشد.</p></div>
-                        </div>
-                        <div class="crs_grid_foot">
-                            <div class="crs_flex">
-                                <div class="crs_fl_first">
-                                    <div class="crs_tutor">
-                                        <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                src="{% static "assets/img/team-5.jpg" %}" class="img-fluid circle"
-                                                alt=""/></a></div>
-                                    </div>
-                                </div>
-                                <div class="crs_fl_last">
-                                    <div class="foot_list_info">
-                                        <ul>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                <div class="elsio_tx">10 بازدید</div>
-                                            </li>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
-                                                <div class="elsio_tx">10 آبان 1400</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Single Item -->
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="blg_grid_box">
-                        <div class="blg_grid_thumb">
-                            <a href="blog-detail.html"><img src="{% static "assets/img/b-6.png" %}" class="img-fluid"
-                                                            alt=""/></a>
-                        </div>
-                        <div class="blg_grid_caption">
-                            <div class="blg_tag"><span>حسابداری</span></div>
-                            <div class="blg_title"><h4><a href="blog-detail.html">چطور امتحان حضوری موفقی داشته
-                                باشیم؟</a></h4></div>
-                            <div class="blg_desc"><p>لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با
-                                هدف بهبود ابزارهای کاربردی می باشد.</p></div>
-                        </div>
-                        <div class="crs_grid_foot">
-                            <div class="crs_flex">
-                                <div class="crs_fl_first">
-                                    <div class="crs_tutor">
-                                        <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                src="{% static "assets/img/team-5.jpg" %}" class="img-fluid circle"
-                                                alt=""/></a></div>
-                                    </div>
-                                </div>
-                                <div class="crs_fl_last">
-                                    <div class="foot_list_info">
-                                        <ul>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                <div class="elsio_tx">10 بازدید</div>
-                                            </li>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
-                                                <div class="elsio_tx">10 آبان 1400</div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 
