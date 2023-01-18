@@ -114,7 +114,7 @@
 
                                 <div class="edu_wraper">
                                     <h4 class="edu_title">مقدمه و معرفی دوره</h4>
-                                    <p>{{ object.object.specifications }}</p>
+                                    <p>{{ object.object.specifications | safe }}</p>
 
                                 </div>
 
@@ -138,7 +138,7 @@
                             <!-- Curriculum Detail -->
                             <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
                                 <div class="edu_wraper">
-                                    <h4 class="edu_title">{{ object.titel }}</h4>
+                                    <h4 class="edu_title">{{ object.titel | safe }}</h4>
                                     <div id="accordionExample" class="accordion shadow circullum">
 
                                         <!-- Part 1 -->
@@ -387,12 +387,12 @@
                 <div class="col-xl-12 col-lg-12 col-md-12">
                     <div class="slide_items">
 
-                        <!-- Single Item -->
+                        {% for item in object.last_course %}
                         <div class="lios_item">
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
                                     <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-2.jpg" %}" class="img-fluid rounded" alt=""/>
+                                        <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
                                     </a>
                                     <div class="crs_video_ico">
                                         <i class="fa fa-play"></i>
@@ -404,10 +404,10 @@
                                 <div class="crs_grid_caption">
                                     <div class="crs_flex">
                                         <div class="crs_fl_first">
-                                            <div class="crs_cates cl_6"><span>حسابداری</span></div>
+                                            <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
                                         </div>
                                         <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">149</span><span
+                                            <div class="crs_price"><h2><span class="theme-cl">{{ item.price }}</span><span
                                                     class="currency">تومان</span></h2></div>
                                         </div>
                                     </div>
@@ -431,7 +431,7 @@
                                         <div class="crs_fl_first">
                                             <div class="crs_tutor">
                                                 <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-6.jpg" %}"
+                                                        src="{{ item.teacher.user.image.url }}"
                                                         class="img-fluid circle"
                                                         alt=""/></a></div>
                                             </div>
@@ -461,381 +461,9 @@
                                 </div>
                             </div>
                         </div>
+                        {% endfor %}
 
-                        <!-- Single Item -->
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-3.jpg" %}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_5"><span>پروژه محور</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">99</span><span
-                                                    class="currency">تومان</span></h2></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">آموزش
-                                        ASP.Net - ساخت سایت شخصی</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>28 ساعت</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>32 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:70%"
-                                                 aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-5.jpg" %}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Single Item -->
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-4.jpg" %}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_4"><span>فیزیک</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">49</span><span
-                                                    class="currency">تومان</span></h2></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">تدریس
-                                        کامل کلاس فیزیک جامع کنکور</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>5ساعت 8دقیقه</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>40 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:60%"
-                                                 aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-4.jpg" %}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-5.jpg" %}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_3"><span>برنامه نویسی</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">129</span><span
-                                                    class="currency">دوره</span></h2></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">آموزش
-                                        ساخت فروشگاه دیجی استایل با لاراول</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>19 ساعت</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>35 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:80%"
-                                                 aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-3.jpg" %}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-6.jpg" %}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_2"><span>ریاضیات</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">399</span><span
-                                                    class="currency">تومان</span></h2></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">تدریس
-                                        ریاضی و آمار دهم انسانی</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>8 ساعت</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>19 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:75%"
-                                                 aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-2.jpg" %}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Single Item -->
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{% static "assets/img/cr-7.jpg" %}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_1"><span>گرافیک</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">89</span><span
-                                                    class="currency">تومان</span></h2></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">مفاهیم
-                                        کلی و مقدمه ای بر محیط سه بعدی</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>2ساعت 5دقیقه</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>27 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:35%"
-                                                 aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{% static "assets/img/user-1.jpg" %}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
-                                            </div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>

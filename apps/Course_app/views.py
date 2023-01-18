@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, ListView, DetailView, View
 from apps.Course_app.models import Courses, CoursesChild, Category, Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from apps.Blog_App.models import BlogModel
 
 
 class CoursesView(View):
@@ -36,6 +37,7 @@ class CourseDetailView(View):
 
         object.save()
         context["object"]=object
+        context["last_course"]=Courses.objects.all()[0:3]
 
 
         if request.user in object.user.all():
@@ -43,6 +45,8 @@ class CourseDetailView(View):
             context["student"] = True
 
         return render(request, "Course_app/course-detail.html", {"object": context})
+
+
 
     def post(self, request, pk):
 
