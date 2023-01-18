@@ -5,6 +5,7 @@ from scripts.utils import jalali_convert
 from django.urls import reverse
 from PIL import Image
 from ckeditor.fields import RichTextField
+
 class Tag(models.Model):
     name=models.CharField(max_length=100)
     created=models.DateTimeField(auto_now_add=True)

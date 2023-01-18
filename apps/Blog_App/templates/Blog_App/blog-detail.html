@@ -62,6 +62,7 @@
 									</div>
 									<h3 class="post-title">{{ object.titel }}</h3>
 									<p>{{ object.text | safe }}</p>
+									<p>{{ object.text | safe }}</p>
 								</div>
 							</div>
 							
@@ -246,63 +247,29 @@
 							<div class="single_widgets widget_thumb_post">
 								<h4 class="title">جدیدترین وبلاگ</h4>
 								<ul>
+
+                                    {% for item in last_blog %}
 									<li>
 										<span class="left">
-											<img src="{% static "assets/img/b-1.png" %}" alt="" class="">
+											<img src="{{ item.image.url }}" alt="" class="">
 										</span>
 										<span class="right">
-											<a class="feed-title" href="#">ساخت بکگراند برای اینستاگرام</a> 
-											<span class="post-date"><i class="ti-calendar"></i>10 دقیقه پیش</span>
+											<a class="feed-title" href="#">{{ item.titel | safe }}</a>
+											<span class="post-date"><i class="ti-calendar"></i>{{ item.created | timesince }}پیش </span>
 										</span>
 									</li>
-									<li>
-										<span class="left">
-											<img src="{% static "assets/img/b-2.png" %}" alt="" class="">
-										</span>
-										<span class="right">
-											<a class="feed-title" href="#">اعمال بک‌گراند و تنظیم حرکت آن</a> 
-											<span class="post-date"><i class="ti-calendar"></i>2 ساعت پیش</span>
-										</span>
-									</li>
-									<li>
-										<span class="left">
-											<img src="{% static "assets/img/b-3.png" %}" alt="" class="">
-										</span>
-										<span class="right">
-											<a class="feed-title" href="#">تنظیمات سکانس تایم‌لپس</a> 
-											<span class="post-date"><i class="ti-calendar"></i>4 ساعت پیش</span>
-										</span>
-									</li>
-									<li>
-										<span class="left">
-											<img src="{% static "assets/img/b-4.png" %}" alt="" class="">
-										</span>
-										<span class="right">
-											<a class="feed-title" href="#">آشنایی کامل با Pinning و درک آن</a> 
-											<span class="post-date"><i class="ti-calendar"></i>7 ساعت پیش</span>
-										</span>
-									</li>
-									<li>
-										<span class="left">
-											<img src="{% static "assets/img/b-5.png" %}" alt="" class="">
-										</span>
-										<span class="right">
-											<a class="feed-title" href="#">آشنایی با ابزار Guide Template</a> 
-											<span class="post-date"><i class="ti-calendar"></i>3 روز پیش</span>
-										</span>
-									</li>
+                                    {% endfor %}
+
 								</ul>
 							</div>
 							
 							<!-- Tags Cloud -->
 							<div class="single_widgets widget_tags">
-								<h4 class="title">برچسب</h4>
+								<h4 class="title">برچسب ها</h4>
 								<ul>
-									<li><a href="#">تخصصی</a></li>
-									<li><a href="#">فیزیک</a></li>
-									<li><a href="#">دوره رایگان</a></li>
-									<li><a href="#">سوالات کنکوری</a></li>
-									<li><a href="#">دوره تخصصی</a></li>
+                                    {% for item in tag %}
+									<li><a href="#">{{ item.name }}</a></li>
+                                    {% endfor %}
 								</ul>
 							</div>
 							
