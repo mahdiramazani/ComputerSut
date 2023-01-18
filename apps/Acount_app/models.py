@@ -56,6 +56,8 @@ POSITION=(
     ("متخصص امنیت و شبکه","متخصص امنیت و شبکه"),
     ("برنامه نویس","برنامه نویس"),
     ("برنامه نویس ارشد","برنامه نویس ارشد"),
+    ("وبلاگ نویس","وبلاگ نویس"),
+    ("کارمند","کارمند"),
 )
 
 
@@ -114,7 +116,7 @@ class Teacher(models.Model):
 
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="Teacher")
     bio=models.TextField(null=True,blank=True)
-    position=models.CharField(max_length=100,null=True,blank=True,choices=POSITION)
+    position=models.CharField(max_length=100,null=True,blank=True,choices=POSITION,default="مدرس")
     resume=models.FileField(null=True,blank=True)
     status=models.BooleanField(default=False)
 

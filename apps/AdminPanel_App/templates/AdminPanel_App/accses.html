@@ -43,6 +43,15 @@
 											<div class="col-xl-8 col-lg-10 col-md-12">
 											
 												<div class="form-group smalls">
+                                                    {% if errors %}
+
+                                                        {% for e in errors %}
+
+                                                            <p class="text text-center badge-danger">{{ e }}</p>
+                                                        {% endfor %}
+
+                                                    {% endif %}
+
 													<label>شماره دانشجویی هنرجو</label>
 													<div class="simple-input">
 														<input type="text" class="form-control" name="user" required>

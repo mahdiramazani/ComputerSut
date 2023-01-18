@@ -584,13 +584,22 @@ class Accses(View):
         return render(request,"AdminPanel_App/accses.html")
 
     def post(self,request):
+        context={"errors":[]}
 
         student_number = request.POST.get("user")
 
 
 
         if student_number:
-            return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
+
+            if User.objects.filter(student_number=student_number).exists():
+
+                return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
+            else:
+                context["errors"].append("شماره دانشجویی در سایت وجود ندارد")
+                return render(request, "AdminPanel_App/accses.html",context)
+
+
 
 
 
@@ -619,6 +628,6 @@ class AddAcsesToUser(View):
 
             return redirect("AdminPanel:add_accses")
 
-        print(form.errors)
+
 
         return render(request,"AdminPanel_App/add_acses_to_user.html",{"form":form})
