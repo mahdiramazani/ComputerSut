@@ -316,8 +316,17 @@ class EditTeacherView(CheckAdmin, View):
         return render(request, "AdminPanel_App/edit_teacher.html", {"form": form})
 
 
-class AdminList(CheckAdmin, TemplateView):
+class AdminList(CheckAdmin, ListView):
     template_name = "AdminPanel_App/kist-admins.html"
+
+    def get_queryset(self):
+
+
+
+
+        qs=User.objects.filter(Q(is_admin=True) | Q(is_teacher=True) | Q(is_technical_team=True) | Q(is_employee=True))
+
+        return qs
 
 
 class AddAdmin(CheckAdmin, TemplateView):

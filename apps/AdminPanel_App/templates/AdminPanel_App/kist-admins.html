@@ -90,85 +90,18 @@
 															</tr>
 														</thead>
 														<tbody>
+
+                                                        {% for item in object_list %}
+
 															<tr>
 																<th scope="row">1</th>
 																<td><img src="assets/img/user-5.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><div class="smalls lg">علی حسینی</div></td>
-																<td><span class="smalls lg">Beltran@teleworm.us</span></td>
+																<td><div class="smalls lg">{{ item.full_name }}</div></td>
+																<td><span class="smalls lg">{{ item.student_number }}</span></td>
 																<td><span class="trip text-white theme-bg">مدیر</span></td>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td><img src="assets/img/user-7.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><div class="smalls lg">مصطفی اسلامی</div></td>
-																<td><span class="smalls lg">Paxson@armyspy.com</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td><img src="assets/img/user-6.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">مژگان علیزاده</span></td>
-																<td><span class="smalls lg">FrankTFleck@rhyta.com</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">4</th>
-																<td><img src="assets/img/user-8.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">نیکی محمدی</span></td>
-																<td><span class="smalls lg">CarloJone@armyspy.com</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th scope="row">5</th>
-																<td><img src="assets/img/user-9.jpg" class="img-fluid circle" width="40" alt="" /></td>
-																<td><span class="smalls lg">مسعود کیمیایی</span></td>
-																<td><span class="smalls lg">LeonAarker@rhyta.com</span></td>
-																<td>
-																	<div class="dropdown show">
-																		<a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-																			<i class="fas fa-ellipsis-h"></i>
-																		</a>
-																		<div class="drp-select dropdown-menu">
-																			<a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-																			<a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
-																		</div>
-																	</div>
-																</td>
-															</tr>
+
+														{% endfor %}
 														</tbody>
 													</table>
 												</div>
