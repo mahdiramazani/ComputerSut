@@ -60,7 +60,7 @@ class Courses(models.Model):
     discount=models.IntegerField(null=True,blank=True)
     how_to_hold=models.CharField(max_length=100,choices=How_TO_HOLD,default="آنلاین")
     created = models.DateTimeField(auto_now_add=True)
-
+    capacity=models.IntegerField(default=0)
     def get_jalali_date(self):
 
         return jalali_convert(self.created)

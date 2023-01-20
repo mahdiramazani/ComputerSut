@@ -179,7 +179,13 @@ class AddCourseForm(forms.ModelForm):
                     "class":"form-control",
                     "placeholder":"تعداد پروژه هایی که در این دوره انجام میشود."
                 }
-            )
+            ),
+
+            "capacity":forms.TextInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
         }
 
 

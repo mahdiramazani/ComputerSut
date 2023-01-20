@@ -11,6 +11,7 @@ from apps.AdminPanel_App.mixins import CheckTeacherMixin, CheckAdmin, CheckIsTea
 from .models import RequestsModel
 from apps.Blog_App.models import Category, BlogModel
 from PIL import Image
+from django.db.models import Q
 
 
 class AdminPanelView(View):
@@ -592,11 +593,11 @@ class Accses(View):
 
         if student_number:
 
-            if User.objects.filter(student_number=student_number).exists():
+            if User.objects.filter(Q(student_number=student_number) | Q(nation_code=student_number) | Q(phone=student_number)).exists():
 
                 return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
             else:
-                context["errors"].append("شماره دانشجویی در سایت وجود ندارد")
+                context["errors"].append("دانشجویی با این مشخصات وجود ندارد")
                 return render(request, "AdminPanel_App/accses.html",context)
 
 
@@ -610,7 +611,7 @@ class AddAcsesToUser(View):
 
     def get(self,request):
         student_number = request.GET.get("student_number")
-        user_id = User.objects.get(student_number=student_number)
+        user_id = User.objects.get(Q(student_number=student_number) | Q(nation_code=student_number) | Q(phone=student_number))
         form = AddAcsess(instance=user_id)
 
         return render(request, "AdminPanel_App/add_acses_to_user.html", {"form": form})
@@ -618,7 +619,7 @@ class AddAcsesToUser(View):
 
     def post(self,request):
         student_number=request.GET.get("student_number")
-        user_id=User.objects.get(student_number=student_number)
+        user_id = User.objects.get(Q(nation_code=student_number) | Q(student_number=student_number) | Q(phone=student_number))
         form=AddAcsess(request.POST,request.FILES,instance=user_id)
 
 
