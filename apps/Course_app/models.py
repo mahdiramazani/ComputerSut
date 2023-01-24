@@ -35,6 +35,11 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absulot_url(self):
+
+
+        return reverse("Course_app:Category_course",kwargs={"id":self.id})
+
     def get_jalali_date(self):
 
         return jalali_convert(self.created)

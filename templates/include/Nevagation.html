@@ -8,6 +8,54 @@
                 </a>
                 <div class="nav-toggle"></div>
                 <div class="mobile_nav">
+
+
+                    {% if request.user.is_authenticated %}
+
+
+                        <ul class="">
+
+                        <div class="btn-group account-drop">
+                            <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+
+                                {% if request.user.image %}
+                                    <img src="{{ request.user.image.url }}" class="avater-img" alt="">
+                                {% else %}
+                                    <img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
+                                {% endif %}
+                            </a>
+                            <div class="dropdown-menu pull-right animated flipInX">
+
+                                {% if request.user.is_authenticated %}
+
+                                    <div class="drp_menu_headr">
+                                        <h4>سلام،{{ request.user.full_name }}</h4>
+                                    </div>
+
+                                {% endif %}
+                                <ul>
+
+                                    <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
+                                        کاربری</a></li>
+                                    <li><a href="{% url "AdminPanel:my_course" %}"><i class="fas fa-shopping-basket"></i>دوره های
+                                        من<span class="notti_coun style-2">{{ c_count }}</span></a></li>
+
+
+                                    <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
+                                    <li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                        </li>
+
+                    </ul>
+
+
+                    {% else %}
                     <ul>
                         <li>
                             <a href="javascript:void(0);" data-toggle="modal" data-target="#login"
@@ -16,6 +64,7 @@
                             </a>
                         </li>
                     </ul>
+                    {% endif %}
                 </div>
             </div>
             <div class="nav-menus-wrapper">

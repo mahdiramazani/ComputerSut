@@ -119,6 +119,7 @@ class Teacher(models.Model):
     position=models.CharField(max_length=100,null=True,blank=True,choices=POSITION,default="مدرس")
     resume=models.FileField(null=True,blank=True)
     status=models.BooleanField(default=False)
+    created=models.DateTimeField(auto_now_add=True)
 
 
     def get_absoolut_url(self):
