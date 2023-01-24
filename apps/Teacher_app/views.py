@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View,ListView,TemplateView
 from apps.Acount_app.models import User,Teacher
-
+from apps.Course_app.models import Courses
 class TeacherListView(ListView):
 
     template_name = "Teacher_app/teachers_list.html"
@@ -32,7 +32,9 @@ class TeacherDetail(View):
 
         teacher=Teacher.objects.get(id=id)
 
+        course=Courses.objects.filter(teacher=teacher)
 
-        return render(request,"Teacher_app/eacher_detail.html",{"teacher":teacher})
+
+        return render(request,"Teacher_app/eacher_detail.html",{"teacher":teacher,"course":course})
 
 
