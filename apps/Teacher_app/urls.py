@@ -5,6 +5,7 @@ app_name="Teacher_app"
 urlpatterns=[
 
     path("",views.TeacherListView.as_view(),name="Teacher_List"),
+    path("detail/<int:id>/",views.TeacherDetail.as_view(),name="Teacher_Detail"),
 
 
 ]

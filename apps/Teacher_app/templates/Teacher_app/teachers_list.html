@@ -178,13 +178,13 @@
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="crs_trt_grid">
                                     <div class="crs_trt_thumb circle">
-                                        <a href="instructor-detail.html" class="crs_trt_thum_link"><img
+                                        <a href="{{ item.get_absoolut_url }}" class="crs_trt_thum_link"><img
                                                 src="{{ item.user.image.url }}" class="img-fluid circle" alt=""></a>
                                     </div>
                                     <div class="crs_trt_caption">
                                         <div class="instructor_tag dark"><span>{{ item.position }}</span></div>
                                         <div class="instructor_title"><h4><a
-                                                href="instructor-detail.html">{{ item.user.full_name }}</a></h4></div>
+                                                href="{{ item.get_absoolut_url }}">{{ item.user.full_name }}</a></h4></div>
                                         <div class="trt_rate_inf">
 
 

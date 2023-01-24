@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
+from django.urls import reverse
 
 class MyUserManager(BaseUserManager):
     def create_user(self, phone, password=None):
@@ -119,6 +119,12 @@ class Teacher(models.Model):
     position=models.CharField(max_length=100,null=True,blank=True,choices=POSITION,default="مدرس")
     resume=models.FileField(null=True,blank=True)
     status=models.BooleanField(default=False)
+
+
+    def get_absoolut_url(self):
+
+
+        return reverse("Teacher_app:Teacher_Detail",kwargs={"id":self.id})
 
 
 

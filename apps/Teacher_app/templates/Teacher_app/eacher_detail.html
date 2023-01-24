@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+			<div class="ed_detail_head">
+				<div class="container">
+					<div class="row align-items-center mb-5">
+						<div class="col-lg-3 col-md-12 col-sm-12">
+							<div class="authi_125">
+								<div class="authi_125_thumb">
+									<img src="{{ teacher.user.image.url }}" class="img-fluid rounded" alt="" />
+								</div>
+
+							</div>
+						</div>
+						
+						<div class="col-lg-9 col-md-12 col-sm-12">
+							<div class="dlkio_452">
+								<div class="ed_detail_wrap">
+									<div class="crs_cates cl_1"><span>گرافیک</span></div><div class="crs_cates cl_3"><span>طراح</span></div>
+									<div class="ed_header_caption">
+										<h2 class="ed_title font-2">{{ teacher.user.full_name }}</h2>
+										<ul>
+											<li><i class="ti-calendar"></i>10 - 20 هفته</li>
+											<li><i class="ti-control-forward"></i>{{ teacher.Corses.all.count }}</li>
+
+										</ul>
+									</div>
+									<div class="ed_header_short">
+										<p> ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد ...<a href="#" class="theme-cl"> بیشتر بخوانید</a></p>
+									</div>
+									
+
+									
+								</div>
+								<div class="dlkio_last">
+									<div class="ed_view_link">
+										<a href="#" class="btn theme-bg enroll-btn">ثبت نام<i class="ti-angle-left"></i></a>
+										<a href="#" class="btn theme-border enroll-btn">اشتراک گذاری<i class="fas fa-share"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- ============================ Page Title End ================================== -->
+			
+			<!-- ============================ Course Detail ================================== -->
+			<section class="gray">
+				<div class="container">
+					
+					<div class="row justify-content-center">
+					
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-1.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_8"><span>گرافیک</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>8,350</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">آموزش تدوین و میکس ویدئو با Premier</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>5ساعت 2دقیقه</span></li>
+											<li><i class="fa fa-video text-success"></i><span>67 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/user-6.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">نادیا ناصری</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">149</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-2.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_1"><span>حسابداری</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>7,150</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">دوره حضوری عالی پرورش مدیر مالی</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>8 ساعت</span></li>
+											<li><i class="fa fa-video text-success"></i><span>22 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/team-5.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">شهاب سنایی</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">99</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-3.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_4"><span>برنامه نویسی</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>1,250</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">آموزش ASP.Net - ساخت سایت شخصی</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>19 ساعت</span></li>
+											<li><i class="fa fa-video text-success"></i><span>42 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/user-4.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">مژگان علیزاده</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">129</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-4.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_5"><span>فیزیک</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>8,350</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">تدریس کامل کلاس فیزیک جامع کنکور</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>5 ساعت</span></li>
+											<li><i class="fa fa-video text-success"></i><span>61 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/user-3.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">علی حسینی</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">49</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-5.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_6"><span>پروژه محور</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>3,340</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">آموزش ساخت فروشگاه دیجی استایل با لاراول</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>8ساعت 2دقیقه</span></li>
+											<li><i class="fa fa-video text-success"></i><span>43 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/user-2.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">نگین قاسمی</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">119</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Single Grid -->
+						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+							<div class="crs_grid">
+								<div class="crs_grid_thumb">
+									<a href="course-detail.html" class="crs_detail_link">
+										<img src="assets/img/cr-6.jpg" class="img-fluid rounded" alt="" />
+									</a>
+									<div class="crs_video_ico">
+										<i class="fa fa-play"></i>
+									</div>
+									<div class="crs_locked_ico">
+										<i class="fa fa-lock"></i>
+									</div>
+								</div>
+								<div class="crs_grid_caption">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_cates cl_7"><span>ریاضیات</span></div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_inrolled"><strong>6,450</strong>شرکت کننده</div>
+										</div>
+									</div>
+									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">تدریس ریاضی و آمار دهم انسانی</a></h4></div>
+									<div class="crs_info_detail">
+										<ul>
+											<li><i class="fa fa-clock text-danger"></i><span>7 ساعت</span></li>
+											<li><i class="fa fa-video text-success"></i><span>57 دوره</span></li>
+											<li><i class="fa fa-signal text-warning"></i><span>مقدماتی</span></li>
+										</ul>
+									</div>
+								</div>
+								<div class="crs_grid_foot">
+									<div class="crs_flex">
+										<div class="crs_fl_first">
+											<div class="crs_tutor">
+												<div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="assets/img/user-1.jpg" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="instructor-detail.html">مصطفی اسلامی</a></div>
+											</div>
+										</div>
+										<div class="crs_fl_last">
+											<div class="crs_price"><h2><span class="theme-cl">199</span><span class="currency">تومان</span></h2></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					<div class="row justify-content-center">
+						<div class="col-lg-7 col-md-8 mt-2">
+							<div class="text-center"><a href="grid-layout-with-sidebar.html" class="btn btn-md theme-bg-light theme-cl">سایر دوره های آموزش</a></div>
+						</div>
+					</div>
+					
+				</div>
+			</section>
+			<!-- ============================ Course Detail ================================== -->
+			
+			{% endblock %}

@@ -25,4 +25,14 @@ class TeacherListView(ListView):
         return context
 
 
+class TeacherDetail(View):
+
+    def get(self,request,id):
+
+
+        teacher=Teacher.objects.get(id=id)
+
+
+        return render(request,"Teacher_app/eacher_detail.html",{"teacher":teacher})
+
 
