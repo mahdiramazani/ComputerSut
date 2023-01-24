@@ -35,16 +35,8 @@ class BlogModel(models.Model):
 
         return reverse("Blog_App:blog_detail",kwargs={"pk":self.id})
 
-    def save(self,*args,**kwargs):
 
-        super().save(*args,**kwargs)
 
-        img = Image.open(self.image.path)
-
-        if img.height > 300 or img.width > 300:
-            new_img = (300, 300)
-            img.thumbnail(new_img)
-            img.save(self.image.path)
 
 
     def get_jalali_date(self):
@@ -55,3 +47,16 @@ class BlogModel(models.Model):
     def __str__(self):
 
         return self.titel
+
+
+class Comment(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="Comment_blog")
+    blog=models.ForeignKey(BlogModel,on_delete=models.CASCADE,related_name="comment")
+    body=models.TextField()
+    created=models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+
+
+        return self.user.full_name

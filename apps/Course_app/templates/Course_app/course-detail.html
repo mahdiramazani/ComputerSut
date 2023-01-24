@@ -119,20 +119,7 @@
                                 </div>
 
                                 <!-- Overview -->
-                                <div class="edu_wraper">
-                                    <h4 class="edu_title">جمع‌بندی آخر</h4>
-                                    <ul class="lists-3 row">
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">ادامه مسیر یادگیری شما</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">دریافت فایل های خام پروژه ZRK</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">ادامه مسیر یادگیری شما</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">دریافت فایل های خام پروژه ZRK</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">ادامه مسیر یادگیری شما</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">دریافت فایل های خام پروژه ZRK</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">ادامه مسیر یادگیری شما</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">دریافت فایل های خام پروژه ZRK</li>
-                                        <li class="col-xl-4 col-lg-6 col-md-6 m-0">ادامه مسیر یادگیری شما</li>
-                                    </ul>
-                                </div>
+
                             </div>
 
                             <!-- Curriculum Detail -->
@@ -186,9 +173,9 @@
                                     <div class="single_instructor_caption">
                                         <h4><a href="#">{{ object.object.teacher.user.full_name }}</a></h4>
                                         <ul class="instructor_info">
-                                            <li><i class="ti-video-camera"></i>72 ویدئو</li>
-                                            <li><i class="ti-control-forward"></i>102 دوره</li>
-                                            <li><i class="ti-user"></i>عضویت 4سال</li>
+
+                                            <li><i class="ti-control-forward"></i>{{ object.object.teacher.Corses.all.count }} دوره</li>
+                                            <li><i class="ti-user"></i>پیش {{ object.object.teacher.created | timesince }}   عضویت </li>
                                         </ul>
                                         <p>{{ object.object.teacher.user.bio | safe }}</p>
                                         <ul class="social_info">
@@ -217,32 +204,21 @@
 
                                         {% for comment in object.object.Comment.all %}
                                             <div class="reviews-comments-item">
+
                                                 <div class="review-comments-avatar">
-                                                    <img src="{% static "assets/img/user-1.jpg" %}" class="img-fluid"
+                                                    <img src="{{ comment.user.image.url }}" class="img-fluid"
                                                          alt="">
                                                 </div>
+
                                                 <div class="reviews-comments-item-text">
-                                                    <h4><a href="#">{{ comment.user.fullname }}</a><span
+                                                    <h4><a href="#">{{ comment.user.full_name }}</a><span
                                                             class="reviews-comments-item-date"><i
-                                                            class="ti-calendar theme-cl"></i>{{ comment.created }}</span>
+                                                            class="ti-calendar theme-cl"></i> {{ comment.created | timesince }} پیش </span>
                                                     </h4>
 
-                                                    <div class="listing-rating"><i class="fas fa-star active"></i><i
-                                                            class="fas fa-star active"></i><i
-                                                            class="fas fa-star active"></i><i
-                                                            class="fas fa-star active"></i><i
-                                                            class="fas fa-star active"></i></div>
-                                                    <div class="clearfix"></div>
+
                                                     <p>{{ comment.body }}</p>
-                                                    <div class="pull-left reviews-reaction">
-                                                        <a href="#" class="comment-like active"><i
-                                                                class="ti-thumb-up"></i>
-                                                            12</a>
-                                                        <a href="#" class="comment-dislike active"><i
-                                                                class="ti-thumb-down"></i> 1</a>
-                                                        <a href="#" class="comment-love active"><i class="ti-heart"></i>
-                                                            07</a>
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         {% endfor %}
@@ -253,6 +229,9 @@
 
                                 <!-- Submit Reviews -->
                                 <div class="edu_wraper">
+
+                                    {% if request.user.is_authenticated %}
+
                                     <h4 class="edu_title">ثبت دیدگاه</h4>
                                     <div class="review-form-box form-submit">
                                         <form method="post">
@@ -287,6 +266,10 @@
                                             </div>
                                         </form>
                                     </div>
+                                        {% else %}
+
+                                        <p class="alert-danger">برای ثبت دیدگاه باید وارد شوید</p>
+                                    {% endif %}
                                 </div>
 
                             </div>

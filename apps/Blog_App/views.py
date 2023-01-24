@@ -32,6 +32,12 @@ class DetailBlogView(DetailView):
 
         return context
 
+    def post(self,request):
+
+
+
+        return
+
 
 
 

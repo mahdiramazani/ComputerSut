@@ -94,98 +94,45 @@
 										<div class="comment-list">
 											<ul>
 												<li class="article_comments_wrap">
+                                                    {% for comment in object.comment.all %}
 													<article>
+
+
+                                                        {% if comment.user.image %}
+
+                                                        <div class="article_comments_thumb">
+															<img src="{{ comment.user.image.url }}" alt="">
+														</div>
+
+                                                        {% else %}
 														<div class="article_comments_thumb">
 															<img src="{% static "assets/img/user-1.jpg" %}" alt="">
 														</div>
+                                                        {% endif %}
 														<div class="comment-details">
 															<div class="comment-meta">
 																<div class="comment-left-meta">
-																	<h4 class="author-name">علی مرشدی <span class="selected"><i class="fas fa-bookmark"></i></span></h4>
-																	<div class="comment-date">19 آذر 1400</div>
+																	<h4 class="author-name">{{ comment.user.full_name }} <span class="selected"><i class="fas fa-bookmark"></i></span></h4>
+																	<div class="comment-date">{{ comment.created | timesince }} پیش </div>
 																</div>
-																<div class="comment-reply">
-																	<a href="#" class="reply"><span class="icona"><i class="ti-back-left"></i></span> پاسخ</a>
-																</div>
+
 															</div>
 															<div class="comment-text">
-																<p>مداد سفید تا صبح ماه کشید مهتاب کشید و انقدر ستاره کشید که کوچک و کوچکتر شد صبح توی جعبه مداد رنگی جای خالی او با هیچ رنگی  پر نشد، به یاد هم باشیم شاید فردا ما هم در کنار هم نباشیم…</p>
+																<p>{{ comment.body }}</p>
 															</div>
 														</div>
 													</article>
-													<ul class="children">
-														<li class="article_comments_wrap">
-															<article>
-																<div class="article_comments_thumb">
-																	<img src="{% static "assets/img/user-2.jpg" %}" alt="">
-																</div>
-																<div class="comment-details">
-																	<div class="comment-meta">
-																		<div class="comment-left-meta">
-																			<h4 class="author-name">مرضیه حسینی</h4>
-																			<div class="comment-date">28 مرداد 1400</div>
-																		</div>
-																		<div class="comment-reply">
-																			<a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> پاسخ</a>
-																		</div>
-																	</div>
-																	<div class="comment-text">
-																		<p>انقدر ستاره کشید که کوچک و کوچکتر شد صبح توی جعبه مداد رنگی جای خالی او با هیچ رنگی پر نشد، به یاد هم باشیم شاید فردا ما هم در کنار هم نباشیم…</p>
-																	</div>
-																</div>
-															</article>
-															<ul class="children">
-																<li class="article_comments_wrap">
-																	<article>
-																		<div class="article_comments_thumb">
-																			<img src="{% static "assets/img/user-4.jpg" %}" alt="">
-																		</div>
-																		<div class="comment-details">
-																			<div class="comment-meta">
-																				<div class="comment-left-meta">
-																					<h4 class="author-name">الهام علیزاده</h4>
-																					<div class="comment-date">19 مهر 1399</div>
-																				</div>
-																				<div class="comment-reply">
-																					<a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> پاسخ</a>
-																				</div>
-																			</div>
-																			<div class="comment-text">
-																				<p>داد سفید تا صبح ماه کشید مهتاب کشید و انقدر ستاره کشید که کوچک و کوچکتر شد صبح توی جعبه مداد رنگی جای خالی او با هیچ رنگی پر نشد</p>
-																			</div>
-																		</div>
-																	</article>
-																</li>
-															</ul>
-														</li>
-													</ul>
+                                                    {% endfor %}
 												</li>
-												<li class="article_comments_wrap">
-													<article>
-														<div class="article_comments_thumb">
-															<img src="{% static "assets/img/user-5.jpg" %}" alt="">
-														</div>
-														<div class="comment-details">
-															<div class="comment-meta">
-																<div class="comment-left-meta">
-																	<h4 class="author-name">محمد حسنی</h4>
-																	<div class="comment-date">20 بهمن 1399</div>
-																</div>
-																<div class="comment-reply">
-																	<a href="#" class="reply"><span class="icons"><i class="ti-back-left"></i></span> پاسخ</a>
-																</div>
-															</div>
-															<div class="comment-text">
-																<p>کوچک و کوچکتر شد صبح توی جعبه مداد رنگی جای خالی او با هیچ رنگی پر نشد، به یاد هم باشیم شاید فردا ما هم در کنار هم نباشیم…</p>
-															</div>
-														</div>
-													</article>
-												</li>
+
 											</ul>
 										</div>
 									</div>
 									<div class="comment-box submit-form">
-										<h3 class="reply-title">ثبت دیدگاه</h3>
+                                        <h3 class="reply-title">ثبت دیدگاه</h3>
+                                        {% if request.user.is_authenticated %}
+
+
 										<div class="comment-form">
 											<form action="#">
 												<div class="row">
@@ -212,6 +159,13 @@
 												</div>
 											</form>
 										</div>
+
+                                            {% else %}
+
+
+                                            <p class="alert-danger" href="{% url "Acount_app:Login" %}">برای ثبت دیدگاه باید وارد شوید</p>
+
+                                        {% endif %}
 									</div>
 								</div>
 								
@@ -237,7 +191,7 @@
 								<h4 class="title">دسته بندی</h4>
 								<ul>
                                     {% for item in category|slice:":4"   %}
-									<li><a href="#">{{ item.name }}<span>09</span></a></li>
+									<li><a href="{{ item.get_absulot_url }}">{{ item.name }}<span>{{ item.Corses.all.count }}</span></a></li>
                                     {% endfor %}
 
 								</ul>
@@ -254,7 +208,7 @@
 											<img src="{{ item.image.url }}" alt="" class="">
 										</span>
 										<span class="right">
-											<a class="feed-title" href="#">{{ item.titel | safe }}</a>
+											<a class="feed-title" href="{{ item.get_absolut_url }}">{{ item.titel | safe }}</a>
 											<span class="post-date"><i class="ti-calendar"></i>{{ item.created | timesince }}پیش </span>
 										</span>
 									</li>

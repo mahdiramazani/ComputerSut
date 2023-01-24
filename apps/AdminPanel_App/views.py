@@ -319,7 +319,7 @@ class EditTeacherView(CheckAdmin, View):
 class AdminList(CheckAdmin, ListView):
     template_name = "AdminPanel_App/kist-admins.html"
 
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
 
