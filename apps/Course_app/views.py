@@ -5,6 +5,25 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.Blog_App.models import BlogModel
 
 
+class CategoryCourse(View):
+
+    def get(self,request,id):
+        category=Category.objects.get(id=id)
+
+        course=category.Corses.all()
+
+        paginator = Paginator(course, 6)
+        page = request.GET.get("page")
+
+        try:
+            object_list = paginator.page(page)
+        except PageNotAnInteger:
+            object_list = paginator.page(1)
+        except EmptyPage:
+            object_list = paginator.page(paginator.num_pages)
+
+        return render(request, "Course_app/course.html", {"object_list": object_list})
+
 class CoursesView(View):
     model = Courses
     template_name = "Course_app/course.html"
@@ -13,7 +32,7 @@ class CoursesView(View):
 
         object_list = Courses.objects.all()
 
-        paginator = Paginator(object_list, 1)
+        paginator = Paginator(object_list,6)
         page = request.GET.get("page")
 
         try:

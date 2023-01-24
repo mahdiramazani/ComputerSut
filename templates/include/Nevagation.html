@@ -31,7 +31,7 @@
 
 
                             {% for iten in category %}
-                            <li><a href="about.html">{{ iten.name }}</a></li>
+                            <li><a href="{% url "Course_app:Category_course" iten.id %}">{{ iten.name }}</a></li>
 
                             {% endfor %}
 

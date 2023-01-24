@@ -14,7 +14,7 @@
                         <h1 class="breadcrumb-title font-2">لیست مدرسین</h1>
                         <nav class="transparent">
                             <ol class="breadcrumb p-0 bg-white">
-                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
                                 <li class="breadcrumb-item active theme-cl" aria-current="page">لیست مدرسین</li>
                             </ol>
                         </nav>
@@ -186,12 +186,8 @@
                                         <div class="instructor_title"><h4><a
                                                 href="instructor-detail.html">{{ item.user.full_name }}</a></h4></div>
                                         <div class="trt_rate_inf">
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star-half filled"></i>
-                                            <span class="alt_rates">(244 امتیاز)</span>
+
+
                                         </div>
                                     </div>
                                     <div class="crs_trt_footer">
