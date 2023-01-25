@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "apps.Message_App.apps.MessageAppConfig",
 
 
+
 ]
 
 MIDDLEWARE = [
