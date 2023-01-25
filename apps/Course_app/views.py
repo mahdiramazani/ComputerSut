@@ -88,3 +88,8 @@ class CourseDetailVideoView(DetailView):
     model = CoursesChild
 
     template_name = "Course_app/course_video_detail.html"
+
+
+class RegisterToCourse(TemplateView):
+
+    template_name = "Course_app/register_to_course.html"
