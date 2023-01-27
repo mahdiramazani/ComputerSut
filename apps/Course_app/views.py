@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, ListView, DetailView, View
 from apps.Course_app.models import Courses, CoursesChild, Category, Comment,Checkout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-
+from django.db.models import Q
 class CategoryCourse(View):
 
     def get(self,request,id):
@@ -81,7 +81,15 @@ class CourseDetailView(View):
 
             if not Checkout.objects.filter(user=user,course=course).exists():
 
-                Checkout.objects.create(user=user,course=course,price=price)
+                checkout = Checkout.objects.get(Q(user=user), Q(course=course))
+
+                return redirect(reverse("Course_app:checkout") + f"?=checkout_id={checkout.id}")
+
+            elif Checkout.objects.filter(user=user,course=course).exists():
+                checkout=Checkout.objects.get(Q(user=user) , Q(course=course))
+
+                return redirect(reverse("Course_app:checkout")+f"?checkout_id={checkout.id}")
+
 
         if body is not None:
 
@@ -96,6 +104,12 @@ class CourseDetailVideoView(DetailView):
     template_name = "Course_app/course_video_detail.html"
 
 
-class CheckOutClass(TemplateView):
+class CheckOutClass(View):
 
-    template_name = "Course_app/checkout.html"
+
+    def get(self,request):
+
+        checkout_id=request.GET.get("checkout_id")
+        checkout=Checkout.objects.get(id=checkout_id)
+
+        return render(request,"Course_app/checkout.html",{"checkout":checkout})
