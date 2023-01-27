@@ -316,8 +316,8 @@
 
                                     {% csrf_token %}
 
-                                    <button type="submit" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
-                                            class="ti-angle-left"></i></button>
+                                    <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                            class="ti-angle-left"></i></a>
 
                                 </form>
 

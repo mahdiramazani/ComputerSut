@@ -70,13 +70,52 @@ class CourseDetailView(View):
         curses = Courses.objects.get(id=pk)
         body = request.POST.get("body")
 
+        # if request.user not in curses.user.all():
+        #
+        #     # curses.user.add(request.user)
+        #     # curses.save()
+        #     user=request.user
+        #     course=Courses.objects.get(id=pk)
+        #     price=(course.price)
+        #
+        #
+        #     if not Checkout.objects.filter(user=user,course=course).exists():
+        #
+        #         checkout = Checkout.objects.get(Q(user=user), Q(course=course))
+        #
+        #         return redirect(reverse("Course_app:checkout") + f"?=checkout_id={checkout.id}")
+        #
+        #     elif Checkout.objects.filter(user=user,course=course).exists():
+        #         checkout=Checkout.objects.get(Q(user=user) , Q(course=course))
+        #
+        #         return redirect(reverse("Course_app:checkout")+f"?checkout_id={checkout.id}")
+
+
+        if body is not None:
+
+            Comment.objects.create(user=request.user, body=body, corses=curses)
+
+        return redirect(reverse("Course_app:Course_detail", kwargs={"pk": pk}))
+
+
+class CourseDetailVideoView(DetailView):
+    model = CoursesChild
+
+    template_name = "Course_app/course_video_detail.html"
+
+
+
+class AddCourseToOrderView(View):
+
+    def get(self,request,pk):
+
+        curses = Courses.objects.get(id=pk)
+
         if request.user not in curses.user.all():
 
-            # curses.user.add(request.user)
-            # curses.save()
             user=request.user
             course=Courses.objects.get(id=pk)
-            price=(course.price)
+            price=course.price
 
 
             if not Checkout.objects.filter(user=user,course=course).exists():
@@ -91,17 +130,6 @@ class CourseDetailView(View):
                 return redirect(reverse("Course_app:checkout")+f"?checkout_id={checkout.id}")
 
 
-        if body is not None:
-
-            Comment.objects.create(user=request.user, body=body, corses=curses)
-
-        return redirect(reverse("Course_app:Course_detail", kwargs={"pk": pk}))
-
-
-class CourseDetailVideoView(DetailView):
-    model = CoursesChild
-
-    template_name = "Course_app/course_video_detail.html"
 
 
 class CheckOutClass(View):
