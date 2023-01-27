@@ -142,3 +142,13 @@ class CertificatesOfCourses(models.Model):
 
 
 
+class Checkout(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="checkout")
+    course=models.ForeignKey(Courses,on_delete=models.CASCADE,related_name="checkout")
+    price=models.CharField(max_length=100)
+    is_paid=models.BooleanField(default=False)
+
+
+    def __str__(self):
+
+        return self.user.full_name

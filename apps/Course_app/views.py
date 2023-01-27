@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, ListView, DetailView, View
-from apps.Course_app.models import Courses, CoursesChild, Category, Comment
+from apps.Course_app.models import Courses, CoursesChild, Category, Comment,Checkout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from apps.Blog_App.models import BlogModel
-
 
 class CategoryCourse(View):
 
@@ -74,8 +72,16 @@ class CourseDetailView(View):
 
         if request.user not in curses.user.all():
 
-            curses.user.add(request.user)
-            curses.save()
+            # curses.user.add(request.user)
+            # curses.save()
+            user=request.user
+            course=Courses.objects.get(id=pk)
+            price=(course.price)
+
+
+            if not Checkout.objects.filter(user=user,course=course).exists():
+
+                Checkout.objects.create(user=user,course=course,price=price)
 
         if body is not None:
 
@@ -90,6 +96,6 @@ class CourseDetailVideoView(DetailView):
     template_name = "Course_app/course_video_detail.html"
 
 
-class RegisterToCourse(TemplateView):
+class CheckOutClass(TemplateView):
 
-    template_name = "Course_app/register_to_course.html"
+    template_name = "Course_app/checkout.html"
