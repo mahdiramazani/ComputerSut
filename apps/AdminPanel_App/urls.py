@@ -40,5 +40,6 @@ urlpatterns=[
     path("my_course",views.MyCourseView.as_view(),name="my_course"),
     path("create_message",views.CreateMessageView.as_view(),name="create_message"),
     path("add_accses",views.Accses.as_view(),name="add_accses"),
-    path("add_accses_to_user",views.AddAcsesToUser.as_view(),name="add_accses_to_user")
+    path("add_accses_to_user",views.AddAcsesToUser.as_view(),name="add_accses_to_user"),
+    path("teachers/income/",views.IncomeTeachersView.as_view(),name="teacher_income")
 ]

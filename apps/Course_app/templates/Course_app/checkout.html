@@ -83,7 +83,8 @@
 									</div>
 									<div id="payPal" class="panel-collapse collapse show" aria-labelledby="pay" data-parent="#payaccordion">
 										<div class="panel-body">
-											<form>
+											<form action="{% url "Course_app:request_pay" checkout.id %}" method="post">
+                                                {% csrf_token %}
 												<div class="form-group">
 													<label>ایمیل PayPal</label>
 													<input type="text" class="form-control simple" placeholder="paypal@gmail.com">

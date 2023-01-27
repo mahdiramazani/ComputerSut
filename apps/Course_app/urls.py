@@ -10,4 +10,6 @@ urlpatterns=[
     path("category/<int:id>/",views.CategoryCourse.as_view(),name="Category_course"),
     path("AddCourseToOrder/<int:pk>/",views.AddCourseToOrderView.as_view(),name="AddCourseToOrder"),
     path("checkout/",views.CheckOutClass.as_view(),name="checkout"),
+    path("requestPay/<int:pk>/",views.RequestPay.as_view(),name="request_pay"),
+    path("verify/",views.VerifyView.as_view(),name="verify")
 ]

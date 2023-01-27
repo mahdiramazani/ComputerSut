@@ -10,7 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.AdminPanel_App.mixins import CheckTeacherMixin, CheckAdmin, CheckIsTeacherMixin
 from .models import RequestsModel
 from apps.Blog_App.models import Category, BlogModel
-from PIL import Image
+from apps.Teacher_app.models import TeachersIncome
 from django.db.models import Q
 
 
@@ -643,3 +643,9 @@ class AddAcsesToUser(View):
 
 
         return render(request,"AdminPanel_App/add_acses_to_user.html",{"form":form})
+
+
+class IncomeTeachersView(ListView):
+
+    template_name = "AdminPanel_App/teachersincome.html"
+    model = TeachersIncome

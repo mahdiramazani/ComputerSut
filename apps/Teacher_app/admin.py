@@ -1,3 +1,5 @@
 from django.contrib import admin
+from apps.Teacher_app.models import TeachersIncome
 
-# Register your models here.
+
+admin.site.register(TeachersIncome)

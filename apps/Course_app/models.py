@@ -145,7 +145,7 @@ class CertificatesOfCourses(models.Model):
 class Checkout(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="checkout")
     course=models.ForeignKey(Courses,on_delete=models.CASCADE,related_name="checkout")
-    price=models.CharField(max_length=100)
+    price=models.IntegerField()
     is_paid=models.BooleanField(default=False)
 
 
