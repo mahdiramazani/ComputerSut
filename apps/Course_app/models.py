@@ -26,6 +26,25 @@ How_TO_HOLD=(
     ("حضوری","حضوری"),
 )
 
+def STR_TO_LIST(string):
+
+    new_list=[]
+
+    for item in string:
+
+        new_list.append(item)
+
+    return new_list
+
+def LIST_TO_STR(LIST):
+
+    new_str=""
+
+    for item in LIST:
+
+        new_str += item
+
+    return new_str
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -66,6 +85,71 @@ class Courses(models.Model):
     how_to_hold=models.CharField(max_length=100,choices=How_TO_HOLD,default="آنلاین")
     created = models.DateTimeField(auto_now_add=True)
     capacity=models.IntegerField(default=0)
+
+    def get_price(self):
+
+        if self.price >= 1100 and self.price <= 9999:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-3] += ","
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.price >= 10000 and self.price <= 99999:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[1] += ","
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.price >= 100000 and self.price <= 999999:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+
+        elif self.price >= 1000000:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+            new_price[-7] += ","
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+        else:
+            return self.price
+
+
     def get_jalali_date(self):
 
         return jalali_convert(self.created)
@@ -147,6 +231,80 @@ class Checkout(models.Model):
     course=models.ForeignKey(Courses,on_delete=models.CASCADE,related_name="checkout")
     price=models.IntegerField()
     is_paid=models.BooleanField(default=False)
+
+
+    def get_price(self):
+
+
+        if self.price >= 11000 and self.price <= 99999 :
+
+            new_price=""
+
+            new_price += str(self.price)
+
+
+            new_price=STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+
+            new_price=LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.price >= 100000 and self.price <= 999999 :
+
+            new_price=""
+
+            new_price += str(self.price)
+
+
+            new_price=STR_TO_LIST(new_price)
+
+            new_price[2] += ","
+
+            new_price=LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.price >= 1000000 and self.price <= 9999999:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+            new_price[-7] += ","
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+
+        elif self.price >= 10000000:
+
+            new_price = ""
+
+            new_price += str(self.price)
+
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+            new_price[-7] += ","
+
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+
+
+
+
+
 
 
     def __str__(self):

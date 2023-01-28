@@ -121,23 +121,47 @@
 											<div class="col-xl-6 col-lg-6 col-md-12">
 												<p class="p-0">نمایش 1 تا 1 از 1</p>
 											</div>
-											<div class="col-xl-6 col-lg-6 col-md-12">
-												<nav class="float-right">
-													 <ul class="pagination smalls m-0">
-														<li class="page-item disabled">
-														  <a class="page-link" href="#" tabindex="-1"><i class="fas fa-arrow-circle-right"></i></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">1</a></li>
-														<li class="page-item active">
-														  <a class="page-link" href="#">2 <span class="sr-only">(صفحه جاری)</span></a>
-														</li>
-														<li class="page-item"><a class="page-link" href="#">3</a></li>
-														<li class="page-item">
-														  <a class="page-link" href="#"><i class="fas fa-arrow-circle-left"></i></a>
-														</li>
-													</ul>
-												</nav>
-											</div>
+											{% if page_obj.has_other_pages %}
+                                        <div class="col-xl-6 col-lg-6 col-md-12">
+                                            <nav class="float-right">
+                                                <ul class="pagination smalls m-0">
+
+                                                    {% if page_obj.has_previous %}
+                                                        <li class="page-item">
+                                                            <a class="page-link"
+                                                               href="?page={{ page_obj.previous_page_number }}"
+                                                               tabindex="-1"><i
+                                                                    class="fas fa-arrow-circle-right"></i></a>
+                                                        </li>
+                                                    {% endif %}
+
+                                                    {% for item in paginator.page_range %}
+
+
+
+                                                        {% if item == page_obj.number %}
+                                                            <li class="page-item active">
+                                                                <a class="page-link"
+                                                                   href="?page={{ item }}">{{ item }}<span
+                                                                        class="sr-only">(صفحه جاری)</span></a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class="page-item"><a class="page-link"
+                                                                                     href="?page={{ item }}">{{ item }}</a>
+                                                            </li>
+                                                        {% endif %}
+
+                                                    {% endfor %}
+                                                    {% if page_obj.has_next %}
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"><i
+                                                                    class="fas fa-arrow-circle-left"></i></a>
+                                                        </li>
+                                                    {% endif %}
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    {% endif %}
 										</div>
 										
 									</div>

@@ -158,10 +158,10 @@
                                     <div class="crs_fl_first">
 
                                         {% if c.discount == None %}
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span
+                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.get_price }}</span><span
                                                     class="currency">تومان</span></h2></div>
                                         {% else %}
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.price }}</span><span
+                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.get_price }}</span><span
                                                     class="currency">تومان</span></h2></div>
                                         {% endif %}
 

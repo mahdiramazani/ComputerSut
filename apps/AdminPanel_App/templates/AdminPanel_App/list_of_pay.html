@@ -1,21 +1,15 @@
 {% extends "base2.html" %}
+
 {% load static %}
 
-
 {% block content %}
-    <!-- ============================================================== -->
-    <!-- Top header  -->
-    <!-- ============================================================== -->
-
     <!-- ============================ Dashboard: Dashboard Start ================================== -->
     <section class="gray pt-4">
         <div class="container-fluid">
 
             <div class="row">
 
-
                 {% include "include/dashboard_navbar.html" %}
-
 
                 <div class="col-lg-9 col-md-9 col-sm-12">
 
@@ -27,13 +21,9 @@
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
                                             <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">لیست مدیرها</li>
+                                            <li class="breadcrumb-item active" aria-current="page">لیست پرداخت ها</li>
                                         </ol>
                                     </nav>
-                                </div>
-                                <div class="elkios">
-                                    <a href="add-admin.html" class="add_new_btn"><i class="fas fa-plus-circle ml-1"></i>افزودن
-                                        مدیر</a>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +36,7 @@
 
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
-                                        <h6 class="m-0">لیست مدیر</h6>
+                                        <h6 class="m-0">لیست پرداخت ها</h6>
                                     </div>
                                 </div>
 
@@ -86,26 +76,39 @@
                                                     <th scope="col">#</th>
                                                     <th scope="col">تصویر</th>
                                                     <th scope="col">نام</th>
-                                                    <th scope="col">ایمیل</th>
+                                                    <th scope="col">مبلغ</th>
+                                                    <th scope="col">دوره</th>
+                                                    <th scope="col">وضعیت</th>
+
+
                                                     <th scope="col">عملیات</th>
+
+
                                                 </tr>
                                                 </thead>
                                                 <tbody>
 
                                                 {% for item in object_list %}
-
-
-
-
                                                     <tr>
-                                                        <th scope="row">2</th>
-                                                        <td><img src="{{ item.image.url }}" class="img-fluid circle"
-                                                                 width="40" alt=""/></td>
+                                                        <th scope="row">1</th>
+                                                        <td><img src="{{ item.user.image.url }}"
+                                                                 class="img-fluid circle" width="40" alt=""/></td>
                                                         <td>
-                                                            <div class="smalls lg">{{ item.full_name }}</div>
+                                                            <div class="smalls lg">{{ item.user.full_name }}</div>
                                                         </td>
-                                                        <td><span class="smalls lg">{{ item.student_number }}</span>
-                                                        </td>
+                                                        <td><span class="dhs_tags">{{ item.get_price }}</span></td>
+                                                        <td><span class="dhs_tags">{{ item.course.titel }}</span></td>
+
+
+                                                        {% if item.is_paid == True %}
+                                                            <td><span class="trip theme-cl theme-bg-light">تکمیل</span>
+                                                            </td>
+                                                        {% else %}
+                                                            <td><span class="trip text-danger bg-light-danger">در انتظار پرداخت</span>
+                                                            </td>
+                                                        {% endif %}
+
+
                                                         <td>
                                                             <div class="dropdown show">
                                                                 <a class="btn btn-action" href="#"
@@ -114,14 +117,17 @@
                                                                     <i class="fas fa-ellipsis-h"></i>
                                                                 </a>
                                                                 <div class="drp-select dropdown-menu">
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">اشتراک</a>
+
+                                                                    <a class="dropdown-item"
+                                                                       href="{{ item.course.get_absulot_url }}">مشاهده
+                                                                        دوره</a>
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                    </tr>
 
+
+                                                    </tr>
                                                 {% endfor %}
                                                 </tbody>
                                             </table>
@@ -133,7 +139,6 @@
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <p class="p-0">نمایش 1 تا 1 از 1</p>
                                     </div>
-
 
                                     {% if page_obj.has_other_pages %}
                                         <div class="col-xl-6 col-lg-6 col-md-12">

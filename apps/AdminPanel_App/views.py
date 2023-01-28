@@ -3,12 +3,11 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView, DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
     RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm,AddAcsess
-from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses
+from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses,Checkout
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from apps.AdminPanel_App.mixins import CheckTeacherMixin, CheckAdmin, CheckIsTeacherMixin
-from .models import RequestsModel
 from apps.Blog_App.models import Category, BlogModel
 from apps.Teacher_app.models import TeachersIncome
 from django.db.models import Q
@@ -649,3 +648,34 @@ class IncomeTeachersView(ListView):
 
     template_name = "AdminPanel_App/teachersincome.html"
     model = TeachersIncome
+    paginate_by = 10
+
+
+    def get_queryset(self):
+        qs=super(IncomeTeachersView, self).get_queryset()
+
+        if self.request.user.is_admin or self.request.user.is_employee:
+
+            return qs
+
+        elif self.request.user.is_teacher:
+
+            return qs.filter(teacher__user=self.request.user)
+
+
+class ListOfPaymentsView(ListView):
+
+    template_name = "AdminPanel_App/list_of_pay.html"
+    model = Checkout
+    paginate_by = 10
+
+    def get_queryset(self):
+
+        qs=super(ListOfPaymentsView, self).get_queryset()
+
+        if self.request.user.is_admin:
+
+            return qs
+        else:
+
+            return qs.filter(user=self.request.user)

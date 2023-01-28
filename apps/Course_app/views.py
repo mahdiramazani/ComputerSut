@@ -74,25 +74,6 @@ class CourseDetailView(View):
         curses = Courses.objects.get(id=pk)
         body = request.POST.get("body")
 
-        # if request.user not in curses.user.all():
-        #
-        #     # curses.user.add(request.user)
-        #     # curses.save()
-        #     user=request.user
-        #     course=Courses.objects.get(id=pk)
-        #     price=(course.price)
-        #
-        #
-        #     if not Checkout.objects.filter(user=user,course=course).exists():
-        #
-        #         checkout = Checkout.objects.get(Q(user=user), Q(course=course))
-        #
-        #         return redirect(reverse("Course_app:checkout") + f"?=checkout_id={checkout.id}")
-        #
-        #     elif Checkout.objects.filter(user=user,course=course).exists():
-        #         checkout=Checkout.objects.get(Q(user=user) , Q(course=course))
-        #
-        #         return redirect(reverse("Course_app:checkout")+f"?checkout_id={checkout.id}")
 
         if body is not None:
             Comment.objects.create(user=request.user, body=body, corses=curses)
@@ -116,13 +97,18 @@ class AddCourseToOrderView(View):
 
             user = request.user
             course = Courses.objects.get(id=pk)
-            price = course.price
+            price = str(course.price)
+            price = price + "0"
+
+            price = int(price)
+
+
 
             if not Checkout.objects.filter(user=user, course=course).exists():
 
-                Checkout.objects.create(user=request.user, course=course, price=price)
+                Checkout.objects.create(user=request.user, course=course, price=int(price))
 
-                request.session["name"] = "mahdi"
+
 
                 checkout = Checkout.objects.get(Q(user=user), Q(course=course))
 
@@ -140,14 +126,12 @@ class CheckOutClass(View):
     def get(self, request):
         checkout_id = request.GET.get("checkout_id")
 
-        print(request.session["name"])
-
         checkout = Checkout.objects.get(id=checkout_id)
 
         return render(request, "Course_app/checkout.html", {"checkout": checkout})
 
 
-MERCHANT = '*********************'
+MERCHANT = '********************************'
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
@@ -209,6 +193,7 @@ class VerifyView(View):
 
                     # ==========================================================
                     order.is_paid = True
+                    order.course.capacity += 1
                     order.course.user.add(request.user)
                     if TeachersIncome.objects.filter(Q(teacher__user=order.course.teacher.user), Q(course=order.course),
                                                      Q(status=False)).exists():

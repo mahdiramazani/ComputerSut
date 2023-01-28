@@ -291,14 +291,14 @@
 
 
 
-                                <h2 class="theme-cl m-0"> {{ object.object.price }}  تومان </h2>
+                                <h2 class="theme-cl m-0"> {{ object.object.get_price }}  تومان </h2>
 
                             {% else %}
 
                                 {% if object.object.discount == 0 %}
-                                    <h2 class="theme-cl m-0">رایگان<span class="old_prc">{{ object.object.price }}  تومان </span></h2>
+                                    <h2 class="theme-cl m-0">رایگان<span class="old_prc">{{ object.object.get_price }}  تومان </span></h2>
                                     {% else %}
-                                <h2 class="theme-cl m-0">{{ object.object.discount }}  تومان <span class="old_prc">{{ object.object.price }}  تومان </span></h2>
+                                <h2 class="theme-cl m-0">{{ object.object.discount }}  تومان <span class="old_prc">{{ object.object.get_price }}  تومان </span></h2>
                                 {% endif %}
                             {% endif %}
 
