@@ -96,7 +96,7 @@ class Courses(models.Model):
 
             new_price = STR_TO_LIST(new_price)
 
-            new_price[-3] += ","
+            new_price[-4] += ","
 
             new_price = LIST_TO_STR(new_price)
 

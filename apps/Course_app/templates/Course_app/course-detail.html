@@ -139,12 +139,45 @@
 
                                                         {% for item in object.object.corses_child.all %}
 
-                                                            <li class="complete">
-                                                                <div class="lectures_lists_title"><i
-                                                                        class="fas fa-check dios"></i></div>
-                                                                <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
-                                                                        class="cls_timing">{{ item.time }}</span></li>
-                                                            </a>
+
+                                                            {% if request.user.is_authenticated %}
+                                                                {% if request.user in object.object.user.all or request.user.is_admin == True %}
+
+                                                                    <li class="complete">
+                                                                        <div class="lectures_lists_title"><i
+                                                                                class="fas fa-check dios"></i></div>
+                                                                        <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
+                                                                                class="cls_timing">{{ item.time }}</span>
+
+                                                                        </a>
+                                                                    </li>
+
+
+                                                                {% else %}
+
+                                                                    <li class="complete">
+                                                                        <div class="lectures_lists_title"><i
+                                                                                class="fas fa-check dios"></i></div>
+                                                                        <a onclick="alert_register()">{{ item.topic }}<span
+                                                                                class="cls_timing">{{ item.time }}</span>
+
+                                                                        </a>
+                                                                    </li>
+
+
+                                                                {% endif %}
+                                                            {% else %}
+
+                                                                <li class="complete">
+                                                                    <div class="lectures_lists_title"><i
+                                                                            class="fas fa-check dios"></i></div>
+                                                                    <a onclick="alert_login()">{{ item.topic }}<span
+                                                                            class="cls_timing">{{ item.time }}</span>
+                                                                    </a>
+                                                                </li>
+
+
+                                                            {% endif %}
 
 
                                                         {% endfor %}
@@ -174,8 +207,14 @@
                                         <h4><a href="#">{{ object.object.teacher.user.full_name }}</a></h4>
                                         <ul class="instructor_info">
 
-                                            <li><i class="ti-control-forward"></i>{{ object.object.teacher.Corses.all.count }} دوره</li>
-                                            <li><i class="ti-user"></i>پیش {{ object.object.teacher.created | timesince }}   عضویت </li>
+                                            <li>
+                                                <i class="ti-control-forward"></i>{{ object.object.teacher.Corses.all.count }}
+                                                دوره
+                                            </li>
+                                            <li>
+                                                <i class="ti-user"></i>پیش {{ object.object.teacher.created | timesince }}
+                                                عضویت
+                                            </li>
                                         </ul>
                                         <p>{{ object.object.teacher.user.bio | safe }}</p>
                                         <ul class="social_info">
@@ -232,41 +271,41 @@
 
                                     {% if request.user.is_authenticated %}
 
-                                    <h4 class="edu_title">ثبت دیدگاه</h4>
-                                    <div class="review-form-box form-submit">
-                                        <form method="post">
+                                        <h4 class="edu_title">ثبت دیدگاه</h4>
+                                        <div class="review-form-box form-submit">
+                                            <form method="post">
 
-                                            {% csrf_token %}
-                                            <div class="row">
+                                                {% csrf_token %}
+                                                <div class="row">
 
-                                                <div class="col-lg-6 col-md-6 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>نام و نام خانوادگی</label>
-                                                        <input class="form-control" type="text"
-                                                               placeholder="{{ request.user.full_name }}" name="">
+                                                    <div class="col-lg-6 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>نام و نام خانوادگی</label>
+                                                            <input class="form-control" type="text"
+                                                                   placeholder="{{ request.user.full_name }}" name="">
+                                                        </div>
                                                     </div>
-                                                </div>
 
 
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="form-group">
-                                                        <label>متن نظر</label>
-                                                        <textarea name="body" class="form-control ht-140"
-                                                                  placeholder="نظر خود را بنویسید..."></textarea>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>متن نظر</label>
+                                                            <textarea name="body" class="form-control ht-140"
+                                                                      placeholder="نظر خود را بنویسید..."></textarea>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn theme-bg btn-md">ثبت دیدگاه
-                                                        </button>
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <button type="submit" class="btn theme-bg btn-md">ثبت دیدگاه
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                            </div>
-                                        </form>
-                                    </div>
-                                        {% else %}
+                                                </div>
+                                            </form>
+                                        </div>
+                                    {% else %}
 
                                         <p class="alert-danger">برای ثبت دیدگاه باید وارد شوید</p>
                                     {% endif %}
@@ -291,14 +330,16 @@
 
 
 
-                                <h2 class="theme-cl m-0"> {{ object.object.get_price }}  تومان </h2>
+                                <h2 class="theme-cl m-0"> {{ object.object.get_price }} تومان </h2>
 
                             {% else %}
 
                                 {% if object.object.discount == 0 %}
-                                    <h2 class="theme-cl m-0">رایگان<span class="old_prc">{{ object.object.get_price }}  تومان </span></h2>
-                                    {% else %}
-                                <h2 class="theme-cl m-0">{{ object.object.discount }}  تومان <span class="old_prc">{{ object.object.get_price }}  تومان </span></h2>
+                                    <h2 class="theme-cl m-0">رایگان<span class="old_prc">{{ object.object.get_price }}  تومان </span>
+                                    </h2>
+                                {% else %}
+                                    <h2 class="theme-cl m-0">{{ object.object.discount }} تومان <span
+                                            class="old_prc">{{ object.object.get_price }}  تومان </span></h2>
                                 {% endif %}
                             {% endif %}
 
@@ -314,26 +355,55 @@
                                 <form method="post">
 
 
-                                    {% csrf_token %}
-                                {% if object.object.how_to_hold == "حضوری" %}
+                                {% csrf_token %}
+
+
+
+
+
+                                {% if request.user.is_authenticated %}
+
+
+                                    {% if object.object.how_to_hold == "حضوری" %}
 
                                         {% if object.object.capacity <= 0 %}
 
-                                        <a onclick="alert_capacity()" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
-                                            class="ti-angle-left"></i></a>
 
-                                        {% endif %}
+
+                                            <a onclick="alert_capacity()"
+                                               class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                                    class="ti-angle-left"></i></a>
 
                                         {% else %}
 
-                                    <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
-                                            class="ti-angle-left"></i></a>
+                                            <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}"
+                                               class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                                    class="ti-angle-left"></i></a>
 
                                         {% endif %}
 
-                                </form>
+                                    {% else %}
+
+                                        <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}"
+                                           class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                                class="ti-angle-left"></i></a>
+
+                                    {% endif %}
+
+                                {% else %}
+
+                                    <a onclick="alert_login()" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                            class="ti-angle-left"></i></a>
+
+
+                                {% endif %}
 
                             {% endif %}
+
+
+                            </form>
+
+
 
 
                         </div>
@@ -346,7 +416,33 @@
                                 <ul class="edu_list right">
                                     <li><i class="ti-user"></i>تعداد شرکت
                                         کننده:<strong>{{ object.object.user.all.count }}</strong></li>
-                                    <li><i class="ti-files"></i>موضوع:<strong>{{ object.object.titel }}</strong></li>
+
+                                    {% if object.object.how_to_hold == "حضوری" %}
+
+                                        {% if object.object.capacity <= 5 %}
+
+                                            {% if object.object.capacity <= 0 %}
+
+                                                <li><i class="ti-files"></i>ظرفیت:<strong class="badge badge-danger">
+                                                    ظرفیت تکمیل </strong></li>
+
+                                            {% else %}
+
+                                                <li><i class="ti-files"></i>ظرفیت:<strong class="badge badge-danger">
+                                                    فقط {{ object.object.capacity }} نفر </strong></li>
+                                            {% endif %}
+                                        {% else %}
+                                            <li><i class="ti-files"></i>ظرفیت:<strong
+                                                    class="badge badge-success">{{ object.object.capacity }}
+                                                نفر </strong></li>
+                                        {% endif %}
+
+                                    {% else %}
+                                        <li><i class="ti-files"></i>موضوع:<strong>{{ object.object.titel }}</strong>
+                                        </li>
+                                    {% endif %}
+
+
                                     <li><i class="ti-game"></i>تعداد
                                         پروژه:<strong>{{ object.object.project_count }}</strong></li>
                                     <li><i class="ti-time"></i>تعداد ویدیو
@@ -383,81 +479,83 @@
                     <div class="slide_items">
 
                         {% for item in object.last_course %}
-                        <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
-                                    <div class="crs_locked_ico">
-                                        <i class="fa fa-lock"></i>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
+                            <div class="lios_item">
+                                <div class="crs_grid shadow_none brd">
+                                    <div class="crs_grid_thumb">
+                                        <a href="course-detail.html" class="crs_detail_link">
+                                            <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
+                                        </a>
+                                        <div class="crs_video_ico">
+                                            <i class="fa fa-play"></i>
                                         </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ item.price }}</span><span
-                                                    class="currency">تومان</span></h2></div>
+                                        <div class="crs_locked_ico">
+                                            <i class="fa fa-lock"></i>
                                         </div>
                                     </div>
-                                    <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">دوره
-                                        حضوری عالی پرورش مدیر مالی</a></h4></div>
-                                    <div class="crs_info_detail">
-                                        <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>8ساعت 1دقیقه</span></li>
-                                            <li><i class="fa fa-video text-success"></i><span>17 دوره</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="preview_crs_info">
-                                        <div class="progress">
-                                            <div class="progress-bar" role="progressbar" style="width:50%"
-                                                 aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="crs_grid_foot">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_tutor">
-                                                <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                        src="{{ item.teacher.user.image.url }}"
-                                                        class="img-fluid circle"
-                                                        alt=""/></a></div>
+                                    <div class="crs_grid_caption">
+                                        <div class="crs_flex">
+                                            <div class="crs_fl_first">
+                                                <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
+                                            </div>
+                                            <div class="crs_fl_last">
+                                                <div class="crs_price"><h2><span
+                                                        class="theme-cl">{{ item.price }}</span><span
+                                                        class="currency">تومان</span></h2></div>
                                             </div>
                                         </div>
-                                        <div class="crs_fl_last">
-                                            <div class="foot_list_info">
-                                                <ul>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">42.4k</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="elsio_ic"><i class="fa fa-star text-warning"></i>
-                                                        </div>
-                                                        <div class="elsio_tx">4.7</div>
-                                                    </li>
-                                                </ul>
+                                        <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">دوره
+                                            حضوری عالی پرورش مدیر مالی</a></h4></div>
+                                        <div class="crs_info_detail">
+                                            <ul>
+                                                <li><i class="fa fa-clock text-danger"></i><span>8ساعت 1دقیقه</span>
+                                                </li>
+                                                <li><i class="fa fa-video text-success"></i><span>17 دوره</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="preview_crs_info">
+                                            <div class="progress">
+                                                <div class="progress-bar" role="progressbar" style="width:50%"
+                                                     aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="crs_grid_foot">
+                                        <div class="crs_flex">
+                                            <div class="crs_fl_first">
+                                                <div class="crs_tutor">
+                                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
+                                                            src="{{ item.teacher.user.image.url }}"
+                                                            class="img-fluid circle"
+                                                            alt=""/></a></div>
+                                                </div>
+                                            </div>
+                                            <div class="crs_fl_last">
+                                                <div class="foot_list_info">
+                                                    <ul>
+                                                        <li>
+                                                            <div class="elsio_ic"><i class="fa fa-user text-danger"></i>
+                                                            </div>
+                                                            <div class="elsio_tx">4.7k</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="elsio_ic"><i class="fa fa-eye text-success"></i>
+                                                            </div>
+                                                            <div class="elsio_tx">42.4k</div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="elsio_ic"><i
+                                                                    class="fa fa-star text-warning"></i>
+                                                            </div>
+                                                            <div class="elsio_tx">4.7</div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         {% endfor %}
-
 
 
                     </div>
@@ -519,6 +617,25 @@
             text: 'ظرفیت دوره به اتمام رسیده است!'
         })
     }
+
+    function alert_login() {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا!',
+            text: 'برای ثبت نام در دوره باید  وارد حساب کاربری خود شوید',
+
+        })
+    }
+
+    function alert_register() {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا!',
+            text: 'برای مشاهده محتوای دوره باید در دوره ثبت نام کنید',
+
+        })
+    }
+
 
 </script>
 <script src="{% static "assets/js/jquery.min.js" %}"></script>

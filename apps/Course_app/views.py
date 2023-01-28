@@ -11,7 +11,7 @@ from apps.Teacher_app.models import TeachersIncome
 from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,CheckLoginMixin,CheckOrderShopMixin,CheckRequestToPayMixin
 
 
-MERCHANT = "b3b73736-7999-4b64-b2e7-f14c42ee52a7"
+MERCHANT = ""
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
@@ -204,7 +204,10 @@ class VerifyView(View):
 
                     # ==========================================================
                     order.is_paid = True
-                    order.course.capacity += 1
+
+                    if order.course.how_to_hold == "حضوری":
+                        order.course.capacity -= 1
+                        order.course.save()
                     order.course.user.add(request.user)
                     if TeachersIncome.objects.filter(Q(teacher__user=order.course.teacher.user), Q(course=order.course),
                                                      Q(status=False)).exists():
