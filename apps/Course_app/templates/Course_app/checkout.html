@@ -86,9 +86,15 @@
 											<form action="{% url "Course_app:request_pay" checkout.id %}" method="post">
                                                 {% csrf_token %}
 
+                                                {% if checkout.price == 0 %}
 												<div class="form-group">
+													<button type="submit" class="btn theme-bg btm-md full-width">خرید رایگان دوره</button>
+												</div>
+                                                    {% else %}
+                                                    <div class="form-group">
 													<button type="submit" class="btn theme-bg btm-md full-width">پرداخت {{ checkout.get_price }} ریال</button>
 												</div>
+                                                {% endif %}
 											</form>
 										</div>
 									</div>

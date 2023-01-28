@@ -300,9 +300,9 @@ class Checkout(models.Model):
 
             return new_price
 
+        else:
 
-
-
+            return self.price
 
 
 

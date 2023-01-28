@@ -315,9 +315,21 @@
 
 
                                     {% csrf_token %}
+                                {% if object.object.how_to_hold == "حضوری" %}
+
+                                        {% if object.object.capacity <= 0 %}
+
+                                        <a onclick="alert_capacity()" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                            class="ti-angle-left"></i></a>
+
+                                        {% endif %}
+
+                                        {% else %}
 
                                     <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}" class="btn theme-bg enroll-btn">ثبت نام در دوره<i
                                             class="ti-angle-left"></i></a>
+
+                                        {% endif %}
 
                                 </form>
 
@@ -496,7 +508,19 @@
 <!-- ============================================================== -->
 <!-- All Jquery -->
 <!-- ============================================================== -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
 
+
+    function alert_capacity() {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا!',
+            text: 'ظرفیت دوره به اتمام رسیده است!'
+        })
+    }
+
+</script>
 <script src="{% static "assets/js/jquery.min.js" %}"></script>
 <script src="{% static "assets/js/popper.min.js" %}"></script>
 <script src="{% static "assets/js/bootstrap.min.js" %}"></script>

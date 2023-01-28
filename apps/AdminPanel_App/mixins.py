@@ -1,6 +1,6 @@
 from apps.Acount_app.models import User,Teacher
 from django.shortcuts import redirect
-from apps.Course_app.models import Courses,CoursesChild
+from apps.Course_app.models import Courses,CoursesChild,Checkout
 
 
 
@@ -72,3 +72,4 @@ class CheckAdmin:
         else:
 
             return redirect("Home_app:Home")
+

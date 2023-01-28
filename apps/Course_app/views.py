@@ -8,6 +8,19 @@ from django.shortcuts import redirect
 import requests
 import json
 from apps.Teacher_app.models import TeachersIncome
+from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,CheckLoginMixin,CheckOrderShopMixin,CheckRequestToPayMixin
+
+
+MERCHANT = "b3b73736-7999-4b64-b2e7-f14c42ee52a7"
+ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
+ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
+ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
+amount = 5000  # Rial / Required
+description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
+email = 'email@example.com'  # Optional
+mobile = '09123456789'  # Optional
+
+CallbackURL = 'http://127.0.0.1:8000/courses/verify/'
 
 
 class CategoryCourse(View):
@@ -81,13 +94,13 @@ class CourseDetailView(View):
         return redirect(reverse("Course_app:Course_detail", kwargs={"pk": pk}))
 
 
-class CourseDetailVideoView(DetailView):
+class CourseDetailVideoView(CheckStudentCourseMixin,DetailView):
     model = CoursesChild
 
     template_name = "Course_app/course_video_detail.html"
 
 
-class AddCourseToOrderView(View):
+class AddCourseToOrderView(CheckCapcityMixin,View):
 
     def get(self, request, pk):
 
@@ -121,7 +134,7 @@ class AddCourseToOrderView(View):
                 return redirect(reverse("Course_app:checkout") + f"?checkout_id={checkout.id}")
 
 
-class CheckOutClass(View):
+class CheckOutClass(CheckOrderShopMixin,View):  #ok
 
     def get(self, request):
         checkout_id = request.GET.get("checkout_id")
@@ -131,43 +144,41 @@ class CheckOutClass(View):
         return render(request, "Course_app/checkout.html", {"checkout": checkout})
 
 
-MERCHANT = ""
-ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
-ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
-ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
-amount = 5000  # Rial / Required
-description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
-email = 'email@example.com'  # Optional
-mobile = '09123456789'  # Optional
-# Important: need to edit for realy server.
-CallbackURL = 'http://127.0.0.1:8000/courses/verify/'
 
-
-class RequestPay(View):
+class RequestPay(CheckRequestToPayMixin,View):
 
     def post(self, request, pk):
 
         order = Checkout.objects.get(id=pk)
         request.session["order_id"] = order.id
 
-        req_data = {
-            "merchant_id": MERCHANT,
-            "amount": order.price,
-            "callback_url": CallbackURL,
-            "description": description,
-            "metadata": {"mobile": order.user.phone}
-        }
-        req_header = {"accept": "application/json",
-                      "content-type": "application/json'"}
-        req = requests.post(url=ZP_API_REQUEST, data=json.dumps(
-            req_data), headers=req_header)
-        authority = req.json()['data']['authority']
-        if len(req.json()['errors']) == 0:
-            return redirect(ZP_API_STARTPAY.format(authority=authority))
+
+        if order.course.price == 0:
+            order.course.user.add(request.user)
+            order.save()
+
+            return redirect(order.course.get_absulot_url())
+
         else:
-            e_code = req.json()['errors']['code']
-            e_message = req.json()['errors']['message']
-            return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
+
+            req_data = {
+                "merchant_id": MERCHANT,
+                "amount": order.price,
+                "callback_url": CallbackURL,
+                "description": description,
+                "metadata": {"mobile": order.user.phone}
+            }
+            req_header = {"accept": "application/json",
+                            "content-type": "application/json'"}
+            req = requests.post(url=ZP_API_REQUEST, data=json.dumps(
+                req_data), headers=req_header)
+            authority = req.json()['data']['authority']
+            if len(req.json()['errors']) == 0:
+                return redirect(ZP_API_STARTPAY.format(authority=authority))
+            else:
+                e_code = req.json()['errors']['code']
+                e_message = req.json()['errors']['message']
+                return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
 
 
 class VerifyView(View):
@@ -220,6 +231,8 @@ class VerifyView(View):
 
                     return redirect((order.course.get_absulot_url()))
 
+                #=============================================================
+
                 elif t_status == 101:
 
                     return redirect((order.course.get_absulot_url()))
@@ -233,4 +246,4 @@ class VerifyView(View):
                 e_message = req.json()['errors']['message']
                 return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
         else:
-            return redirect("/")
+            return redirect(order.course.get_absulot_url())
