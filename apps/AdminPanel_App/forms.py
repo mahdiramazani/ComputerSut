@@ -4,12 +4,7 @@ from apps.Acount_app.models import User,Teacher
 from apps.Course_app.models import Courses,CoursesChild,Category
 from apps.Blog_App.models import BlogModel
 from apps.Message_App.models import MessageModel
-from ckeditor.fields import RichTextFormField,CKEditorWidget
-
-from ckeditor.fields import RichTextFormField
-from ckeditor.widgets import CKEditorWidget
-from ckeditor_uploader.fields import RichTextUploadingFormField
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from apps.Teacher_app.models import TeachersIncome
 
 class EditUserPanelForms(forms.ModelForm):
 
@@ -514,8 +509,46 @@ class AddAcsess(forms.ModelForm):
             "position":forms.Select(
 
                 attrs={
-                    "class":"form-control"
+                    "class":"form-control",
+
                 }
             )
 
+
         }
+
+
+class TeacherIncomeForms(forms.ModelForm):
+
+    class Meta:
+
+        model=TeachersIncome
+        fields="__all__"
+
+        widgets={
+            "teacher":forms.Select(
+                attrs={
+                    "class":"form-control",
+                    'readonly': 'readonly'
+                }
+            ),
+
+            "course":forms.Select(
+                attrs={
+                    "class":"form-control",
+                }
+            ),
+
+            "income":forms.NumberInput(
+                attrs={
+                    "class":"form-control"
+                }
+            )
+        }
+
+    def __init__(self,*args,**kwargs):
+
+        super().__init__(*args,**kwargs)
+        self.fields['teacher'].disabled = True
+        self.fields['course'].disabled = True
+        self.fields['income'].disabled = True

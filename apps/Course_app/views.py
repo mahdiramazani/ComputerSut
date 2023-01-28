@@ -131,7 +131,7 @@ class CheckOutClass(View):
         return render(request, "Course_app/checkout.html", {"checkout": checkout})
 
 
-MERCHANT = '********************************'
+MERCHANT = ""
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"

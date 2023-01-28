@@ -114,9 +114,15 @@
                                                                     <i class="fas fa-ellipsis-h"></i>
                                                                 </a>
                                                                 <div class="drp-select dropdown-menu">
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">مجوز</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">ویرایش</a>
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+
+                                                                    {% if item.student_number != None %}
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.student_number %}">ویرایش</a>
+                                                                        {% elif item.phone != None %}
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.phone %}">ویرایش</a>
+                                                                        {% elif item.nation_code != None %}
+                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.nation_code %}">ویرایش</a>
+                                                                    {% endif %}
+
                                                                 </div>
                                                             </div>
                                                         </td>

@@ -43,4 +43,6 @@ urlpatterns=[
     path("add_accses_to_user",views.AddAcsesToUser.as_view(),name="add_accses_to_user"),
     path("teachers/income/",views.IncomeTeachersView.as_view(),name="teacher_income"),
     path("list_of_pay/",views.ListOfPaymentsView.as_view(),name="list_of_pay"),
+    path("edit_admin/<str:StudentNumber>/",views.EditAdminView.as_view(),name="edit_admin"),
+    path("edit_income_teacher/<int:pk>/",views.EditTeacherIncomeView.as_view(),name="edit_income_teacher")
 ]

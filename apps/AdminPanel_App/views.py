@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView, DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
-    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm,AddAcsess
+    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm,AddAcsess,TeacherIncomeForms
 from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses,Checkout
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
@@ -679,3 +679,34 @@ class ListOfPaymentsView(ListView):
         else:
 
             return qs.filter(user=self.request.user)
+
+
+class EditAdminView(View):
+
+
+    def get(self,request,StudentNumber):
+
+        student_number=StudentNumber
+
+        return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
+
+
+class EditTeacherIncomeView(View):
+
+    def get(self,request,pk):
+        income_teacher=TeachersIncome.objects.get(id=pk)
+        form=TeacherIncomeForms(instance=income_teacher)
+
+        return render(request,"AdminPanel_App/pay_to_teacher.html",{"form":form})
+
+    def post(self,request,pk):
+
+        income_teacher = TeachersIncome.objects.get(id=pk)
+        form = TeacherIncomeForms(data=request.POST,instance=income_teacher)
+
+        if form.is_valid():
+            form.save()
+
+            return redirect("AdminPanel:teacher_income")
+
+        return render(request, "AdminPanel_App/pay_to_teacher.html", {"form": form})
