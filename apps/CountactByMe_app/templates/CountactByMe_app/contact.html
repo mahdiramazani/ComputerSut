@@ -1,8 +1,20 @@
-{% extends "base.html" %}
 {% load static %}
+<html lang="fa">
 
+{% include "include/head.html" %}
 
-{% block content %}
+<body class="blog-page" dir="rtl">
+
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+<div id="main-wrapper">
+
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+    <!-- Start Navigation -->
+    {% include "include/Nevagation.html" %}
     <!-- ============================================================== -->
     <!-- Top header  -->
     <!-- ============================================================== -->
@@ -17,7 +29,7 @@
                         <h1 class="breadcrumb-title font-2">تماس با ما</h1>
                         <nav class="transparent">
                             <ol class="breadcrumb p-0">
-                                <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
                                 <li class="breadcrumb-item active theme-cl" aria-current="page">تماس با ما</li>
                             </ol>
                         </nav>
@@ -38,28 +50,28 @@
                         <h4>با ما در ارتباط باشید</h4>
                         <span>پیام بفرستید تا حد امکان پاسخگو خواهیم بود... </span>
                     </div>
-                    <form method="post">
+
+                    <form method="post" id="post-form">
                         {% csrf_token %}
+
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>نام و نام خانوادگی</label>
-                                    {{ form.full_name }}
+                                    <input type="text" id="name" class="form-control" placeholder="نام و نام خانوادگی خود را وارد کنید..."/>
                                 </div>
                             </div>
-
-
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <label>شماره تماس</label>
-                                    {{ form.phone_number }}
+                                    <label>شماره تلفن</label>
+                                    <input type="text" id="phone" class="form-control" placeholder="شماره تلفن خود را وارد کنید..."/>
                                 </div>
                             </div>
+
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <label>متن درخواست</label>
-                                    {{ form.body }}
-
+                                    <textarea type="text" id="body" class="form-control summernote" placeholder="درخواست خود را وارد کنید..."></textarea>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
@@ -68,7 +80,11 @@
                                 </div>
                             </div>
                         </div>
+
+
                     </form>
+
+
                 </div>
 
                 <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12">
@@ -81,7 +97,7 @@
                                 <div class="mr-3 mr-md-4">
                                     <h4>آدرس ما</h4>
                                     <p>
-                                        سیرجان،دانشگاه صنعتی<br>ساختمان کلاسها،طبقه دوم<br>انجمن علمی کامپیوتر
+                                        استان کرمان،شهرستان سیرجان<br>دانشگاه صنعتی سیرجان<br>ساختمان کلاس ها،طبقه دوم،انجمن علمی کامپیوتر
                                     </p>
                                 </div>
                             </li>
@@ -92,7 +108,7 @@
                                 <div class="mr-3 mr-md-4">
                                     <h4>پست الکترونیکی</h4>
                                     <p>
-                                        mahdiramazanii.official@gmail.com.com<br>mahdiramazani@yahoo.com
+                                        mahdiramazani@yahoo.com<br>mahdiramazanii.official@gmail.com
                                     </p>
                                 </div>
                             </li>
@@ -104,7 +120,9 @@
                                 <div class="mr-3 mr-md-4">
                                     <h4>شماره های تماس</h4>
                                     <p>
-                                        (+98) 991 076 5749<br>(+98) 901 161 2090
+                                        09910765749
+                                        <br>
+                                        09011612090
                                     </p>
                                 </div>
                             </li>
@@ -126,23 +144,76 @@
     <!-- ============================ map End ================================== -->
 
     <!-- ============================ Call To Action ================================== -->
-    <section class="theme-bg call_action_wrap-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
 
-                    <div class="call_action_wrap">
-                        <div class="call_action_wrap-head">
-                            <h3 class="font-2">آیا سوالی دارید؟</h3>
-                            <span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
-                        </div>
-                        <a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- ============================ Call To Action End ================================== -->
 
-{% endblock %}
+    <!-- ============================ Footer Start ================================== -->
+    {% include "include/footer.html" %}
+    <!-- ============================ Footer End ================================== -->
+
+    <!-- Log In Modal -->
+    {% include "include/login.html" %}
+
+    <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
+
+
+</div>
+<!-- ============================================================== -->
+<!-- End Wrapper -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+<!-- ============================================================== -->
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{% static "assets/js/jquery.min.js" %}"></script>
+<script src="{% static "assets/js/popper.min.js" %}"></script>
+<script src="{% static "assets/js/bootstrap.min.js" %}"></script>
+<script src="{% static "assets/js/select2.min.js" %}"></script>
+<script src="{% static "assets/js/slick.js" %}"></script>
+<script src="{% static "assets/js/moment.min.js" %}"></script>
+<script src="{% static "assets/js/daterangepicker.js" %}"></script>
+<script src="{% static "assets/js/summernote.min.js" %}"></script>
+<script src="{% static "assets/js/metisMenu.min.js" %}"></script>
+<script src="{% static "assets/js/custom.js" %}"></script>
+
+
+<script>
+
+
+    $(document).on('submit', '#post-form', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "CountactByMe_app:contact" %}',
+            data: {
+
+                body: $('#body').val(),
+                phone: $('#phone').val(),
+                name: $('#name').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+
+            success: function (json) {
+                document.getElementById("post-form").reset();
+                Swal.fire(
+                    'در اسرع وقت پاسخگوی شما خوایم بود !',
+                    json["response"],
+                    'success'
+                )
+            },
+
+
+        })
+    });
+
+
+</script>
+<!-- ============================================================== -->
+<!-- This page plugins -->
+<!-- ============================================================== -->
+
+</body>
+
+</html>
