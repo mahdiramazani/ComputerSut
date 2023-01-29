@@ -99,6 +99,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'context_prosseor.context_prosseor.count_course',
                 'context_prosseor.context_prosseor.category_list',
+                'context_prosseor.context_prosseor.get_order_shop',
 
             ],
         },

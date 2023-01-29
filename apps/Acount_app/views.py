@@ -4,7 +4,7 @@ from apps.Acount_app.forms import SignForm,LoginForm
 from apps.Acount_app.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.db.models import Q
-
+from django.http import JsonResponse
 
 class SignUpView(View):
 

@@ -13,57 +13,61 @@
                     {% if request.user.is_authenticated %}
 
 
-                        <ul class="">
-
-                        <div class="btn-group account-drop">
-                            <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-
-                                {% if request.user.image %}
-                                    <img src="{{ request.user.image.url }}" class="avater-img" alt="">
-                                {% else %}
-                                    <img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
-                                {% endif %}
-                            </a>
-                            <div class="dropdown-menu pull-right animated flipInX">
-
-                                {% if request.user.is_authenticated %}
-
-                                    <div class="drp_menu_headr">
-                                        <h4>سلام،{{ request.user.full_name }}</h4>
-                                    </div>
-
-                                {% endif %}
-                                <ul>
-
-                                    <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
-                                        کاربری</a></li>
-                                    <li><a href="{% url "AdminPanel:my_course" %}"><i class="fas fa-shopping-basket"></i>دوره های
-                                        من<span class="notti_coun style-2">{{ c_count }}</span></a></li>
+                        <ul>
 
 
-                                    <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
-                                    <li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a>
-                                    </li>
-                                </ul>
+                            <div class="btn-group account-drop">
+                                <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt"
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true" aria-expanded="false">
+
+                                    {% if request.user.image %}
+                                        <img src="{{ request.user.image.url }}" class="avater-img" alt="">
+                                    {% else %}
+                                        <img src="{% static "assets/img/user-5.jpg" %}" class="avater-img" alt="">
+                                    {% endif %}
+                                </a>
+                                <div class="dropdown-menu pull-right animated flipInX">
+
+                                    {% if request.user.is_authenticated %}
+
+                                        <div class="drp_menu_headr">
+                                            <h4>سلام،{{ request.user.full_name }}</h4>
+                                        </div>
+
+                                    {% endif %}
+                                    <ul>
+
+                                        <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
+                                            کاربری</a></li>
+                                        <li><a href="{% url "AdminPanel:my_course" %}"><i
+                                                class="fas fa-shopping-basket"></i>دوره های
+                                            من<span class="notti_coun style-2">{{ c_count }}</span></a></li>
+
+
+                                        <li><a href="{% url "AdminPanel:list_of_pay" %}"><i class="fas fa-comments"></i>سبد
+                                            خرید</a></li>
+                                        <li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
 
-                        </li>
+                            </li>
 
-                    </ul>
+                        </ul>
 
 
                     {% else %}
-                    <ul>
-                        <li>
-                            <a href="javascript:void(0);" data-toggle="modal" data-target="#login"
-                               class="crs_yuo12 w-auto text-white theme-bg">
-                                <span class="embos_45"><i class="fas fa-sign-in-alt ml-1 rotate-img"></i>ورود</span>
-                            </a>
-                        </li>
-                    </ul>
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#login"
+                                   class="crs_yuo12 w-auto text-white theme-bg">
+                                    <span class="embos_45"><i class="fas fa-sign-in-alt ml-1 rotate-img"></i>ورود</span>
+                                </a>
+                            </li>
+                        </ul>
                     {% endif %}
                 </div>
             </div>
@@ -80,7 +84,7 @@
 
 
                             {% for iten in category %}
-                            <li><a href="{% url "Course_app:Category_course" iten.id %}">{{ iten.name }}</a></li>
+                                <li><a href="{% url "Course_app:Category_course" iten.id %}">{{ iten.name }}</a></li>
 
                             {% endfor %}
 
@@ -121,6 +125,45 @@
 
                     <ul class="nav-menu nav-menu-social align-to-left">
 
+                        <li class="account-drop">
+                            <a href="javascript:void(0);" class="crs_yuo12" data-toggle="dropdown" aria-haspopup="true"
+                               aria-expanded="false">
+                                <span class="embos_45"><i class="fas fa-shopping-basket"></i><i
+                                        class="embose_count">{{ count_ch }}</i></span>
+                            </a>
+                            <div class="dropdown-menu pull-right animated flipInX">
+                                <div class="drp_menu_headr bg-purple">
+                                    <h4>سبد خرید من</h4>
+                                </div>
+                                <div class="ground-list ground-hover-list">
+
+                                    {% for item in checkout %}
+                                        <div class="ground ground-list-single">
+                                            <div class="grd_thum"><img src="{{ item.course.cover.url }}"
+                                                                       class="img-fluid rounded" width="50" alt=""/>
+                                            </div>
+                                            <div class="ground-content">
+                                                <h6>{{ item.course.titel | truncatewords:"4" }}<small
+                                                        class="float-left text-fade">{{ item.course.get_price }}
+                                                    ﷼ </small></h6>
+                                                <a href="{{ item.course.get_absulot_url }}" class="small text-danger">نمایش</a>
+                                            </div>
+
+
+                                        </div>
+
+                                    {% endfor %}
+
+                                <div class="ground ground-list-single">
+                                                <a href="{% url "AdminPanel:list_of_pay" %}" class="btn theme-bg text-white full-width">مشاهده
+                                                    سبد
+                                                </a>
+                                            </div>
+
+                                </div>
+                            </div>
+                        </li>
+
                         <div class="btn-group account-drop">
                             <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
@@ -144,11 +187,13 @@
 
                                     <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fa fa-user-tie"></i>پروفایل
                                         کاربری</a></li>
-                                    <li><a href="{% url "AdminPanel:my_course" %}"><i class="fas fa-shopping-basket"></i>دوره های
+                                    <li><a href="{% url "AdminPanel:my_course" %}"><i
+                                            class="fas fa-shopping-basket"></i>دوره های
                                         من<span class="notti_coun style-2">{{ c_count }}</span></a></li>
 
 
-                                    <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
+                                    <li><a href="{% url "AdminPanel:list_of_pay" %}"><i
+                                            class="fas fa-shopping-basket"></i>سبد خرید</a></li>
                                     <li><a href="{% url "Acount_app:Logout" %}"><i class="fa fa-unlock-alt"></i>خروج</a>
                                     </li>
                                 </ul>

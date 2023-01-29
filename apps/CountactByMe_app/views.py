@@ -22,12 +22,12 @@ class ContactView(View):
 
 
 
-        return render(request,"CountactByMe_app/contact.html",{"form":form})
+        return render(request,"CountactByMe_app/contact.html")
 
     def get(self,request):
-        form=CountactUsForm()
 
 
-        return render(request,"CountactByMe_app/contact.html",{"form":form})
+
+        return render(request,"CountactByMe_app/contact.html")
 
 

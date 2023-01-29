@@ -139,7 +139,21 @@
         </div>
     </section>
     <!-- ============================ Signup Wrap ================================== -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script>
+
+        function  t(json) {
+            document.getElementById("post-form").reset();
+            Swal.fire(
+                'بسیار عالی !',
+                json["response"],
+                'success'
+            )
+            }
+
+
+    </script>
     <form method="post" action="/accounts/google/login/" id="google_form">
         {% csrf_token %}
     </form>
