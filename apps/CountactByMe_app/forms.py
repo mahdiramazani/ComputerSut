@@ -1,37 +1,13 @@
 from django import forms
 from .models import ContactUs
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 
+class CountactUsForm(forms.Form):
 
-class CountactUsForm(forms.ModelForm):
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
 
-
-    class Meta:
-
-        model=ContactUs
-
-        exclude=("created",)
-
-        widgets={
-            "full_name":forms.TextInput(
-                attrs={
-                    "class":"form-control",
-                }
-            ),
-
-            "phone_number":forms.TextInput(
-
-                attrs={
-                    "class":"form-control"
-                }
-            ),
-
-            "body":forms.Textarea(
-                attrs={
-                    "class":"form-control"
-                }
-            )
-        }
 
 

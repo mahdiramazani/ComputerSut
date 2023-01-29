@@ -1,7 +1,8 @@
 from django import forms
 from django.db.models import Q
 from apps.Acount_app.models import User
-
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 UNIVERSITY_NAME = (
     ("دانشگاه صنعتی سیرجان", "دانشگاه صنعتی سیرجان"),
@@ -19,6 +20,8 @@ MAJOR= (
 
 
 class SignForm(forms.Form):
+
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
 
     phone=forms.CharField(max_length=14,widget=forms.TextInput(
         attrs={

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    "captcha",
 
     # my apps
     "scripts",
@@ -197,3 +198,7 @@ SOCIALACCOUNT_PROVIDERS = {
 # AWS_SERVICE_NAME = 's3'
 # AWS_S3_ENDPOINT_URL = 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'
 # AWS_S3_FILE_OVERWRITE = False
+
+
+RECAPTCHA_PUBLIC_KEY = "6Ldw_zYkAAAAADypITNQ5hSi_EWvtyghI1MVXJCE"
+RECAPTCHA_PRIVATE_KEY = "6Ldw_zYkAAAAAAj25lTYDVMAJM6-7czv0HAIo51c"
