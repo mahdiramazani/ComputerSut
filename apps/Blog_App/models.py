@@ -54,9 +54,15 @@ class Comment(models.Model):
     blog=models.ForeignKey(BlogModel,on_delete=models.CASCADE,related_name="comment")
     body=models.TextField()
     created=models.DateTimeField(auto_now_add=True)
+    parent = models.ForeignKey("self", on_delete=models.CASCADE, related_name="replay",null=True,blank=True)
 
+
+    class Meta:
+        ordering=("-blog__id","parent__id",)
 
     def __str__(self):
 
 
         return self.user.full_name
+
+
