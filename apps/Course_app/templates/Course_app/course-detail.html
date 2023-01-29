@@ -256,7 +256,7 @@
                                                     </h4>
 
 
-                                                    <p>{{ comment.body }}</p>
+                                                    <p>{{ comment.body | safe }}</p>
 
                                                 </div>
                                             </div>
@@ -282,8 +282,8 @@
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
                                                             <label>متن نظر</label>
-                                                            <input type="text" class="form-control ht-140" id="body"
-                                                                   placeholder="نظر خود را بنویسید...">
+                                                            <textarea type="text" class="form-control ht-140 summernote" id="body"
+                                                                      placeholder="نظر خود را بنویسید..."></textarea>
                                                         </div>
                                                     </div>
 
