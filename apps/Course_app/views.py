@@ -9,7 +9,7 @@ import requests
 import json
 from apps.Teacher_app.models import TeachersIncome
 from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,CheckLoginMixin,CheckOrderShopMixin,CheckRequestToPayMixin
-
+from django.http import JsonResponse
 
 MERCHANT = ""
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
@@ -88,8 +88,11 @@ class CourseDetailView(View):
         body = request.POST.get("body")
 
 
+
         if body is not None:
             Comment.objects.create(user=request.user, body=body, corses=curses)
+
+            return JsonResponse({"response":"کامنت شما با موفقیت ارسال شد"})
 
         return redirect(reverse("Course_app:Course_detail", kwargs={"pk": pk}))
 

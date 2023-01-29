@@ -273,31 +273,23 @@
 
                                         <h4 class="edu_title">ثبت دیدگاه</h4>
                                         <div class="review-form-box form-submit">
-                                            <form method="post">
+                                            <form method="post" id="post-form">
 
                                                 {% csrf_token %}
                                                 <div class="row">
-
-                                                    <div class="col-lg-6 col-md-6 col-sm-12">
-                                                        <div class="form-group">
-                                                            <label>نام و نام خانوادگی</label>
-                                                            <input class="form-control" type="text"
-                                                                   placeholder="{{ request.user.full_name }}" name="">
-                                                        </div>
-                                                    </div>
 
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
                                                             <label>متن نظر</label>
-                                                            <textarea name="body" class="form-control ht-140"
-                                                                      placeholder="نظر خود را بنویسید..."></textarea>
+                                                            <input type="text" class="form-control ht-140" id="body"
+                                                                   placeholder="نظر خود را بنویسید...">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
-                                                            <button type="submit" class="btn theme-bg btn-md">ثبت دیدگاه
+                                                            <button class="btn theme-bg btn-md" type="submit">ثبت دیدگاه
                                                             </button>
                                                         </div>
                                                     </div>
@@ -402,8 +394,6 @@
 
 
                             </form>
-
-
 
 
                         </div>
@@ -588,6 +578,8 @@
 
     <!-- ============================ Footer Start ================================== -->
     <!-- ============================ Footer Start ================================== -->
+
+
     {% include "include/footer.html" %}
     <!-- ============================ Footer End ================================== -->
 
@@ -606,7 +598,11 @@
 <!-- ============================================================== -->
 <!-- All Jquery -->
 <!-- ============================================================== -->
+
+
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <script>
 
 
@@ -648,6 +644,37 @@
 <script src="{% static "assets/js/summernote.min.js" %}"></script>
 <script src="{% static "assets/js/metisMenu.min.js" %}"></script>
 <script src="{% static "assets/js/custom.js" %}"></script>
+
+
+<script>
+
+
+    $(document).on('submit', '#post-form', function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "Course_app:Course_detail" object.object.id %}',
+            data: {
+
+                body: $('#body').val(),
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+
+            success: function (json) {
+                document.getElementById("post-form").reset();
+                Swal.fire(
+                    'بسیار عالی !',
+                    json["response"],
+                    'success'
+                )
+            },
+
+        })
+    });
+
+
+</script>
 <!-- ============================================================== -->
 <!-- This page plugins -->
 <!-- ============================================================== -->
