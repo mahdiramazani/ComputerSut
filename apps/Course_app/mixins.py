@@ -85,7 +85,7 @@ class CheckRequestToPayMixin:
 
         if request.user.is_authenticated:
 
-            if Checkout.objects.filter(id=pk,user=request.user).exists():
+            if Checkout.objects.filter(id=pk,user=request.user,is_paid=False).exists():
 
                 checkout=Checkout.objects.get(id=pk)
 
