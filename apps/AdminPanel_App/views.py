@@ -174,6 +174,7 @@ class Coupons(AdminEmployeMixin, TemplateView):
 class CertificatesOfCoursesView(CheckTeacherMixin, View):
 
     def post(self, request):
+        context={"errors":[]}
         user = request.user
         teacher = Teacher.objects.get(user=user)
         course = Courses.objects.filter(teacher=teacher)
@@ -183,19 +184,34 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
         document = request.FILES.get("document")
         document_number = request.POST.get("document_number")
         image_document = request.FILES.get("image_document")
-        student_user = User.objects.get(student_number=student)
+        c = Courses.objects.get(id=courses)
 
-        if User.objects.filter(id=user.id).exists():
 
-            if Courses.objects.filter(user=student_user).exists():
-                c = Courses.objects.get(id=courses)
+        if User.objects.filter(student_number=student).exists():
 
-                CertificatesOfCourses.objects.create(user=student_user, course=c, document=document,
-                                                     document_number=document_number,image_document=image_document)
+            student_user=User.objects.get(student_number=student)
 
-                return redirect("/")
+            if student_user in c.user.all():
 
-        return render(request, "AdminPanel_App/madrak.html", {"course": course})
+                if student_user in c.user.all():
+
+
+                    CertificatesOfCourses.objects.create(user=student_user, course=c, document=document,
+                                                        document_number=document_number,image_document=image_document)
+
+                    context["errors"].append("مدرک با موفقیت صادر شد")
+                    return render(request, "AdminPanel_App/madrak.html",
+                                  {"course": course, "context": context["errors"]})
+
+            else:
+                context["errors"].append("این کاربر دانشجوی دوره نمی باشد")
+                return render(request, "AdminPanel_App/madrak.html", {"course": course, "context": context["errors"]})
+        else:
+            context["errors"].append("کاربری با این شماره دانشجویی در سایت وجود ندارد")
+            return render(request, "AdminPanel_App/madrak.html", {"course": course, "context": context["errors"]})
+
+
+        return render(request, "AdminPanel_App/madrak.html", {"course": course,"context":context["errors"]})
 
     def get(self, request):
 
@@ -355,19 +371,71 @@ class StudentList(AdminEmployeMixin, View):
 class AddStudent(CheckAdmin, View):
 
     def post(self, request):
-        context = {}
+        context = {"errors":[],}
         courses = Courses.objects.all()
         context["course"] = courses
 
         user = request.POST.get("user")
         id = request.POST.get("course")
 
-        student = User.objects.get(student_number=user)
-        course = Courses.objects.get(id=id)
+        if User.objects.filter(student_number=user).exists():
 
-        course.user.add(student)
+
+            student = User.objects.get(student_number=user)
+            course = Courses.objects.get(id=id)
+
+            if student not in course.user.all():
+
+                if course.how_to_hold == "حضوری":
+                    if course.capacity >= 1:
+                        course.user.add(student)
+                        course.capacity -=1
+                        order=Checkout.objects.create(user=student,course=course,is_paid=True,price=course.price)
+                        course.save()
+
+                        if TeachersIncome.objects.filter(Q(teacher__user=order.course.teacher.user), Q(course=order.course),
+                                                            Q(status=False)).exists():
+
+                            teacher_income = TeachersIncome.objects.get(Q(teacher__user=order.course.teacher.user),
+                                                                        Q(course=order.course), Q(status=False))
+                            teacher_income.income += order.price
+                            teacher_income.save()
+
+                        elif TeachersIncome.objects.filter(Q(teacher__user=order.course.teacher.user), Q(course=order.course),
+                                                        Q(status=True)).exists():
+                            teacher_income = TeachersIncome.objects.create(teacher=order.course.teacher,
+                                                                        course=order.course)
+                            teacher_income.income += order.price
+                            teacher_income.save()
+
+                        else:
+                            teacher_income = TeachersIncome.objects.create(teacher=order.course.teacher,
+                                                                       course=order.course)
+                            teacher_income.income += order.price
+                            teacher_income.save()
+
+                    else:
+
+                        context["errors"].append("ظرفیت دوره به اتمام رسیده است")
+                        return render(request, "AdminPanel_App/register_student.html", context=context)
+
+                else:
+                    course.user.add(student)
+                    context["errors"].append("دانشجو به دوره اضافه شد")
+                    return render(request, "AdminPanel_App/register_student.html", context=context)
+
+            else:
+                context["errors"].append("یوزر انتخاب شده دانشجوی دوره است")
+                return render(request, "AdminPanel_App/register_student.html", context=context)
+
+        else:
+            context["errors"].append("دانشجویی با این مشخصات وجود ندارد")
+
+
+            return render(request, "AdminPanel_App/register_student.html", context=context)
 
         return render(request, "AdminPanel_App/register_student.html", context=context)
+
 
     def get(self, request):
         context = {}
@@ -393,106 +461,6 @@ class MyDocumentsView(CheckLoginMixin, ListView):
 
             return qs.filter(user=user)
 
-
-# class RequestsView(View):
-#
-#     def post(self, request):
-#         form = RequestsForm(request.POST, request.FILES)
-#
-#         if form.is_valid():
-#             user = request.user
-#
-#             f = form.save(commit=False)
-#             f.user = user
-#             f.save()
-#
-#             return redirect(reverse("AdminPanel:Userpanel"))
-#
-#         print(form.errors)
-#
-#         return render(request, "AdminPanel_App/requests.html", {"form": form})
-#
-#     def get(self, request):
-#         form = RequestsForm()
-#
-#         return render(request, "AdminPanel_App/requests.html", {"form": form})
-#
-#
-# class RequestListView(ListView):
-#     model = RequestsModel
-#     template_name = "AdminPanel_App/request_list.html"
-#     paginate_by = 10
-#
-#
-# class RequestListUpdate(View):
-#
-#     def post(self, request, pk):
-#         req = RequestsModel.objects.get(id=pk)
-#         form = RequestsUpdateForm(request.POST, request.FILES, instance=req)
-#         user = User.objects.get(id=req.user.id)
-#
-#         if form.is_valid():
-#
-#             form.save()
-#
-#
-#             #requset to blogger
-#             if req.is_blogger == True:
-#
-#                 user.is_blogger = True
-#                 user.position="وبلاگ نویس"
-#
-#             else:
-#                 user.is_blogger = False
-#                 user.position = "دانشجو"
-#
-#
-#             #request to teacher
-#
-#             if req.is_teacher == True:
-#
-#                 user.is_teacher = True
-#                 teacher=Teacher.objects.get(user_id=user.id)
-#                 teacher.status = True
-#                 user.position = "مدرس"
-#                 teacher.save()
-#
-#             else:
-#                 user.is_teacher = False
-#                 teacher = Teacher.objects.get(user_id=user.id)
-#                 teacher.status = False
-#                 user.position = "دانشجو"
-#                 teacher.save()
-#
-#             #request to employ
-#             if req.is_employee == True:
-#
-#                 user.is_employee = True
-#                 user.position = "کارمند وبسایت"
-#
-#             else:
-#                 user.is_employee = False
-#                 user.position = "دانشجو"
-#
-#             """#request to technical
-#             if req.is_technical_team == True:
-#
-#                 user.is_technical_team = True
-#
-#             else:
-#                 user.is_technical_team = False"""
-#
-#             user.save()
-#             return redirect("AdminPanel:request_list")
-#
-#         return render(request, "AdminPanel_App/requests.html", {"form": form})
-#
-#     def get(self, request, pk):
-#
-#         req = RequestsModel.objects.get(id=pk)
-#         form = RequestsUpdateForm(instance=req)
-#
-#         return render(request, "AdminPanel_App/requests.html", {"form": form})
 
 
 class BlogListView(CheckBloggerMixin, ListView):

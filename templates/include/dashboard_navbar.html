@@ -50,7 +50,7 @@
                             {% if request.user.is_admin == True %}
 
                                 <li><a href="{% url "AdminPanel:Category_course" %}">دسته بندی دوره</a></li>
-                                <li><a href="{% url "AdminPanel:Coupons" %}">تخفیفات</a></li>
+
 
                             {% endif %}
                         </ul>
@@ -78,7 +78,7 @@
                         <a href="javascript:void(0);"><i class="fas fa-gem"></i>ثبت نام ها<span
                                 class="ti-angle-left"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="enroll-history.html">تاریخچه</a></li>
+
                             <li><a href="{% url "AdminPanel:Register_student" %}">ثبت نام هنرجو</a></li>
                         </ul>
                     </li>
@@ -100,7 +100,7 @@
                                 class="ti-angle-left"></span></a>
                         <ul class="nav nav-second-level">
                             <li><a href="{% url "AdminPanel:Admin_list" %}">لیست مدیرها</a></li>
-                            <li><a href="{% url "AdminPanel:Add_admin" %}">افزودن مدیر جدید</a></li>
+
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -146,7 +146,7 @@
                     </li>
                 {% endif %}
 
-                <li><a href="messages.html"><i class="fas fa-comments"></i>پیام ها</a></li>
+
                 <li><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-address-card"></i>پروفایل کاربری</a>
                 </li>
 

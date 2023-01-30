@@ -269,7 +269,7 @@
                                 <!-- Submit Reviews -->
                                 <div class="edu_wraper">
 
-                                    {% if request.user.is_authenticated %}
+
 
                                         <h4 class="edu_title">ثبت دیدگاه</h4>
                                         <div class="review-form-box form-submit">
@@ -287,6 +287,8 @@
                                                         </div>
                                                     </div>
 
+                                                    {% if request.user.is_authenticated %}
+
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
                                                             <button class="btn theme-bg btn-md" type="submit">ثبت دیدگاه
@@ -294,13 +296,21 @@
                                                         </div>
                                                     </div>
 
+                                                    {% else %}
+
+                                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                                        <div class="form-group">
+                                                            <a class="btn theme-bg btn-md" onclick="alert_login_comment()" >ثبت دیدگاه
+                                                            </a>
+                                                        </div>
+                                                    </div>
+
+                                                    {% endif %}
+
                                                 </div>
                                             </form>
                                         </div>
-                                    {% else %}
 
-                                        <p class="alert-danger">برای ثبت دیدگاه باید وارد شوید</p>
-                                    {% endif %}
                                 </div>
 
                             </div>
@@ -629,6 +639,14 @@
             title: 'خطا!',
             text: 'برای مشاهده محتوای دوره باید در دوره ثبت نام کنید',
 
+        })
+    }
+
+    function alert_login_comment() {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا!',
+            text: 'برای ثبت نظر باید وارد حساب کابری خود شوید!'
         })
     }
 

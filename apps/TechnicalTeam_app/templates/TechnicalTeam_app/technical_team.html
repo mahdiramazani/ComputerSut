@@ -35,22 +35,7 @@
 
                 <!-- Sidebar -->
                 <div class="col-xl-8 col-lg-8 col-md-12">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <div class="short_wraping">
-                                <div class="row m-0 align-items-center justify-content-between">
 
-
-
-                                    <div class="col-lg-8 col-md-7 col-sm-12 col-sm-6">
-                                        <div class="dlks_152">
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="row justify-content-center">
 
@@ -59,26 +44,19 @@
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="crs_trt_grid">
                                     <div class="crs_trt_thumb circle">
-                                        <a href="instructor-detail.html" class="crs_trt_thum_link"><img
+                                        <a class="crs_trt_thum_link"><img
                                                 src="{{ item.image.url }}" class="img-fluid circle" alt=""></a>
                                     </div>
                                     <div class="crs_trt_caption">
                                         <div class="instructor_tag dark"><span>{{ item.position }}</span></div>
                                         <div class="instructor_title"><h4><a
-                                                href="instructor-detail.html">{{ item.user.full_name }}</a></h4></div>
+                                                >{{ item.full_name }}</a></h4></div>
                                         <div class="trt_rate_inf">
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star filled"></i>
-                                            <i class="fa fa-star-half filled"></i>
-                                            <span class="alt_rates">(244 امتیاز)</span>
+
+
                                         </div>
                                     </div>
-                                    <div class="crs_trt_footer">
-                                        <div class="crs_trt_ent"><i class="fa fa-user"></i>تعداد دوره
-                                            ها: {{ item.Corses.count }}</div>
-                                    </div>
+
                                 </div>
                             </div>
 
@@ -97,7 +75,7 @@
 
                                         {% if page_obj.has_previous %}
 
-                                            <li class="page-item disabled">
+                                            <li class="page-item">
                                                 <a class="page-link" href="?page={{ page_obj.previous_page_number }}"
                                                    tabindex="-1"><i class="fas fa-arrow-circle-right"></i></a>
                                             </li>

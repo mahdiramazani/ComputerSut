@@ -27,16 +27,26 @@
                                 </div>
                                 <div class="dash_crs_cat_caption">
                                     <div class="dash_crs_cat_head">
-                                        <h4>{{ item.course.titel }}</h4>
+                                        <a href="{{ item.course.get_absulot_url }}"><h4 class="badge-success badge">{{ item.course.titel }}</h4></a>
+                                        <br>
+                                        <br>
+
                                         <span>تاریخ صدور مدرک:{{ item.get_jalali_date }}</span>
 
 
-                                            <hr>
-                                            <span>نام دانشجو:{{ item.user.full_name }}</span>
-                                            <hr>
-                                            <span>شماره دانشجویی:{{ item.user.student_number }}</span>
-                                            <hr>
-                                            <a class="link btn-link" href="{{ item.course.teacher.get_absoolut_url }}"><span>مدرس دوره:{{ item.course.teacher.user.full_name }}</span></a>
+                                        <hr>
+                                        <span>نام دانشجو:{{ item.user.full_name }}</span>
+                                        <hr>
+                                        <span>شماره دانشجویی:{{ item.user.student_number }}</span>
+                                        <hr>
+                                        {% if item.user.nation_code %}
+                                        <span>کدملی:{{ item.user.nation_code }}</span>
+                                        <hr>
+                                        {% endif %}
+                                        <a class="link btn-link"
+                                           href="{{ item.course.teacher.get_absoolut_url }}"><span>مدرس دوره:{{ item.course.teacher.user.full_name }}</span></a>
+                                        <hr>
+                                        <span>صادره از: دانشگاه صنعتی سیرجان</span>
 
 
                                     </div>

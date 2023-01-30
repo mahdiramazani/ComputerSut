@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     "django_cleanup",
-    # "storages",
+    "storages",
 
 
     "ckeditor",
@@ -194,14 +194,14 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-#
-# AWS_ACCESS_KEY_ID = '161e6df9-2568-4022-9c7c-b9a84a4a9b20'
-# AWS_SECRET_ACCESS_KEY = '4951a7034bbef3c80bf7d4204c9f05c36e25e4bc755a3dbfd442a7434c564f20'
-# AWS_STORAGE_BUCKET_NAME = 'computersut'
-# AWS_SERVICE_NAME = 's3'
-# AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
-# AWS_S3_FILE_OVERWRITE = False
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = '161e6df9-2568-4022-9c7c-b9a84a4a9b20'
+AWS_SECRET_ACCESS_KEY = '4951a7034bbef3c80bf7d4204c9f05c36e25e4bc755a3dbfd442a7434c564f20'
+AWS_STORAGE_BUCKET_NAME = 'computersut'
+AWS_SERVICE_NAME = 's3'
+AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
+AWS_S3_FILE_OVERWRITE = False
 
 
 # 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'

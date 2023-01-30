@@ -23,7 +23,8 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a>
+                                            </li>
                                             <li class="breadcrumb-item active" aria-current="page">صدور مدرک</li>
                                         </ol>
                                     </nav>
@@ -36,6 +37,19 @@
                     <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12">
                             <div class="dashboard_wrap">
+                                {% if context%}
+
+
+
+                                    {% for item in context %}
+
+                                        <p class="text text-center alert-danger alert">{{ item }}</p>
+
+                                    {% endfor %}
+
+
+                                {% endif %}
+
                                 <form method="post" enctype="multipart/form-data">
                                     {% csrf_token %}
                                     <div class="row justify-content-center">
@@ -45,7 +59,8 @@
                                             <div class="form-group smalls">
                                                 <label>شماره دانشجویی هنرجو</label>
                                                 <div class="simple-input">
-                                                    <input type="text" class="form-control" placeholder="شماره دانشجویی هنرجو..." name="student">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="شماره دانشجویی هنرجو..." name="student">
 
                                                 </div>
                                             </div>
@@ -64,12 +79,13 @@
                                             <div class="form-group smalls">
                                                 <label>شماره مدرک را وارد کنید</label>
                                                 <div class="simple-input">
-                                                    <input type="text" class="form-control" placeholder="شماره مدرک..." name="document_number">
+                                                    <input type="text" class="form-control" placeholder="شماره مدرک..."
+                                                           name="document_number">
 
                                                 </div>
                                             </div>
 
-                                        <div class="form-group smalls">
+                                            <div class="form-group smalls">
                                                 <label> تصویر مدرک را آپلود کنید</label>
                                                 <div class="simple-input">
                                                     <input type="file" class="form-control" name="image_document">
