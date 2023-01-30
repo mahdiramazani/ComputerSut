@@ -193,13 +193,14 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 #
-# AWS_ACCESS_KEY_ID = '74cc5484-d659-4a33-b745-692ca89d37a9'
-# AWS_SECRET_ACCESS_KEY = '4c6305c22e40c0744e9414a5175cc10b0f815adc'
-# AWS_STORAGE_BUCKET_NAME = 'cmputersut'
+# AWS_ACCESS_KEY_ID = '161e6df9-2568-4022-9c7c-b9a84a4a9b20'
+# AWS_SECRET_ACCESS_KEY = '4951a7034bbef3c80bf7d4204c9f05c36e25e4bc755a3dbfd442a7434c564f20'
+# AWS_STORAGE_BUCKET_NAME = 'computersut'
 # AWS_SERVICE_NAME = 's3'
-# AWS_S3_ENDPOINT_URL = 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'
+# AWS_S3_ENDPOINT_URL ="https://computersut.s3.ir-thr-at1.arvanstorage.com"
 # AWS_S3_FILE_OVERWRITE = False
 
+# 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'
 
 RECAPTCHA_PUBLIC_KEY = "6Ldw_zYkAAAAADypITNQ5hSi_EWvtyghI1MVXJCE"
 RECAPTCHA_PRIVATE_KEY = "6Ldw_zYkAAAAAAj25lTYDVMAJM6-7czv0HAIo51c"

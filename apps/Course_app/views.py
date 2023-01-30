@@ -157,7 +157,13 @@ class RequestPay(CheckRequestToPayMixin,View):
 
 
         if order.course.price == 0:
+
             order.course.user.add(request.user)
+            order.is_paid=True
+            if order.course.how_to_hold=="حضوری":
+                order.course.capacity -= 1
+                order.course.save()
+
             order.save()
 
             return redirect(order.course.get_absulot_url())

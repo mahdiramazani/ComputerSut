@@ -89,14 +89,18 @@ class AddCourseForm(forms.ModelForm):
     class Meta:
 
         model=Courses
-        exclude=("view","user","slug","teacher")
+        exclude=("view","slug","user")
 
 
 
         widgets={
 
 
-
+            "teacher":forms.Select(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
 
             "titel":forms.TextInput(
                 attrs={
@@ -407,7 +411,7 @@ class CreateBlogForm(forms.ModelForm):
     class Meta:
 
         model=BlogModel
-        exclude=("user","view","created",)
+        exclude=("user","view","created","status")
 
         widgets={
 
@@ -439,6 +443,49 @@ class CreateBlogForm(forms.ModelForm):
 
 
         }
+
+
+
+class UpdateBlogForm(forms.ModelForm):
+
+
+    class Meta:
+
+        model=BlogModel
+        exclude=("user","view","created")
+
+        widgets={
+
+            "titel":forms.TextInput(
+                attrs={
+                    "class":"form-control",
+                    "placeholder":"عنوان مقاله را وارد کنید"
+                }
+            ),
+
+            "image":forms.FileInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+            "text":forms.Textarea(
+                attrs={
+                    "class":"form-control summernote"
+                }
+            ),
+
+            "category":forms.SelectMultiple(
+
+                attrs={
+                    "class":"form-control"
+                }
+            ),
+
+
+        }
+
+
 
 
 class CreateMessageForm(forms.ModelForm):

@@ -185,11 +185,15 @@
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
                                                                        href="{{ item.get_absulot_url }}">مشاهده</a>
+                                                                    {% if request.user.is_admin == True or request.user.is_employee == True %}
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:EditCourse" item.id %}">ویرایش</a>
+                                                                    {% endif %}
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:Add_Video_Child" item.id %}">اضافه کردن ویدیو به دوره</a>
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:video_child_list" item.id %}">ویدیو های دوره</a>
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:students_of_the_course" item.id %}">دانشجویان دوره</a>
+                                                                {% if request.user.is_admin == True or request.user.is_employee == True %}
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:delete_course" item.id  %}">حذف</a>
+                                                                {% endif %}
                                                                 </div>
                                                             </div>
                                                         </td>

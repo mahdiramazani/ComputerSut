@@ -58,7 +58,7 @@
 														<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 															<button class="nav-link active" id="v-pills-basic-tab" data-toggle="pill" data-target="#v-pills-basic" type="button" role="tab" aria-controls="v-pills-basic" aria-selected="true">اطلاعات پایه</button>
 
-															<button class="nav-link" id="v-pills-pricing-tab" data-toggle="pill" data-target="#v-pills-pricing" type="button" role="tab" aria-controls="v-pills-pricing" aria-selected="false">قیمت</button>
+
 															<button class="nav-link" id="v-pills-media-tab" data-toggle="pill" data-target="#v-pills-media" type="button" role="tab" aria-controls="v-pills-media" aria-selected="false">رسانه</button>
 
 
@@ -72,68 +72,28 @@
 															<div class="tab-pane fade show active" id="v-pills-basic" role="tabpanel" aria-labelledby="v-pills-basic-tab">
 
 
-                                                                <div class="form-group smalls">
-																	<label>مدرس دوره</label>
-																	{{ form.teacher }}
-																</div>
 
 																<div class="form-group smalls">
-																	<label>عنوان دوره*</label>
+																	<label>عنوان مقاله*</label>
 																	{{ form.titel }}
 																</div>
 
 
 
                                                                 <div class="form-group smalls">
-																	<label>وضعیت دوره</label>
+																	<label>متن مقاله</label>
+																	{{ form.text }}
+																</div>
+
+                                                                <div class="form-group smalls">
+																	<label>دسته بندی مقاله</label>
+																	{{ form.category }}
+																</div>
+																
+																<div class="form-group smalls">
+																	<label>وضعیت ویدیو</label>
 																	{{ form.status }}
 																</div>
-																
-																<div class="form-group smalls">
-																	<label>توضیحات کوتاه</label>
-																	{{ form.Introduction_of_the_valley }}
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>توضیحات</label>
-																	{{ form.specifications }}
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>دسته بندی</label>
-																	<div class="simple-input">
-																		{{ form.category }}
-																	</div>
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>سطح</label>
-																	<div class="simple-input">
-																		{{ form.level }}
-																	</div>
-																</div>
-
-                                                                <div class="form-group smalls">
-																	<label>نحوه برگزاری دوره</label>
-																	<div class="simple-input">
-																		{{ form.how_to_hold }}
-																	</div>
-																</div>
-
-
-                                                                <div class="form-group smalls">
-																	<label>ظرفیت دوره</label>
-																	<div class="simple-input">
-																		{{ form.capacity }}
-																	</div>
-																</div>
-
-                                                                <div class="form-group smalls">
-																	<label>تعداد پروژه های این دوره</label>
-																	{{ form.project_count }}
-																</div>
-																
-
 
 																
 																<div class="d-flex align-items-center justify-content-center">
@@ -164,24 +124,9 @@
 																
 
 																
-																<div class="form-group smalls">
-																	<label>قیمت دوره (تومان)</label>
-																	{{ form.price }}
-																</div>
-																
-																<div class="form-group smalls">
-																	<label>تخفیف (تومان)</label>
 
-																	{{ form.discount }}
-
-																</div>
 																
-																<div class="d-flex align-items-center justify-content-center">
-																	<ul class="alios_slide_nav">
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-																		<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-																	</ul>
-																</div>
+
 															</div>
 															
 															<!-- media -->
@@ -190,20 +135,11 @@
 
 																
 																<div class="form-group smalls">
-																	<label>کاور ویدیو</label>
-																	<div class="custom-file">
-																	  {{ form.cover }}
-																	  <label class="custom-file-label">انتخاب تصویر</label>
-																	</div>
+																	<label>تصویر دسته بندی</label>
+																	{{ form.image }}
 																</div>
 
-                                                                <div class="form-group smalls">
-																	<label>تیزر معرفی دوره</label>
-																	<div class="custom-file">
-																	  {{ form.introduction_video }}
-																	  <label class="custom-file-label">انتخاب ویدیو</label>
-																	</div>
-																</div>
+
 																
 																<div class="d-flex align-items-center justify-content-center">
 																	<ul class="alios_slide_nav">

@@ -174,7 +174,7 @@
                                                             </td>
                                                         {% else %}
                                                             <td><span
-                                                                    class="smalls lg badge badge-danger">آرشیو</span>
+                                                                    class="smalls lg badge badge-danger">در انتظار تایید</span>
                                                             </td>
                                                         {% endif %}
 
@@ -188,8 +188,10 @@
                                                                 <div class="drp-select dropdown-menu">
                                                                     <a class="dropdown-item"
                                                                        href="{{ item.get_absulot_url }}">مشاهده</a>
+                                                                    {% if request.user.is_admin == True or request.user.is_employee == True %}
                                                                     <a class="dropdown-item" href="{% url "AdminPanel:update_blog" item.id %}">ویرایش</a>
                                                                     <a class="dropdown-item" href="JavaScript:Void(0);">حذف</a>
+                                                                    {% endif %}
                                                                 </div>
                                                             </div>
                                                         </td>

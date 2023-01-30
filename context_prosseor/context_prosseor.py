@@ -21,7 +21,7 @@ def get_order_shop(request):
 
     else:
 
-        return None
+        return {"checkout": None, "count_ch": 0}
 
 def count_course(request):
 
