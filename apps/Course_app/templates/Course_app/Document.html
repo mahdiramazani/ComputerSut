@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+    <!-- ============================ Dashboard: Dashboard Start ================================== -->
+    <section class="gray pt-4">
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-center">
+
+
+                <div class="d-flex justify-content-center">
+
+
+                    <!-- /Row -->
+
+                    <div class="d-flex justify-content-center">
+
+
+                        <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                            <div class="dash_crs_cat">
+                                <div class="dash_crs_cat_thumb">
+                                    <img src="{{ item.image_document.url }}" alt="" class="img-fluid"/>
+                                </div>
+                                <div class="dash_crs_cat_caption">
+                                    <div class="dash_crs_cat_head">
+                                        <h4>{{ item.course.titel }}</h4>
+                                        <span>تاریخ صدور مدرک:{{ item.get_jalali_date }}</span>
+
+
+                                            <hr>
+                                            <span>نام دانشجو:{{ item.user.full_name }}</span>
+                                            <hr>
+                                            <span>شماره دانشجویی:{{ item.user.student_number }}</span>
+                                            <hr>
+                                            <a class="link btn-link" href="{{ item.course.teacher.get_absoolut_url }}"><span>مدرس دوره:{{ item.course.teacher.user.full_name }}</span></a>
+
+
+                                    </div>
+
+                                    <div class="dash_crs_cat_bottom">
+                                        <a href="{{ item.document.url }}"
+                                           class="btn full-width theme-bg-light theme-cl">دانلود مدرک</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- ============================ Dashboard: Dashboard End ================================== -->
+
+
+
+
+
+{% endblock %}

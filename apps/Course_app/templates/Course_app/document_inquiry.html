@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12">
+            <div class="dashboard_wrap">
+
+
+                <form method="post" id="post-form">
+                    {% csrf_token %}
+                    <div class="row justify-content-center">
+
+                        <div class="col-xl-8 col-lg-10 col-md-12">
+
+
+                            {% for item in form.non_field_errors %}
+                                <p class="text text-center alert alert-danger">
+                                    {{ item }}
+                                </p>
+                            {% endfor %}
+
+                            <div class="form-group smalls">
+                                <label>شماره مدرک را وارد کنید</label>
+                                <div class="simple-input">
+                                    {{ form.doucoment_number }}
+
+                                </div>
+                            </div>
+
+                            <div class="form-group smalls">
+
+                                {% for item in form.captcha.errors %}
+                                <p class="text text-center alert alert-danger">
+                                    {{ item }}
+                                </p>
+                            {% endfor %}
+
+                                <div class="simple-input">
+                                    {{ form.captcha }}
+
+                                </div>
+                            </div>
+
+
+                            <div class="form-group smalls">
+                                <button type="submit" class="btn theme-bg text-white">جستجو</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -115,8 +115,8 @@
                     <li {% if request.resolver_match.url_name == "about_us" %} class="active" {% endif %}><a
                             href="{% url "AboutUs_app:about_us" %}">درباره ما</a></li>
 
-                    <li {% if request.resolver_match.url_name == "about_usl" %} class="active" {% endif %}><a
-                            href="{% url "AboutUs_app:about_us" %}">معرفی انجمن</a></li>
+                    <li {% if request.resolver_match.url_name == "document_inquiry" %} class="active" {% endif %}><a
+                            href="{% url "Course_app:document_inquiry" %}">استعلام مدرک</a></li>
 
                 </ul>
 

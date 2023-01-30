@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, ListView, DetailView, View
-from apps.Course_app.models import Courses, CoursesChild, Category, Comment, Checkout
+from apps.Course_app.models import Courses, CoursesChild, Category, Comment, Checkout,CertificatesOfCourses
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.http import HttpResponse
@@ -10,7 +10,7 @@ import json
 from apps.Teacher_app.models import TeachersIncome
 from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,CheckLoginMixin,CheckOrderShopMixin,CheckRequestToPayMixin
 from django.http import JsonResponse
-
+from apps.Course_app.forms import DocumentInquiryForm
 MERCHANT = ""
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
@@ -259,3 +259,35 @@ class VerifyView(View):
                 return HttpResponse(f"Error code: {e_code}, Error Message: {e_message}")
         else:
             return redirect(order.course.get_absulot_url())
+
+
+class DocumentInquiryView(View):
+
+    def post(self,request):
+        form = DocumentInquiryForm(data=request.POST)
+
+        if form.is_valid():
+            cd=form.cleaned_data
+            doucoment_number=cd.get("doucoment_number")
+
+
+
+            return redirect(reverse("Course_app:document")+f"?document_number={doucoment_number}")
+
+
+        return render(request, "Course_app/document_inquiry.html", {"form": form})
+
+    def get(self,request):
+        form=DocumentInquiryForm()
+
+
+        return render(request,"Course_app/document_inquiry.html",{"form":form})
+
+
+class DocumentView(View):
+
+    def get(self,request):
+        document_number=request.GET.get("document_number")
+        object_list=CertificatesOfCourses.objects.get(document_number=document_number)
+
+        return render(request,"Course_app/Document.html",{"item":object_list})

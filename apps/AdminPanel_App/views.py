@@ -2,18 +2,20 @@ from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, ListView, UpdateView, CreateView, DeleteView
 from apps.AdminPanel_App.forms import EditUserPanelForms, AddCourseForm, AddVideoChildForm, CreateCategoryForm, \
-    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm,CreateMessageForm,AddAcsess,TeacherIncomeForms,UpdateBlogForm
-from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses,Checkout
+    RequestTeacherForm, EditTeacherForm, RequestsForm, RequestsUpdateForm, CreateBlogForm, CreateMessageForm, AddAcsess, \
+    TeacherIncomeForms, UpdateBlogForm
+from apps.Course_app.models import Courses, CoursesChild, Category, CertificatesOfCourses, Checkout
 from apps.Acount_app.models import User, Teacher
 from apps.Acount_app.forms import SignForm
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from apps.AdminPanel_App.mixins import CheckTeacherMixin, CheckAdmin, CheckIsTeacherMixin,AdminEmployeMixin,CheckLoginMixin,CheckBloggerMixin
+from apps.AdminPanel_App.mixins import CheckTeacherMixin, CheckAdmin, CheckIsTeacherMixin, AdminEmployeMixin, \
+    CheckLoginMixin, CheckBloggerMixin
 from apps.Blog_App.models import Category, BlogModel
 from apps.Teacher_app.models import TeachersIncome
 from django.db.models import Q
 
 
-class AdminPanelView(CheckLoginMixin,View):
+class AdminPanelView(CheckLoginMixin, View):
 
     def post(self, request):
         form = EditUserPanelForms(request.POST, request.FILES, instance=request.user)
@@ -31,7 +33,7 @@ class AdminPanelView(CheckLoginMixin,View):
         return render(request, "AdminPanel_App/user_panel.html", {"form": form})
 
 
-class DashboardView(CheckLoginMixin,TemplateView):
+class DashboardView(CheckLoginMixin, TemplateView):
     template_name = "AdminPanel_App/dashboard.html"
 
 
@@ -179,6 +181,8 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
         student = request.POST.get("student")
         courses = request.POST.get("course")
         document = request.FILES.get("document")
+        document_number = request.POST.get("document_number")
+        image_document = request.FILES.get("image_document")
         student_user = User.objects.get(student_number=student)
 
         if User.objects.filter(id=user.id).exists():
@@ -186,7 +190,8 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
             if Courses.objects.filter(user=student_user).exists():
                 c = Courses.objects.get(id=courses)
 
-                CertificatesOfCourses.objects.create(user=student_user, course=c, document=document)
+                CertificatesOfCourses.objects.create(user=student_user, course=c, document=document,
+                                                     document_number=document_number,image_document=image_document)
 
                 return redirect("/")
 
@@ -237,8 +242,7 @@ class RegisterStudent(CheckAdmin, View):
         return render(request, "AdminPanel_App/add-students.html", {"form": form})
 
 
-
-class RequestToTeacherView(CheckLoginMixin,View):
+class RequestToTeacherView(CheckLoginMixin, View):
 
     def post(self, request):
         form = RequestTeacherForm(request.POST, request.FILES)
@@ -323,11 +327,8 @@ class AdminList(CheckAdmin, ListView):
     paginate_by = 10
 
     def get_queryset(self):
-
-
-
-
-        qs=User.objects.filter(Q(is_admin=True) | Q(is_teacher=True) | Q(is_technical_team=True) | Q(is_employee=True))
+        qs = User.objects.filter(
+            Q(is_admin=True) | Q(is_teacher=True) | Q(is_technical_team=True) | Q(is_employee=True))
 
         return qs
 
@@ -340,7 +341,7 @@ class AddTeacher(CheckAdmin, TemplateView):
     template_name = "AdminPanel_App/add-teacher.html"
 
 
-class StudentList(AdminEmployeMixin,View):
+class StudentList(AdminEmployeMixin, View):
 
     def get(self, request):
         u = User.objects.all()
@@ -376,7 +377,7 @@ class AddStudent(CheckAdmin, View):
         return render(request, "AdminPanel_App/register_student.html", context=context)
 
 
-class MyDocumentsView(CheckLoginMixin,ListView):
+class MyDocumentsView(CheckLoginMixin, ListView):
     model = CertificatesOfCourses
     template_name = "AdminPanel_App/my_doucument.html"
 
@@ -494,7 +495,7 @@ class MyDocumentsView(CheckLoginMixin,ListView):
 #         return render(request, "AdminPanel_App/requests.html", {"form": form})
 
 
-class BlogListView(CheckBloggerMixin,ListView):
+class BlogListView(CheckBloggerMixin, ListView):
     model = BlogModel
     template_name = "AdminPanel_App/blog_list.html"
     paginate_by = 20
@@ -513,7 +514,7 @@ class BlogListView(CheckBloggerMixin,ListView):
             return qs.filter(user=user)
 
 
-class CreateBlogView(CheckBloggerMixin,View):
+class CreateBlogView(CheckBloggerMixin, View):
 
     def post(self, request):
         form = CreateBlogForm(request.POST, request.FILES)
@@ -534,35 +535,35 @@ class CreateBlogView(CheckBloggerMixin,View):
         return render(request, "AdminPanel_App/create_blog.html", {"form": form})
 
 
-class UpdateBlogView(AdminEmployeMixin,UpdateView):
+class UpdateBlogView(AdminEmployeMixin, UpdateView):
     model = BlogModel
     template_name = "AdminPanel_App/update_blog_form.html"
     form_class = UpdateBlogForm
     success_url = reverse_lazy("AdminPanel:blog_list")
 
 
-class DeleteCourseView(AdminEmployeMixin,DeleteView):
+class DeleteCourseView(AdminEmployeMixin, DeleteView):
     model = Courses
     success_url = reverse_lazy("AdminPanel:Course_list")
 
 
-class DeleteCourseChild(CheckIsTeacherMixin,DeleteView):
+class DeleteCourseChild(CheckIsTeacherMixin, DeleteView):
     model = CoursesChild
     success_url = reverse_lazy("AdminPanel:video_child_list")
 
 
-class DeleteCategory(AdminEmployeMixin,DeleteView):
+class DeleteCategory(AdminEmployeMixin, DeleteView):
     model = Category
 
     success_url = reverse_lazy("AdminPanel:Category_course")
 
 
-class DeleteTeacherView(CheckAdmin,DeleteView):
+class DeleteTeacherView(CheckAdmin, DeleteView):
     model = Teacher
     success_url = reverse_lazy("AdminPanel:Teacher_list")
 
 
-class MyCourseView(CheckLoginMixin,ListView):
+class MyCourseView(CheckLoginMixin, ListView):
     model = Courses
     template_name = "AdminPanel_App/MyCourse.html"
 
@@ -572,89 +573,74 @@ class MyCourseView(CheckLoginMixin,ListView):
         return qs.filter(user=self.request.user)
 
 
-class CreateMessageView(CheckAdmin,View):
+class CreateMessageView(CheckAdmin, View):
 
-    def post(self,request):
-        form=CreateMessageForm(request.POST,request.FILES)
+    def post(self, request):
+        form = CreateMessageForm(request.POST, request.FILES)
 
+        return render(request, "AdminPanel_App/create_message.html", {"form": form})
 
-        return render(request,"AdminPanel_App/create_message.html",{"form":form})
+    def get(self, request):
+        form = CreateMessageForm()
 
-
-    def get(self,request):
-        form=CreateMessageForm()
-
-
-        return render(request,"AdminPanel_App/create_message.html",{"form":form})
-
-class Accses(CheckAdmin,View):
-
-    def get(self,request):
+        return render(request, "AdminPanel_App/create_message.html", {"form": form})
 
 
+class Accses(CheckAdmin, View):
 
+    def get(self, request):
 
-        return render(request,"AdminPanel_App/accses.html")
+        return render(request, "AdminPanel_App/accses.html")
 
-    def post(self,request):
-        context={"errors":[]}
+    def post(self, request):
+        context = {"errors": []}
 
         student_number = request.POST.get("user")
 
-
-
         if student_number:
 
-            if User.objects.filter(Q(student_number=student_number) | Q(nation_code=student_number) | Q(phone=student_number)).exists():
+            if User.objects.filter(Q(student_number=student_number) | Q(nation_code=student_number) | Q(
+                    phone=student_number)).exists():
 
                 return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
             else:
                 context["errors"].append("دانشجویی با این مشخصات وجود ندارد")
-                return render(request, "AdminPanel_App/accses.html",context)
+                return render(request, "AdminPanel_App/accses.html", context)
+
+        return render(request, "AdminPanel_App/accses.html")
 
 
+class AddAcsesToUser(CheckAdmin, View):
 
-
-
-        return render(request,"AdminPanel_App/accses.html")
-
-
-class AddAcsesToUser(CheckAdmin,View):
-
-    def get(self,request):
+    def get(self, request):
         student_number = request.GET.get("student_number")
-        user_id = User.objects.get(Q(student_number=student_number) | Q(nation_code=student_number) | Q(phone=student_number))
+        user_id = User.objects.get(
+            Q(student_number=student_number) | Q(nation_code=student_number) | Q(phone=student_number))
         form = AddAcsess(instance=user_id)
 
         return render(request, "AdminPanel_App/add_acses_to_user.html", {"form": form})
 
-
-    def post(self,request):
-        student_number=request.GET.get("student_number")
-        user_id = User.objects.get(Q(nation_code=student_number) | Q(student_number=student_number) | Q(phone=student_number))
-        form=AddAcsess(request.POST,request.FILES,instance=user_id)
-
+    def post(self, request):
+        student_number = request.GET.get("student_number")
+        user_id = User.objects.get(
+            Q(nation_code=student_number) | Q(student_number=student_number) | Q(phone=student_number))
+        form = AddAcsess(request.POST, request.FILES, instance=user_id)
 
         if form.is_valid():
-
             form.save()
 
             return redirect("AdminPanel:add_accses")
 
+        return render(request, "AdminPanel_App/add_acses_to_user.html", {"form": form})
 
 
-        return render(request,"AdminPanel_App/add_acses_to_user.html",{"form":form})
-
-
-class IncomeTeachersView(CheckTeacherMixin,ListView):
-
+class IncomeTeachersView(CheckTeacherMixin, ListView):
     template_name = "AdminPanel_App/teachersincome.html"
     model = TeachersIncome
     paginate_by = 10
 
-
     def get_queryset(self):
-        qs=super(IncomeTeachersView, self).get_queryset()
+        qs = super(IncomeTeachersView, self).get_queryset()
 
         if self.request.user.is_admin or self.request.user.is_employee:
 
@@ -665,15 +651,14 @@ class IncomeTeachersView(CheckTeacherMixin,ListView):
             return qs.filter(teacher__user=self.request.user)
 
 
-class ListOfPaymentsView(CheckLoginMixin,ListView):
-
+class ListOfPaymentsView(CheckLoginMixin, ListView):
     template_name = "AdminPanel_App/list_of_pay.html"
     model = Checkout
     paginate_by = 10
 
     def get_queryset(self):
 
-        qs=super(ListOfPaymentsView, self).get_queryset()
+        qs = super(ListOfPaymentsView, self).get_queryset()
 
         if self.request.user.is_admin:
 
@@ -683,28 +668,25 @@ class ListOfPaymentsView(CheckLoginMixin,ListView):
             return qs.filter(user=self.request.user)
 
 
-class EditAdminView(CheckAdmin,View):
+class EditAdminView(CheckAdmin, View):
 
-
-    def get(self,request,StudentNumber):
-
-        student_number=StudentNumber
+    def get(self, request, StudentNumber):
+        student_number = StudentNumber
 
         return redirect(reverse("AdminPanel:add_accses_to_user") + f"?student_number={student_number}")
 
 
-class EditTeacherIncomeView(AdminEmployeMixin,View):
+class EditTeacherIncomeView(AdminEmployeMixin, View):
 
-    def get(self,request,pk):
-        income_teacher=TeachersIncome.objects.get(id=pk)
-        form=TeacherIncomeForms(instance=income_teacher)
-
-        return render(request,"AdminPanel_App/pay_to_teacher.html",{"form":form})
-
-    def post(self,request,pk):
-
+    def get(self, request, pk):
         income_teacher = TeachersIncome.objects.get(id=pk)
-        form = TeacherIncomeForms(data=request.POST,instance=income_teacher)
+        form = TeacherIncomeForms(instance=income_teacher)
+
+        return render(request, "AdminPanel_App/pay_to_teacher.html", {"form": form})
+
+    def post(self, request, pk):
+        income_teacher = TeachersIncome.objects.get(id=pk)
+        form = TeacherIncomeForms(data=request.POST, instance=income_teacher)
 
         if form.is_valid():
             form.save()

@@ -208,7 +208,9 @@ class Comment(models.Model):
 
 class CertificatesOfCourses(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
+    document_number=models.CharField(max_length=100)
     course=models.ForeignKey(Courses,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
+    image_document=models.FileField(upload_to="media/course/document/image")
     document=models.FileField(upload_to="media/course/document")
     created=models.DateTimeField(auto_now_add=True)
 

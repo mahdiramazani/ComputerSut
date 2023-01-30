@@ -23,8 +23,8 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">ثبت نام هنرجو</li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">صدور مدرک</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -45,7 +45,7 @@
                                             <div class="form-group smalls">
                                                 <label>شماره دانشجویی هنرجو</label>
                                                 <div class="simple-input">
-                                                    <input type="text" class="form-control" name="student">
+                                                    <input type="text" class="form-control" placeholder="شماره دانشجویی هنرجو..." name="student">
 
                                                 </div>
                                             </div>
@@ -60,6 +60,23 @@
                                                 </select>
                                             </div>
 
+
+                                            <div class="form-group smalls">
+                                                <label>شماره مدرک را وارد کنید</label>
+                                                <div class="simple-input">
+                                                    <input type="text" class="form-control" placeholder="شماره مدرک..." name="document_number">
+
+                                                </div>
+                                            </div>
+
+                                        <div class="form-group smalls">
+                                                <label> تصویر مدرک را آپلود کنید</label>
+                                                <div class="simple-input">
+                                                    <input type="file" class="form-control" name="image_document">
+
+                                                </div>
+                                            </div>
+
                                             <div class="form-group smalls">
                                                 <label>مدرک را آپلود کنید</label>
                                                 <div class="simple-input">
@@ -69,7 +86,7 @@
                                             </div>
 
                                             <div class="form-group smalls">
-                                                <button type="submit" class="btn theme-bg text-white">ثبت نام</button>
+                                                <button type="submit" class="btn theme-bg text-white">صدور مدرک</button>
                                             </div>
 
                                         </div>
