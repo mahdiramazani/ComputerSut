@@ -1,10 +1,10 @@
 {% load static %}
 <html lang="fa">
 
-<head>
+
     {% include "include/head.html" %}
 
-</head>
+
 
 <body class="blog-page" dir="rtl">
 
@@ -225,8 +225,8 @@
                     <!-- Searchbard -->
                     <div class="single_widgets widget_search">
                         <h4 class="title">جستجو</h4>
-                        <form action="#" class="sidebar-search-form">
-                            <input type="search" name="search" placeholder="عنوان مورد نظر...">
+                        <form action="{% url "Home_app:search" %}" class="sidebar-search-form" method="get">
+                            <input type="search" name="q" required placeholder="عنوان مورد نظر...">
                             <button type="submit"><i class="ti-search"></i></button>
                         </form>
                     </div>
@@ -284,23 +284,7 @@
     <!-- ============================ Blog Detail End ================================== -->
 
     <!-- ============================ Call To Action ================================== -->
-    <section class="theme-bg call_action_wrap-wrap">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
 
-                    <div class="call_action_wrap">
-                        <div class="call_action_wrap-head">
-                            <h3 class="font-2">آیا سوالی دارید؟</h3>
-                            <span>ما به شما کمک خواهیم کرد تا شغل و رشد خود را افزایش دهید.</span>
-                        </div>
-                        <a href="#" class="btn btn-call_action_wrap">امروز با ما تماس بگیرید</a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
     <!-- ============================ Call To Action End ================================== -->
 
     <!-- ============================ Footer Start ================================== -->

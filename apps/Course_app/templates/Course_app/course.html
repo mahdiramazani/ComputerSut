@@ -34,50 +34,7 @@
     <!-- ============================ Course Detail ================================== -->
     <section class="gray">
         <div class="container">
-            <div class="row">
 
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="short_wraping">
-                        <div class="row m-0 align-items-center justify-content-between">
-
-                            <div class="col-lg-4 col-md-5 col-sm-12  col-sm-6">
-                                <div class="shorting_pagination_laft">
-                                    <h6 class="m-0">نمایش 1-25 از 72</h6>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-8 col-md-7 col-sm-12 col-sm-6">
-                                <div class="dlks_152">
-                                    <div class="shorting-right ml-2">
-                                        <label>مرتب سازی براساس:</label>
-                                        <div class="dropdown show">
-                                            <a class="btn btn-filter dropdown-toggle" href="#" data-toggle="dropdown"
-                                               aria-haspopup="true" aria-expanded="false">
-                                                <span class="selection">امتیاز بالا</span>
-                                            </a>
-                                            <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">امتیاز بالا</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">بازدید بالا</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">دوره جدید</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">دوره منتخب</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="lmk_485">
-                                        <ul class="shorting_grid">
-                                            <li class="list-inline-item"><a href="grid-layout-full.html" class="active"><span
-                                                    class="ti-layout-grid2"></span></a></li>
-                                            <li class="list-inline-item"><a href="list-layout-with-full.html"><span
-                                                    class="ti-view-list"></span></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
 
             <div class="row justify-content-center">
 
@@ -93,9 +50,7 @@
                                 <div class="crs_video_ico">
                                     <i class="fa fa-play"></i>
                                 </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
+
                             </div>
                             <div class="crs_grid_caption">
                                 <div class="crs_tutor_thumb overl_top"><a href="{{ item.get_absulot_url }}"><img
@@ -123,17 +78,17 @@
                             <div class="crs_grid_foot">
                                 <div class="crs_flex">
                                     <div class="crs_fl_first">
-                                        <div class="crs_price"><h2><span class="theme-cl">{{ item.view }}</span><span
-                                                class="currency">بازدید</span></h2></div>
+                                        <div class="crs_price"><h2><span class="theme-cl">{{ item.get_price }}</span><span
+                                                class="currency">تومان</span></h2></div>
                                     </div>
-                                    <form method="post">
-                                        {% csrf_token %}
+                                    <form>
+
 
                                         <div class="crs_fl_last">
                                             <div class="crs_linkview">
-                                                <button type="submit"
+                                                <a href="{{ item.get_absulot_url }}"
                                                         class="btn btn_view_detail theme-bg text-light">{{ item.status }}
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
 

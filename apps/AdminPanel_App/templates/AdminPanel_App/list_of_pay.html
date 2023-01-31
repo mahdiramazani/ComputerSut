@@ -20,8 +20,8 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">لیست پرداخت ها</li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                            <li class="breadcrumb-item active" aria-current="page">لیست خرید ها</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -41,22 +41,7 @@
                                 </div>
 
                                 <div class="row justify-content-between">
-                                    <div class="col-xl-2 col-lg-3 col-md-6">
-                                        <div class="form-group smalls row align-items-center">
-                                            <label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <select id="show" class="form-control">
-                                                    <option value="">&nbsp;</option>
-                                                    <option value="1">10</option>
-                                                    <option value="2">25</option>
-                                                    <option value="3">35</option>
-                                                    <option value="3">50</option>
-                                                    <option value="3">100</option>
-                                                    <option value="3">250</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                     <div class="col-xl-4 col-lg-5 col-md-6">
                                         <div class="form-group smalls row align-items-center">
                                             <label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
@@ -117,7 +102,6 @@
                                                                     <i class="fas fa-ellipsis-h"></i>
                                                                 </a>
                                                                 <div class="drp-select dropdown-menu">
-                                                                    <a class="dropdown-item" href="JavaScript:Void(0);">اشتراک</a>
 
                                                                     <a class="dropdown-item"
                                                                        href="{{ item.course.get_absulot_url }}">مشاهده
@@ -136,9 +120,7 @@
                                 </div>
 
                                 <div class="row align-items-center justify-content-between">
-                                    <div class="col-xl-6 col-lg-6 col-md-12">
-                                        <p class="p-0">نمایش 1 تا 1 از 1</p>
-                                    </div>
+
 
                                     {% if page_obj.has_other_pages %}
                                         <div class="col-xl-6 col-lg-6 col-md-12">

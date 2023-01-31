@@ -34,11 +34,15 @@ class SearchView(View):
 
     def get(self, request):
         name = request.GET.get("q")
-        page = request.GET.get('page', 1)
+        page = request.GET.get("page", 1)
 
         if Courses.objects.filter(
             Q(titel__icontains=name) | Q(teacher__user__full_name__icontains=name) | Q(
                 Introduction_of_the_valley__icontains=name) | Q(category__name__icontains=name)).exists():
+
+            object=Courses.objects.filter(
+            Q(titel__icontains=name) | Q(teacher__user__full_name__icontains=name) | Q(
+                Introduction_of_the_valley__icontains=name) | Q(category__name__icontains=name))
             paginator = Paginator(object, 6)
 
             try:

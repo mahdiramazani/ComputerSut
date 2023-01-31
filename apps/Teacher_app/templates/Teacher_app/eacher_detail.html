@@ -17,15 +17,10 @@
 						<div class="col-lg-9 col-md-12 col-sm-12">
 							<div class="dlkio_452">
 								<div class="ed_detail_wrap">
-									<div class="crs_cates cl_1"><span>گرافیک</span></div><div class="crs_cates cl_3"><span>طراح</span></div>
-									<div class="ed_header_caption">
-										<h2 class="ed_title font-2">{{ teacher.user.full_name }}</h2>
-										<ul>
-											<li><i class="ti-calendar"></i>10 - 20 هفته</li>
-											<li><i class="ti-control-forward"></i>{{ teacher.Corses.all.count }}</li>
 
-										</ul>
-									</div>
+										<h2 class="ed_title font-2">{{ teacher.user.full_name }}</h2>
+
+
 									<div class="ed_header_short">
 										<p>{{ teacher.user.bio | safe }}</p>
 									</div>
@@ -33,12 +28,7 @@
 
 									
 								</div>
-								<div class="dlkio_last">
-									<div class="ed_view_link">
-										<a href="#" class="btn theme-bg enroll-btn">ثبت نام<i class="ti-angle-left"></i></a>
-										<a href="#" class="btn theme-border enroll-btn">اشتراک گذاری<i class="fas fa-share"></i></a>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>
@@ -62,9 +52,7 @@
 									<div class="crs_video_ico">
 										<i class="fa fa-play"></i>
 									</div>
-									<div class="crs_locked_ico">
-										<i class="fa fa-lock"></i>
-									</div>
+
 								</div>
 								<div class="crs_grid_caption">
 									<div class="crs_flex">
@@ -75,10 +63,10 @@
 											<div class="crs_inrolled"><strong>{{ item.user.all.count }}</strong>شرکت کننده</div>
 										</div>
 									</div>
-									<div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">{{ item.titel }}</a></h4></div>
+									<div class="crs_title"><h4><a href="{{ item.get_absulot_url }}" class="crs_title_link">{{ item.titel }}</a></h4></div>
 									<div class="crs_info_detail">
 										<ul>
-											<li><i class="fa fa-clock text-danger"></i><span>5ساعت 2دقیقه</span></li>
+
 											<li><i class="fa fa-video text-success"></i><span>{{ item.corses_child.all.count }} ویدیو</span></li>
 											<li><i class="fa fa-signal text-warning"></i><span>{{ item.level }}</span></li>
 										</ul>
@@ -92,7 +80,7 @@
 											</div>
 										</div>
 										<div class="crs_fl_last">
-											<div class="crs_price"><h2><span class="theme-cl">{{ item.price }}</span><span class="currency">تومان</span></h2></div>
+											<div class="crs_price"><h2><span class="theme-cl">{{ item.get_price }}</span><span class="currency">تومان</span></h2></div>
 										</div>
 									</div>
 								</div>
