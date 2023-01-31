@@ -83,7 +83,7 @@
                         <ul class="nav-dropdown nav-submenu">
 
 
-                            {% for iten in category %}
+                            {% for iten in category.all %}
                                 <li><a href="{% url "Course_app:Category_course" iten.id %}">{{ iten.name }}</a></li>
 
                             {% endfor %}

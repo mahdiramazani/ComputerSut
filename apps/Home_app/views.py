@@ -10,6 +10,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
         coures = Courses.objects.all()
         teacher = Teacher.objects.filter(status=True)

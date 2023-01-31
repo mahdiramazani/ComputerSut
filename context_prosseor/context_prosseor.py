@@ -45,13 +45,18 @@ def category_list(request):
 
 
     try:
-        cat = Category.objects.all()
 
-        return {"category": cat}
+        if Category.objects.exists():
+            cat = Category.objects.all()
+
+            return {"category": cat}
+
+        else:
+            return {"category": []}
 
     except TypeError:
 
-        return None
+        return {"category": None }
 
 
 
