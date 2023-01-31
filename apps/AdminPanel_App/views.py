@@ -193,13 +193,20 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
 
             if student_user in c.user.all():
 
-                if student_user in c.user.all():
+                if not CertificatesOfCourses.objects.filter(document_number=document_number).exists():
+
+
 
 
                     CertificatesOfCourses.objects.create(user=student_user, course=c, document=document,
                                                         document_number=document_number,image_document=image_document)
 
                     context["errors"].append("مدرک با موفقیت صادر شد")
+                    return render(request, "AdminPanel_App/madrak.html",
+                                  {"course": course, "context": context["errors"]})
+
+                else:
+                    context["errors"].append("شماره مدرک تکراری است")
                     return render(request, "AdminPanel_App/madrak.html",
                                   {"course": course, "context": context["errors"]})
 
