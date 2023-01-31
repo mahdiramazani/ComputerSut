@@ -8,7 +8,7 @@ from django.shortcuts import redirect
 import requests
 import json
 from apps.Teacher_app.models import TeachersIncome
-from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,CheckLoginMixin,CheckOrderShopMixin,CheckRequestToPayMixin
+from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,VidoChildMixin,CheckOrderShopMixin,CheckRequestToPayMixin
 from django.http import JsonResponse
 from apps.Course_app.forms import DocumentInquiryForm
 MERCHANT = ""
@@ -97,7 +97,7 @@ class CourseDetailView(View):
         return redirect(reverse("Course_app:Course_detail", kwargs={"pk": pk}))
 
 
-class CourseDetailVideoView(CheckStudentCourseMixin,DetailView):
+class CourseDetailVideoView(VidoChildMixin,DetailView):
     model = CoursesChild
 
     template_name = "Course_app/course_video_detail.html"
@@ -131,6 +131,7 @@ class AddCourseToOrderView(CheckCapcityMixin,View):
                 return redirect(reverse("Course_app:checkout") + f"?checkout_id={checkout.id}")
 
             elif Checkout.objects.filter(user=user, course=course).exists():
+
 
                 checkout = Checkout.objects.get(Q(user=user), Q(course=course))
 

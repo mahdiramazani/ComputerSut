@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="clearfix"></div>
+    <!-- ============================================================== -->
+    <!-- Top header  -->
+    <!-- ============================================================== -->
+
+    <!-- ============================ Page Title Start================================== -->
+    <section class="page-title">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+
+                    <div class="breadcrumbs-wrap">
+                        <h1 class="breadcrumb-title font-2">لیست دوره ها</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb p-0 bg-white">
+                                <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                {% if request.GET.q %}
+                                <li class="breadcrumb-item active theme-cl" aria-current="page">نتیجه برای:{{ request.GET.q }}
+                                </li>
+                                {% endif %}
+                            </ol>
+                        </nav>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ============================ Page Title End ================================== -->
+
+    <!-- ============================ Course Detail ================================== -->
+    <section class="gray">
+        <div class="container">
+            <div class="row">
+
+
+
+            </div>
+
+            <div class="row justify-content-center">
+
+
+                {% for item in object_list %}
+
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="crs_grid shadow_none brd">
+                            <div class="crs_grid_thumb">
+                                <a href="{{ item.get_absulot_url }}" class="crs_detail_link">
+                                    <img src="{{ item.cover.url }}" class="img-fluid rounded" alt="">
+                                </a>
+                                <div class="crs_video_ico">
+                                    <i class="fa fa-play"></i>
+                                </div>
+                                <div class="crs_locked_ico">
+                                    <i class="fa fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="crs_grid_caption">
+                                <div class="crs_tutor_thumb overl_top"><a href="{{ item.get_absulot_url }}"><img
+                                        src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt=""></a>
+                                </div>
+                                <div class="crs_cates cl_4"><span>{{ item.category.all.0 }}</span></div>
+                                <div class="crs_title"><h4><a href="{{ item.get_absulot_url }}"
+                                                              class="crs_title_link">{{ item.titel }}</a></h4></div>
+                                <div class="crs_info_detail">
+                                    <ul>
+                                        <li>
+                                            <i class="fa fa-video"></i><span>{{ item.corses_child.all.count }} ویدئو</span>
+                                        </li>
+                                        <li><i class="fa fa-user"></i><span>{{ item.user.all.count }} کاربر</span></li>
+                                        <li><i class="fa fa-eye"></i><span>{{ item.view }} بازدید</span></li>
+                                    </ul>
+                                </div>
+                                <div class="preview_crs_info">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width:70%"
+                                             aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="crs_grid_foot">
+                                <div class="crs_flex">
+                                    <div class="crs_fl_first">
+                                        <div class="crs_price"><h2><span class="theme-cl">{{ item.view }}</span><span
+                                                class="currency">بازدید</span></h2></div>
+                                    </div>
+
+
+                                        <div class="crs_fl_last">
+                                            <div class="crs_linkview">
+                                                <a href="{{ item.get_absulot_url }}"
+                                                        class="btn btn_view_detail theme-bg text-light">{{ item.status }}
+                                                </a>
+                                            </div>
+                                        </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+
+                    {% if object_list.has_other_pages %}
+
+                        <ul class="pagination p-center">
+
+                            <li class="page-item">
+
+                                {% if object_list.has_previous %}
+
+                                    <a class="page-link" href="?page={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                       aria-label="Previous">
+                                        <span class="ti-arrow-right"></span>
+                                        <span class="sr-only">قبل</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </li>
+
+                            {% for i in object_list.paginator.page_range %}
+
+                                {% if  object_list.number == i %}
+
+                                    <li class="page-item active"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a>
+                                    </li>
+
+                                {% else %}
+
+                                    <li class="page-item"><a class="page-link" href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a></li>
+
+                                {% endif %}
+
+                            {% endfor %}
+
+                            <li class="page-item">
+
+                                {% if object_list.has_next %}
+
+                                    <a class="page-link" href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
+                                       aria-label="Next">
+                                        <span class="ti-arrow-left"></span>
+                                        <span class="sr-only">بعد</span>
+                                    </a>
+
+                                {% endif %}
+                            </li>
+                        </ul>
+
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- ============================ Course Detail ================================== -->
+
+    <!-- ============================ Call To Action ================================== -->
+
+{% endblock %}

@@ -139,9 +139,9 @@
 
                                                         {% for item in object.object.corses_child.all %}
 
+                                                            {% if object.object.how_to_hold == "حضوری" %}
 
-                                                            {% if request.user.is_authenticated %}
-                                                                {% if request.user in object.object.user.all or request.user.is_admin == True %}
+                                                                {% if item.lock == False %}
 
                                                                     <li class="complete">
                                                                         <div class="lectures_lists_title"><i
@@ -152,32 +152,94 @@
                                                                         </a>
                                                                     </li>
 
+                                                                {% elif item.lock == True %}
+
+                                                                    {% if request.user.is_authenticated %}
+
+                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True %}
+
+                                                                            <li class="complete">
+                                                                                <div class="lectures_lists_title"><i
+                                                                                        class="fas fa-check dios"></i>
+                                                                                </div>
+                                                                                <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
+                                                                                        class="cls_timing">{{ item.time }}</span>
+
+                                                                                </a>
+                                                                            </li>
+                                                                        {% else %}
+
+                                                                            <li class="unview">
+                                                                                <div class="lectures_lists_title"><i
+                                                                                        class="fa fa-lock dios lock"></i>
+                                                                                </div>
+                                                                                <a onclick="alert_register()">{{ item.topic }}<span
+                                                                                        class="cls_timing">{{ item.time }}</span>
+                                                                                </a>
+                                                                            </li>
+                                                                        {% endif %}
+
+                                                                    {% else %}
+
+                                                                        <li class="unview">
+                                                                            <div class="lectures_lists_title"><i
+                                                                                    class="fa fa-lock dios lock"></i>
+                                                                            </div>
+                                                                            <a onclick="alert_login()">{{ item.topic }}<span
+                                                                                    class="cls_timing">{{ item.time }}</span>
+                                                                            </a>
+                                                                        </li>
+
+                                                                    {% endif %}
+
+                                                                {% endif %}
+
+                                                            {% else %}
+
+                                                                {% if request.user.is_authenticated %}
+
+                                                                    {% if request.user in object.object.user.all %}
+
+                                                                        <li class="complete">
+                                                                            <div class="lectures_lists_title"><i
+                                                                                    class="fas fa-check dios"></i></div>
+                                                                            <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
+                                                                                    class="cls_timing">{{ item.time }}</span>
+
+                                                                            </a>
+                                                                        </li>
+
+                                                                    {% else %}
+
+                                                                        <li class="unview">
+                                                                            <div class="lectures_lists_title"><i
+                                                                                    class="fa fa-lock dios lock"></i>
+                                                                            </div>
+                                                                            <a onclick="alert_register()">{{ item.topic }}<span
+                                                                                    class="cls_timing">{{ item.time }}</span>
+
+                                                                            </a>
+                                                                        </li>
+
+
+                                                                    {% endif %}
 
                                                                 {% else %}
 
-                                                                    <li class="complete">
+                                                                    <li class="unview">
                                                                         <div class="lectures_lists_title"><i
-                                                                                class="fas fa-check dios"></i></div>
-                                                                        <a onclick="alert_register()">{{ item.topic }}<span
+                                                                                class="fa fa-lock dios lock"></i></div>
+                                                                        <a onclick="alert_login()">{{ item.topic }}<span
                                                                                 class="cls_timing">{{ item.time }}</span>
-
                                                                         </a>
                                                                     </li>
 
 
                                                                 {% endif %}
-                                                            {% else %}
-
-                                                                <li class="complete">
-                                                                    <div class="lectures_lists_title"><i
-                                                                            class="fas fa-check dios"></i></div>
-                                                                    <a onclick="alert_login()">{{ item.topic }}<span
-                                                                            class="cls_timing">{{ item.time }}</span>
-                                                                    </a>
-                                                                </li>
 
 
                                                             {% endif %}
+
 
 
                                                         {% endfor %}
@@ -270,24 +332,24 @@
                                 <div class="edu_wraper">
 
 
+                                    <h4 class="edu_title">ثبت دیدگاه</h4>
+                                    <div class="review-form-box form-submit">
+                                        <form method="post" id="post-form">
 
-                                        <h4 class="edu_title">ثبت دیدگاه</h4>
-                                        <div class="review-form-box form-submit">
-                                            <form method="post" id="post-form">
-
-                                                {% csrf_token %}
-                                                <div class="row">
+                                            {% csrf_token %}
+                                            <div class="row">
 
 
-                                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                                        <div class="form-group">
-                                                            <label>متن نظر</label>
-                                                            <textarea type="text" class="form-control ht-140 summernote" id="body"
-                                                                      placeholder="نظر خود را بنویسید..."></textarea>
-                                                        </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <label>متن نظر</label>
+                                                        <textarea type="text" class="form-control ht-140 summernote"
+                                                                  id="body"
+                                                                  placeholder="نظر خود را بنویسید..."></textarea>
                                                     </div>
+                                                </div>
 
-                                                    {% if request.user.is_authenticated %}
+                                                {% if request.user.is_authenticated %}
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
@@ -296,20 +358,21 @@
                                                         </div>
                                                     </div>
 
-                                                    {% else %}
+                                                {% else %}
 
                                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                                         <div class="form-group">
-                                                            <a class="btn theme-bg btn-md" onclick="alert_login_comment()" >ثبت دیدگاه
+                                                            <a class="btn theme-bg btn-md"
+                                                               onclick="alert_login_comment()">ثبت دیدگاه
                                                             </a>
                                                         </div>
                                                     </div>
 
-                                                    {% endif %}
+                                                {% endif %}
 
-                                                </div>
-                                            </form>
-                                        </div>
+                                            </div>
+                                        </form>
+                                    </div>
 
                                 </div>
 

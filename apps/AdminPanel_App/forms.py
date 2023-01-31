@@ -235,7 +235,9 @@ class AddVideoChildForm(forms.ModelForm):
                 attrs={
                     "class":"form-control"
                 }
-            )
+            ),
+
+
         }
 
 

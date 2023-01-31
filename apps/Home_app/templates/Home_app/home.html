@@ -19,14 +19,19 @@
                             <h1 class="banner_title mb-4 font-2">انجمن علمی کامپیوتر دانشگاه صنعتی سیرجان</h1>
                             <h1 class="banner_title mb-4 font-2">در مسیر پیشرفت<br>با دوره های آموزشی آنلاین<br><span
                                     class="light">در کنار شماست...</span></h1>
-                            <p class="font-lg mb-4">برنامه‌نویسی این امکان رو به شما می‌ده تا در مورد خودِ «فکر کردن» فکر کنید و وقتی‌ هم که دیباگ می‌کنید، در مورد خودِ «یادگیری» یاد می‌گیرید</p>
+                            <p class="font-lg mb-4">برنامه‌نویسی این امکان رو به شما می‌ده تا در مورد خودِ «فکر کردن»
+                                فکر کنید و وقتی‌ هم که دیباگ می‌کنید، در مورد خودِ «یادگیری» یاد می‌گیرید</p>
+                             <form method="get" action="{% url "Home_app:search" %}">
                             <div class="input-group simple_search">
                                 <i class="fa fa-search ico"></i>
-                                <input type="text" class="form-control" placeholder="نام دوره آموزش...">
-                                <div class="input-group-append">
-                                    <button class="btn theme-bg" type="button">جستجو</button>
-                                </div>
+
+                                    <input type="text" name="q" class="form-control" required placeholder="نام دوره آموزش...">
+                                    <div class="input-group-append">
+                                        <button class="btn theme-bg" type="submit">جستجو</button>
+                                    </div>
+
                             </div>
+                                 </form>
                         </div>
                     </div>
                 </div>
@@ -70,7 +75,8 @@
                         <div class="edu_cat_2 cat-1">
                             <div class="edu_cat_icons">
                                 <a class="pic-main" href="{{ item.get_absulot_url }}"><img src="{{ item.image.url }}"
-                                                                  class="img-fluid" alt=""/></a>
+                                                                                           class="img-fluid"
+                                                                                           alt=""/></a>
                             </div>
                             <div class="edu_cat_data">
                                 <h4 class="title"><a href="{{ item.get_absulot_url }}">{{ item.name }}</a></h4>
@@ -158,10 +164,12 @@
                                     <div class="crs_fl_first">
 
                                         {% if c.discount == None %}
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.get_price }}</span><span
+                                            <div class="crs_price"><h2><span
+                                                    class="theme-cl">{{ c.get_price }}</span><span
                                                     class="currency">تومان</span></h2></div>
                                         {% else %}
-                                            <div class="crs_price"><h2><span class="theme-cl">{{ c.get_price }}</span><span
+                                            <div class="crs_price"><h2><span
+                                                    class="theme-cl">{{ c.get_price }}</span><span
                                                     class="currency">تومان</span></h2></div>
                                         {% endif %}
 
@@ -224,7 +232,9 @@
                                     <div class="crs_trt_footer">
                                         <div class="crs_flex">
                                             <div class="crs_fl_first">
-                                                <div class="crs_trt_ent"><i class="fa fa-user"></i>عضویت از {{ t.created | timesince }} پیش </div>
+                                                <div class="crs_trt_ent"><i class="fa fa-user"></i>عضویت
+                                                    از {{ t.created | timesince }} پیش
+                                                </div>
                                             </div>
                                             <div class="crs_fl_last">
                                                 <div class="foot_list_info">
@@ -267,46 +277,46 @@
             <div class="row justify-content-center">
 
                 {% for item in object_list %}
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                    <div class="blg_grid_box">
-                        <div class="blg_grid_thumb">
-                            <a href="{{ item.get_absolut_url }}"><img src="{{ item.image.url }}" class="img-fluid"
-                                                            alt=""/></a>
-                        </div>
-                        <div class="blg_grid_caption">
-                            <div class="blg_tag"><span>{{ item.category.all.0 }}</span></div>
-                            <div class="blg_title"><h4><a href="{{ item.get_absolut_url }}">{{ item.titel }}</a></h4></div>
-                            <div class="blg_desc"><p>{{ item.text | truncatewords:15 | safe }}</p></div>
-                        </div>
-                        <div class="crs_grid_foot">
-                            <div class="crs_flex">
-                                <div class="crs_fl_first">
-                                    <div class="crs_tutor">
-                                        <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                src="{{ item.user.image.url }}" class="img-fluid circle"
-                                                alt=""/></a></div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                        <div class="blg_grid_box">
+                            <div class="blg_grid_thumb">
+                                <a href="{{ item.get_absolut_url }}"><img src="{{ item.image.url }}" class="img-fluid"
+                                                                          alt=""/></a>
+                            </div>
+                            <div class="blg_grid_caption">
+                                <div class="blg_tag"><span>{{ item.category.all.0 }}</span></div>
+                                <div class="blg_title"><h4><a href="{{ item.get_absolut_url }}">{{ item.titel }}</a>
+                                </h4></div>
+                                <div class="blg_desc"><p>{{ item.text | truncatewords:15 | safe }}</p></div>
+                            </div>
+                            <div class="crs_grid_foot">
+                                <div class="crs_flex">
+                                    <div class="crs_fl_first">
+                                        <div class="crs_tutor">
+                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
+                                                    src="{{ item.user.image.url }}" class="img-fluid circle"
+                                                    alt=""/></a></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="crs_fl_last">
-                                    <div class="foot_list_info">
-                                        <ul>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-                                                <div class="elsio_tx">{{ item.view }} بازدید</div>
-                                            </li>
-                                            <li>
-                                                <div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
-                                                <div class="elsio_tx">{{ item.get_jalali_date }}</div>
-                                            </li>
-                                        </ul>
+                                    <div class="crs_fl_last">
+                                        <div class="foot_list_info">
+                                            <ul>
+                                                <li>
+                                                    <div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
+                                                    <div class="elsio_tx">{{ item.view }} بازدید</div>
+                                                </li>
+                                                <li>
+                                                    <div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
+                                                    <div class="elsio_tx">{{ item.get_jalali_date }}</div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 {% endfor %}
-
 
 
             </div>

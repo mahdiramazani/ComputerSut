@@ -162,7 +162,7 @@ class Courses(models.Model):
         return self.titel
 
 
-
+#unview
 
 class CoursesChild(models.Model):
     parent = models.ForeignKey(Courses, on_delete=models.CASCADE, related_name="corses_child")
@@ -175,6 +175,7 @@ class CoursesChild(models.Model):
     topic_parent = models.ForeignKey("self", related_name="Course_app_CoursesChild_topic_parent",
                                      on_delete=models.CASCADE, null=True, blank=True)
     status=models.BooleanField(default=True)
+    lock=models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def get_jalali_date(self):
