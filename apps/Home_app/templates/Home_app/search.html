@@ -44,6 +44,14 @@
 
             <div class="row justify-content-center">
 
+            {% if errors %}
+
+
+                    <h2 class="alert alert-danger">{{ errors }}</h2>
+
+
+            {% else %}
+
 
                 {% for item in object_list %}
 
@@ -107,6 +115,7 @@
                     </div>
 
                 {% endfor %}
+            {% endif %}
 
 
             </div>

@@ -36,17 +36,20 @@ class SearchView(View):
         name = request.GET.get("q")
         page = request.GET.get('page', 1)
 
-        object = Courses.objects.filter(
+        if Courses.objects.filter(
             Q(titel__icontains=name) | Q(teacher__user__full_name__icontains=name) | Q(
-                Introduction_of_the_valley__icontains=name) | Q(category__name__icontains=name))
-        paginator = Paginator(object, 6)
+                Introduction_of_the_valley__icontains=name) | Q(category__name__icontains=name)).exists():
+            paginator = Paginator(object, 6)
 
-        try:
-            object_list= paginator.page(page)
+            try:
+                object_list= paginator.page(page)
 
-        except PageNotAnInteger:
-            object_list = paginator.page(1)
-        except EmptyPage:
-            object_list = paginator.page(paginator.num_pages)
+            except PageNotAnInteger:
+                object_list = paginator.page(1)
+            except EmptyPage:
+                object_list = paginator.page(paginator.num_pages)
 
-        return render(request, "Home_app/search.html", {"object_list": object_list})
+            return render(request, "Home_app/search.html", {"object_list": object_list})
+
+        else:
+            return render(request, "Home_app/search.html", {"object_list": None,"errors":f"نتیجه ای برای {name} یافت نشد"})
