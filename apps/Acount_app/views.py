@@ -3,10 +3,9 @@ from django.views.generic.base import View
 from apps.Acount_app.forms import SignForm,LoginForm
 from apps.Acount_app.models import User
 from django.contrib.auth import login,logout,authenticate
-from django.db.models import Q
-from django.http import JsonResponse
+from .mixin import CheckLogin
 
-class SignUpView(View):
+class SignUpView(CheckLogin,View):
 
 
 
@@ -43,7 +42,7 @@ class SignUpView(View):
         return render(request,"Acount_app/signup.html",{"form":form})
 
 
-class LoginView(View):
+class LoginView(CheckLogin,View):
 
     def post(self,request):
         form=LoginForm(data=request.POST)
@@ -81,10 +80,15 @@ class LogOut(View):
 
     def get(self,request):
 
+        if request.user.is_authenticated:
 
-        logout(request)
+
+            logout(request)
 
 
-        return redirect("Home_app:Home")
+            return redirect("Home_app:Home")
+
+        else:
+            return redirect("Home_app:Home")
 
 
