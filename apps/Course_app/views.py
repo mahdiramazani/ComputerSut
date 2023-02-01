@@ -11,7 +11,7 @@ from apps.Teacher_app.models import TeachersIncome
 from apps.Course_app.mixins import CheckCapcityMixin,CheckStudentCourseMixin,VidoChildMixin,CheckOrderShopMixin,CheckRequestToPayMixin
 from django.http import JsonResponse
 from apps.Course_app.forms import DocumentInquiryForm
-MERCHANT = ""
+MERCHANT = "b3b73736-7999-4b64-b2e7-f14c42ee52a7"
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
@@ -115,14 +115,17 @@ class AddCourseToOrderView(CheckCapcityMixin,View):
             course = Courses.objects.get(id=pk)
             price = str(course.price)
             price = price + "0"
-
             price = int(price)
+
+            tax=(9*price)//100
+            tax_price=tax+price
+
 
 
 
             if not Checkout.objects.filter(user=user, course=course).exists():
 
-                Checkout.objects.create(user=request.user, course=course, price=int(price))
+                Checkout.objects.create(user=request.user, course=course, price=int(price),total_price=tax_price)
 
 
 
@@ -132,8 +135,13 @@ class AddCourseToOrderView(CheckCapcityMixin,View):
 
             elif Checkout.objects.filter(user=user, course=course).exists():
 
-
                 checkout = Checkout.objects.get(Q(user=user), Q(course=course))
+
+                if checkout.price != price:
+
+                    checkout.price=price
+                    checkout.total_price=tax_price
+                    checkout.save()
 
                 return redirect(reverse("Course_app:checkout") + f"?checkout_id={checkout.id}")
 
@@ -173,7 +181,7 @@ class RequestPay(CheckRequestToPayMixin,View):
 
             req_data = {
                 "merchant_id": MERCHANT,
-                "amount": order.price,
+                "amount": order.total_price,
                 "callback_url": CallbackURL,
                 "description": description,
                 "metadata": {"mobile": order.user.phone}
@@ -204,7 +212,7 @@ class VerifyView(View):
                           "content-type": "application/json'"}
             req_data = {
                 "merchant_id": MERCHANT,
-                "amount": order.price,
+                "amount": order.total_price,
                 "authority": t_authority
             }
             req = requests.post(url=ZP_API_VERIFY, data=json.dumps(req_data), headers=req_header)

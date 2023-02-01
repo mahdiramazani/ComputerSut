@@ -233,7 +233,81 @@ class Checkout(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name="checkout")
     course=models.ForeignKey(Courses,on_delete=models.CASCADE,related_name="checkout")
     price=models.IntegerField()
+    total_price=models.IntegerField()
     is_paid=models.BooleanField(default=False)
+
+
+    def get_price_tax(self):
+
+
+        if self.total_price >= 11000 and self.total_price <= 99999 :
+
+            new_price=""
+
+            new_price += str(self.total_price)
+
+
+            new_price=STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+
+            new_price=LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.total_price >= 100000 and self.total_price <= 999999 :
+
+            new_price=""
+
+            new_price += str(self.total_price)
+
+
+            new_price=STR_TO_LIST(new_price)
+
+            new_price[2] += ","
+
+            new_price=LIST_TO_STR(new_price)
+
+            return new_price
+
+        elif self.total_price >= 1000000 and self.total_price <= 9999999:
+
+            new_price = ""
+
+            new_price += str(self.total_price)
+
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+            new_price[-7] += ","
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+
+        elif self.total_price >= 10000000:
+
+            new_price = ""
+
+            new_price += str(self.total_price)
+
+
+            new_price = STR_TO_LIST(new_price)
+
+            new_price[-4] += ","
+            new_price[-7] += ","
+
+
+            new_price = LIST_TO_STR(new_price)
+
+            return new_price
+
+        else:
+
+            return self.total_price
+
 
 
     def get_price(self):

@@ -92,7 +92,7 @@
 												</div>
                                                     {% else %}
                                                     <div class="form-group">
-													<button type="submit" class="btn theme-bg btm-md full-width">پرداخت {{ checkout.get_price }} ریال</button>
+													<button type="submit" class="btn theme-bg btm-md full-width">پرداخت {{ checkout.get_price_tax }} ریال</button>
 												</div>
                                                 {% endif %}
 											</form>
@@ -119,8 +119,9 @@
 
 									<ul>
 										<li><strong>هزینه دوره</strong>{{ checkout.get_price }} ریال</li>
+										<li><strong>مالیات</strong>9 درصد</li>
 
-										<li><strong>جمع کل</strong>{{ checkout.get_price }} ریال</li>
+										<li><strong>جمع کل</strong>{{ checkout.get_price_tax }} ریال</li>
 									</ul>
 								</div>
 							</div>
