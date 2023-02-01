@@ -696,7 +696,12 @@
                     'بسیار عالی !',
                     json["response"],
                     'success'
-                )
+                ).then(()=>{
+
+                    location.reload(true);
+
+                })
+
             },
 
         })
