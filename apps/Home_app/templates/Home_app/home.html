@@ -21,17 +21,18 @@
                                     class="light">در کنار شماست...</span></h1>
                             <p class="font-lg mb-4">برنامه‌نویسی این امکان رو به شما می‌ده تا در مورد خودِ «فکر کردن»
                                 فکر کنید و وقتی‌ هم که دیباگ می‌کنید، در مورد خودِ «یادگیری» یاد می‌گیرید</p>
-                             <form method="get" action="{% url "Home_app:search" %}">
-                            <div class="input-group simple_search">
-                                <i class="fa fa-search ico"></i>
+                            <form method="get" action="{% url "Home_app:search" %}">
+                                <div class="input-group simple_search">
+                                    <i class="fa fa-search ico"></i>
 
-                                    <input type="text" name="q" class="form-control" required placeholder="نام دوره آموزش...">
+                                    <input type="text" name="q" class="form-control" required
+                                           placeholder="نام دوره آموزش...">
                                     <div class="input-group-append">
                                         <button class="btn theme-bg" type="submit">جستجو</button>
                                     </div>
 
-                            </div>
-                                 </form>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -96,7 +97,7 @@
 
 
 
-<hr>
+    <hr>
     <br>
 
 
@@ -212,8 +213,16 @@
                             <div class="lios_item">
                                 <div class="crs_trt_grid shadow_none brd">
                                     <div class="crs_trt_thumb">
-                                        <a href="{{ t.get_absoolut_url }}" class="crs_trt_thum_link"><img
-                                                src="{{ t.user.image.url }}" class="img-fluid" alt=""/></a>
+                                        <a href="{{ t.get_absoolut_url }}" class="crs_trt_thum_link">
+                                            {% if t.user.image %}
+                                                <img
+                                                        src="{{ t.user.image.url }}" class="img-fluid" alt=""/></a>
+                                            {% else %}
+
+                                                <img
+                                                        src="{% static "assets/img/user-5.jpg" %}" class="img-fluid"
+                                                        alt=""/>
+                                            {% endif %}
                                     </div>
                                     <div class="crs_trt_caption large">
                                         <div class="instructor_tag"><span>{{ t.position }}</span></div>
@@ -281,9 +290,23 @@
                                 <div class="crs_flex">
                                     <div class="crs_fl_first">
                                         <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img
-                                                    src="{{ item.user.image.url }}" class="img-fluid circle"
-                                                    alt=""/></a></div>
+                                            <div class="crs_tutor_thumb"><a href="{{ item.get_absolut_url }}">
+                                                {% if item.user.image %}
+                                                    <img
+                                                            src="{{ item.user.image.url }}" class="img-fluid circle"
+                                                            alt=""/>
+
+                                                {% else %}
+
+                                                    <img
+                                                            src="{% static "assets/img/user-5.jpg" %}"
+                                                            class="img-fluid circle"
+                                                            alt=""/>
+
+
+
+                                                {% endif %}
+                                            </a></div>
                                         </div>
                                     </div>
                                     <div class="crs_fl_last">

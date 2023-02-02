@@ -8,7 +8,11 @@
 						<div class="col-lg-3 col-md-12 col-sm-12">
 							<div class="authi_125">
 								<div class="authi_125_thumb">
+                                    {% if teacher.user.image %}
 									<img src="{{ teacher.user.image.url }}" class="img-fluid rounded" alt="" />
+                                    {% else %}
+									<img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid rounded" alt="" />
+                                    {% endif %}
 								</div>
 
 							</div>

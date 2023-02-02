@@ -30,6 +30,11 @@ class BlogModel(models.Model):
     category=models.ManyToManyField(Category,related_name="blog")
     status=models.BooleanField(default=True)
 
+
+    class Meta:
+
+        ordering=("-created",)
+
     def get_absolut_url(self):
 
 
@@ -58,7 +63,7 @@ class Comment(models.Model):
 
 
     class Meta:
-        ordering=("-blog__id","parent__id",)
+        ordering=("-created",)
 
     def __str__(self):
 

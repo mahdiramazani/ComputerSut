@@ -149,6 +149,8 @@ class Courses(models.Model):
         else:
             return self.price
 
+    class Meta:
+        ordering=("-created",)
 
     def get_jalali_date(self):
 
@@ -206,6 +208,10 @@ class Comment(models.Model):
 
         return self.body[:10]
 
+    class Meta:
+
+        ordering=("-created",)
+
 
 class CertificatesOfCourses(models.Model):
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True,blank=True,related_name="CertificatesOfCourses")
@@ -216,7 +222,8 @@ class CertificatesOfCourses(models.Model):
     created=models.DateTimeField(auto_now_add=True)
 
 
-
+    class Meta:
+        ordering=("-created",)
 
     def __str__(self):
 
@@ -235,6 +242,7 @@ class Checkout(models.Model):
     price=models.IntegerField()
     total_price=models.IntegerField()
     is_paid=models.BooleanField(default=False)
+    created=models.DateTimeField(auto_now_add=True)
 
 
     def get_price_tax(self):
