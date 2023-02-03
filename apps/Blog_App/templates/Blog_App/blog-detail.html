@@ -2,8 +2,7 @@
 <html lang="fa">
 
 
-    {% include "include/head.html" %}
-
+{% include "include/head.html" %}
 
 
 <body class="blog-page" dir="rtl">
@@ -58,12 +57,16 @@
                         <div class="article_body_wrap">
 
                             <div class="article_featured_image">
-                                <img class="img-fluid" src="{{ object.image.url }}" alt="">
+                                {% if object.image %}
+                                    <img class="img-fluid" src="{{ object.image.url }}" alt="">
+                                {% else %}
+                                    <img class="img-fluid" src="{% static "assets/img/user-5.jpg" %}" alt="">
+                                {% endif %}
                             </div>
 
                             <div class="article_top_info">
                                 <ul class="article_middle_info">
-                                    <li><a href="#"><span class="icons"><i
+                                    <li><a><span class="icons"><i
                                             class="ti-user"></i></span>نویسنده {{ object.user.full_name }}</a></li>
                                     <li><a href="#"><span class="icons"><i
                                             class="ti-comment-alt"></i></span>{{ object.comment.all.count }} دیدگاه</a>
@@ -80,7 +83,14 @@
                     <div class="article_detail_wrapss single_article_wrap format-standard">
 
                         <div class="article_posts_thumb">
-                            <span class="img"><img class="img-fluid" src="{{ object.user.image.url }}" alt=""></span>
+                            <span class="img">
+                                {% if object.user.image %}
+                                <img class="img-fluid" src="{{ object.user.image.url }}" alt="">
+                                    {% else %}
+                                    <img class="img-fluid" src="{% static "assets/img/user-5.jpg" %}" alt="">
+                                {% endif %}
+
+                            </span>
                             <h3 class="pa-name">{{ object.user.full_name }}</h3>
                             <ul class="social-links">
                                 <li><a href="{{ object.user.facebook }}"><i class="fab fa-facebook-f"></i></a></li>
@@ -109,7 +119,11 @@
 
                                                     <article>
                                                         <div class="article_comments_thumb">
+                                                            {% if comment.user.image %}
                                                             <img src="{{ comment.user.image.url }}" alt="">
+                                                                {% else %}
+                                                                <img src="{% static "assets/img/user-5.jpg" %}" alt="">
+                                                                {% endif %}
                                                         </div>
                                                         <div class="comment-details">
                                                             <div class="comment-meta">
@@ -120,7 +134,8 @@
                                                                     <div class="comment-date">{{ comment.creted }}</div>
                                                                 </div>
                                                                 <div class="comment-reply">
-                                                                    <a onclick="set_value({{ comment.id }})" class="reply"><span class="icona"><i
+                                                                    <a onclick="set_value({{ comment.id }})"
+                                                                       class="reply"><span class="icona"><i
                                                                             class="ti-back-left"></i></span> پاسخ</a>
                                                                 </div>
                                                             </div>
@@ -138,7 +153,11 @@
                                                             <li class="article_comments_wrap">
                                                                 <article>
                                                                     <div class="article_comments_thumb">
+                                                                        {% if replay.user.image %}
                                                                         <img src="{{ replay.user.image.url }}" alt="">
+                                                                            {% else %}
+                                                                            <img src="{% static "assets/img/user-5.jpg" %}" alt="">
+                                                                        {% endif %}
                                                                     </div>
                                                                     <div class="comment-details">
                                                                         <div class="comment-meta">
@@ -178,7 +197,8 @@
 
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
-                                                    <textarea id="body"  class="form-control  summernote" cols="30" rows="6"
+                                                    <textarea id="body" class="form-control  summernote" cols="30"
+                                                              rows="6"
                                                               placeholder="نظر خود را بنویسید..."></textarea>
                                                 </div>
                                             </div>
@@ -186,25 +206,26 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <input type="hidden" id="parent_id" class="form-control"
-                                                              >
+                                                    >
                                                 </div>
                                             </div>
 
                                             {% if request.user.is_authenticated %}
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn theme-bg text-white">ثبت دیدگاه
-                                                    </button>
+                                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn theme-bg text-white">ثبت دیدگاه
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
                                             {% else %}
 
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <div class="form-group">
-                                                    <a onclick="alert_login()" class="btn theme-bg text-white">ثبت دیدگاه
-                                                    </a>
+                                                    <div class="form-group">
+                                                        <a onclick="alert_login()" class="btn theme-bg text-white">ثبت
+                                                            دیدگاه
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
 
                                             {% endif %}
 
@@ -303,10 +324,10 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
-    function set_value(id){
+    function set_value(id) {
 
-        document.getElementById('parent_id').value=id;
-        window.location.href="#body"
+        document.getElementById('parent_id').value = id;
+        window.location.href = "#body"
 
     }
 
@@ -352,7 +373,7 @@
                     'بسیار عالی !',
                     json["response"],
                     'success'
-                ).then(()=>{
+                ).then(() => {
 
                     location.reload(true);
 

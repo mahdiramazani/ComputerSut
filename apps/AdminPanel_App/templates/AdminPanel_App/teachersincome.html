@@ -62,7 +62,11 @@
                                                         {% for item in object_list %}
 															<tr>
 																<th scope="row">1</th>
+                                                            {% if item.teacher.user.image %}
 																<td><img src="{{ item.teacher.user.image.url }}" class="img-fluid circle" width="40" alt="" /></td>
+                                                            {% else %}
+                                                                <td><img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle" width="40" alt="" /></td>
+                                                            {% endif %}
 																<td><div class="smalls lg">{{ item.teacher.user.full_name }}</div></td>
 																<td><span class="dhs_tags">{{ item.get_income }} ریال</span></td>
 																<td><span class="dhs_tags">{{ item.course.titel }}</span></td>

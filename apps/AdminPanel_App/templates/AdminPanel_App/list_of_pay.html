@@ -76,8 +76,15 @@
                                                 {% for item in object_list %}
                                                     <tr>
                                                         <th scope="row">1</th>
+                                                    {% if item.user.image %}
                                                         <td><img src="{{ item.user.image.url }}"
                                                                  class="img-fluid circle" width="40" alt=""/></td>
+                                                        {% else %}
+
+                                                        <td><img src="{% static "assets/img/user-5.jpg" %}"
+                                                                 class="img-fluid circle" width="40" alt=""/></td>
+
+                                                    {% endif %}
                                                         <td>
                                                             <div class="smalls lg">{{ item.user.full_name }}</div>
                                                         </td>

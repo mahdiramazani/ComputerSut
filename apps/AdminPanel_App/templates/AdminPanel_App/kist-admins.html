@@ -26,7 +26,8 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a>
+                                            </li>
                                             <li class="breadcrumb-item active" aria-current="page">لیست مدیرها</li>
                                         </ol>
                                     </nav>
@@ -84,8 +85,15 @@
 
                                                     <tr>
                                                         <th scope="row">2</th>
-                                                        <td><img src="{{ item.image.url }}" class="img-fluid circle"
-                                                                 width="40" alt=""/></td>
+
+                                                        {% if item.image %}
+                                                            <td><img src="{{ item.image.url }}" class="img-fluid circle"
+                                                                     width="40" alt=""/></td>
+                                                        {% else %}
+
+                                                            <td><img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle"
+                                                                     width="40" alt=""/></td>
+                                                        {% endif %}
                                                         <td>
                                                             <div class="smalls lg">{{ item.full_name }}</div>
                                                         </td>
@@ -101,11 +109,14 @@
                                                                 <div class="drp-select dropdown-menu">
 
                                                                     {% if item.student_number != None %}
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.student_number %}">ویرایش</a>
-                                                                        {% elif item.phone != None %}
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.phone %}">ویرایش</a>
-                                                                        {% elif item.nation_code != None %}
-                                                                    <a class="dropdown-item" href="{% url "AdminPanel:edit_admin" item.nation_code %}">ویرایش</a>
+                                                                        <a class="dropdown-item"
+                                                                           href="{% url "AdminPanel:edit_admin" item.student_number %}">ویرایش</a>
+                                                                    {% elif item.phone != None %}
+                                                                        <a class="dropdown-item"
+                                                                           href="{% url "AdminPanel:edit_admin" item.phone %}">ویرایش</a>
+                                                                    {% elif item.nation_code != None %}
+                                                                        <a class="dropdown-item"
+                                                                           href="{% url "AdminPanel:edit_admin" item.nation_code %}">ویرایش</a>
                                                                     {% endif %}
 
                                                                 </div>
@@ -121,7 +132,6 @@
                                 </div>
 
                                 <div class="row align-items-center justify-content-between">
-
 
 
                                     {% if page_obj.has_other_pages %}
@@ -157,7 +167,8 @@
                                                     {% endfor %}
                                                     {% if page_obj.has_next %}
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?page={{ page_obj.next_page_number }}"><i
+                                                            <a class="page-link"
+                                                               href="?page={{ page_obj.next_page_number }}"><i
                                                                     class="fas fa-arrow-circle-left"></i></a>
                                                         </li>
                                                     {% endif %}

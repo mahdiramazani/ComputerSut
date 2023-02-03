@@ -37,9 +37,20 @@
                             </div>
                             <div class="d-flex align-items-center mt-4">
                                 <div class="rounded-circle d-flex align-items-center justify-content-center">
-                                    <img src="{{ object.object.teacher.user.image.url }}" class="img-fluid circle"
-                                         width="70"
-                                         alt=""/>
+
+                                    {% if object.object.teacher.user.image %}
+                                        <img src="{{ object.object.teacher.user.image.url }}" class="img-fluid circle"
+                                             width="70"
+                                             alt=""/>
+
+
+                                    {% else %}
+
+                                        <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle"
+                                             width="70"
+                                             alt=""/>
+
+                                    {% endif %}
                                 </div>
                                 <div class="mr-2 mr-md-3">
                                     <span>مدرس</span>
@@ -261,9 +272,19 @@
                                  aria-labelledby="instructors-tab">
                                 <div class="single_instructor">
                                     <div class="single_instructor_thumb">
-                                        <a href="#"><img src="{{ object.object.teacher.user.image.url }}"
-                                                         class="img-fluid"
-                                                         alt=""></a>
+                                        <a>
+                                            {% if object.object.teacher.user.image %}
+                                                <img src="{{ object.object.teacher.user.image.url }}"
+                                                     class="img-fluid"
+                                                     alt="">
+                                            {% else %}
+
+                                                <img src="{% static "assets/img/user-5.jpg" %}"
+                                                     class="img-fluid"
+                                                     alt="">
+
+                                            {% endif %}
+                                        </a>
                                     </div>
                                     <div class="single_instructor_caption">
                                         <h4><a href="#">{{ object.object.teacher.user.full_name }}</a></h4>
@@ -307,8 +328,15 @@
                                             <div class="reviews-comments-item">
 
                                                 <div class="review-comments-avatar">
+                                                    {% if comment.user.image %}
                                                     <img src="{{ comment.user.image.url }}" class="img-fluid"
                                                          alt="">
+                                                    {% else %}
+
+                                                        <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid"
+                                                         alt="">
+
+                                                    {% endif %}
                                                 </div>
 
                                                 <div class="reviews-comments-item-text">
@@ -543,26 +571,26 @@
 
                         {% for item in object.last_course %}
                             <div class="lios_item">
-                                <div class="crs_grid shadow_none brd">
-                                    <div class="crs_grid_thumb">
-                                        <a href="{{ item.get_absulot_url }}" class="crs_detail_link">
-                                            <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
-                                        </a>
-                                        <div class="crs_video_ico">
-                                            <i class="fa fa-play"></i>
-                                        </div>
-
+                            <div class="crs_grid shadow_none brd">
+                                <div class="crs_grid_thumb">
+                                    <a href="{{ item.get_absulot_url }}" class="crs_detail_link">
+                                        <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
+                                    </a>
+                                    <div class="crs_video_ico">
+                                        <i class="fa fa-play"></i>
                                     </div>
-                                    <div class="crs_grid_caption">
-                                        <div class="crs_flex">
-                                            <div class="crs_fl_first">
-                                                <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
-                                            </div>
-                                            <div class="crs_fl_last">
-                                                <div class="crs_price"><h2><span
-                                                        class="theme-cl">{{ item.get_price }}</span><span
-                                                        class="currency">تومان</span></h2></div>
-                                            </div>
+
+                                </div>
+                                <div class="crs_grid_caption">
+                                    <div class="crs_flex">
+                                        <div class="crs_fl_first">
+                                            <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
+                                        </div>
+                                        <div class="crs_fl_last">
+                                            <div class="crs_price"><h2><span
+                                                    class="theme-cl">{{ item.get_price }}</span><span
+                                                    class="currency">تومان</span></h2></div>
+                                        </div>
 
 
                                     </div>
@@ -570,10 +598,19 @@
                                         <div class="crs_flex">
                                             <div class="crs_fl_first">
                                                 <div class="crs_tutor">
-                                                    <div class="crs_tutor_thumb"><a href="{{ item.get_absulot_url }}"><img
-                                                            src="{{ item.teacher.user.image.url }}"
-                                                            class="img-fluid circle"
-                                                            alt=""/></a></div>
+                                                    <div class="crs_tutor_thumb"><a href="{{ item.get_absulot_url }}">
+
+                                                        {% if item.teacher.user.image %}
+                                                            <img src="{{ item.teacher.user.image.url }}"
+                                                                 class="img-fluid circle"
+                                                                 alt=""/>
+                                                        {% else %}
+                                                            <img src="{% static "assets/img/user-5.jpg" %}"
+                                                                 class="img-fluid circle"
+                                                                 alt=""/>
+                                                        {% endif %}
+
+                                                    </a></div>
                                                 </div>
                                             </div>
 
@@ -584,11 +621,11 @@
                         {% endfor %}
 
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
     </section>
     <!-- ============================ Related Cources ================================== -->
 
@@ -696,7 +733,7 @@
                     'بسیار عالی !',
                     json["response"],
                     'success'
-                ).then(()=>{
+                ).then(() => {
 
                     location.reload(true);
 

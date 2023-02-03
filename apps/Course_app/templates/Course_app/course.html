@@ -53,8 +53,15 @@
 
                             </div>
                             <div class="crs_grid_caption">
-                                <div class="crs_tutor_thumb overl_top"><a href="{{ item.get_absulot_url }}"><img
-                                        src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt=""></a>
+                                <div class="crs_tutor_thumb overl_top"><a href="{{ item.get_absulot_url }}">
+
+                                    {% if item.teacher.user.image %}
+                                    <img src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt="">
+                                        {% else %}
+                                        <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle" alt="">
+                                    {% endif %}
+
+                                </a>
                                 </div>
                                 <div class="crs_cates cl_4"><span>{{ item.category.all.0 }}</span></div>
                                 <div class="crs_title"><h4><a href="course-detail.html"

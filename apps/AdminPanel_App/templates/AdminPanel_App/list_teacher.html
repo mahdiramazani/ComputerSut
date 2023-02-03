@@ -22,15 +22,12 @@
                                 <div class="arion">
                                     <nav class="transparent">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                                            <li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
                                             <li class="breadcrumb-item active" aria-current="page">لیست مدرس</li>
                                         </ol>
                                     </nav>
                                 </div>
-                                <div class="elkios">
-                                    <a href="add-admin.html" class="add_new_btn"><i class="fas fa-plus-circle ml-1"></i>افزودن
-                                        مدرس</a>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -46,32 +43,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row justify-content-between">
-                                    <div class="col-xl-2 col-lg-3 col-md-6">
-                                        <div class="form-group smalls row align-items-center">
-                                            <label class="col-xl-3 col-lg-3 col-sm-2 col-form-label">نمایش</label>
-                                            <div class="col-xl-9 col-lg-9 col-sm-10">
-                                                <select id="show" class="form-control">
-                                                    <option value="">&nbsp;</option>
-                                                    <option value="1">10</option>
-                                                    <option value="2">25</option>
-                                                    <option value="3">35</option>
-                                                    <option value="3">50</option>
-                                                    <option value="3">100</option>
-                                                    <option value="3">250</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-4 col-lg-5 col-md-6">
-                                        <div class="form-group smalls row align-items-center">
-                                            <label class="col-xl-2 col-lg-2 col-sm-2 col-form-label">جستجو</label>
-                                            <div class="col-xl-10 col-lg-10 col-sm-10">
-                                                <input type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
 
                                 <div class="row">
                                     <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
@@ -93,8 +65,16 @@
                                                 {% for user in object_list %}
                                                     <tr>
                                                         <th scope="row">1</th>
+
+                                                    {% if user.user.image %}
+
                                                         <td><img src="{{ user.user.image.url }}"
                                                                  class="img-fluid circle" width="40" alt=""/></td>
+                                                        {% else %}
+                                                        <td><img src="{% static "assets/img/user-5.jpg" %}"
+                                                                 class="img-fluid circle" width="40" alt=""/></td>
+                                                    {% endif %}
+
                                                         <td>
                                                             <div class="smalls lg">{{ user.user.full_name }}</div>
                                                         </td>
