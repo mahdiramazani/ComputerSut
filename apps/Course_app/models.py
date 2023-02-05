@@ -85,6 +85,26 @@ class Courses(models.Model):
     how_to_hold=models.CharField(max_length=100,choices=How_TO_HOLD,default="آنلاین")
     created = models.DateTimeField(auto_now_add=True)
     capacity=models.IntegerField(default=0)
+    start_registration=models.DateTimeField(null=True,blank=True,default=timezone.localtime(timezone.now()))
+    end_registration=models.DateTimeField(null=True,blank=True,default=timezone.localtime(timezone.now())+timezone.timedelta(days=5))
+
+
+    def registration_time(self):
+
+        if timezone.localtime(timezone.now()) >= self.start_registration and timezone.localtime(timezone.now()) <= self.end_registration:
+
+            return True
+        else:
+            return False
+
+    def get_start_register_to_jalali(self):
+
+        return jalali_convert(self.start_registration)
+
+    def get_end_register_to_jalali(self):
+
+        return jalali_convert(self.end_registration)
+
 
     def get_price(self):
 

@@ -80,7 +80,15 @@
 									<div class="crs_flex">
 										<div class="crs_fl_first">
 											<div class="crs_tutor">
-												<div class="crs_tutor_thumb"><a href="{{ item.teacher.get_absoolut_url }}"><img src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt="" /></a></div><div class="crs_tutor_name"><a href="{{ item.teacher.get_absoolut_url }}">{{ item.teacher.user.full_name }}</a></div>
+												<div class="crs_tutor_thumb"><a href="{{ item.teacher.get_absoolut_url }}">
+
+                                                    {% if item.teacher.user.image %}
+                                                    <img src="{{ item.teacher.user.image.url }}" class="img-fluid circle" alt="" />
+                                                    {% else %}
+                                                        <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle" alt="" />
+                                                    {% endif %}
+
+                                                </a></div><div class="crs_tutor_name"><a href="{{ item.teacher.get_absoolut_url }}">{{ item.teacher.user.full_name }}</a></div>
 											</div>
 										</div>
 										<div class="crs_fl_last">

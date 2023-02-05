@@ -185,6 +185,19 @@ class AddCourseForm(forms.ModelForm):
                     "class":"form-control"
                 }
             ),
+
+            "start_registration":forms.DateTimeInput(
+
+            attrs={
+                "class":"form-control"
+            }
+            ),
+
+            "end_registration":forms.DateTimeInput(
+                attrs={
+                    "class":"form-control"
+                }
+            ),
         }
 
 

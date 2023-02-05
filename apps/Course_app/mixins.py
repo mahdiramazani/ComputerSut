@@ -14,7 +14,12 @@ class CheckCapcityMixin:
 
             if course.capacity >= 1:
 
-                return super().dispatch(request, pk)
+                if course.registration_time():
+
+                    return super().dispatch(request, pk)
+
+                else:
+                    return redirect(course.get_absulot_url())
             else:
                 return redirect(course.get_absulot_url())
 
@@ -90,8 +95,13 @@ class CheckRequestToPayMixin:
 
                     if checkout.course.capacity >= 1:
 
-                        return super().dispatch(request, pk)
+                        if checkout.course.registration_time():
 
+                            return super().dispatch(request, pk)
+
+                        else:
+
+                            return redirect(checkout.course.get_absulot_url())
                     else:
 
                         return redirect(checkout.course.get_absulot_url())
@@ -128,7 +138,6 @@ class VidoChildMixin:
 
                     if (user.is_admin == True) or (user.is_employee == True) or (teacher.user == user) or (
                             user in video_child.parent.user.all()):
-
                         return super(VidoChildMixin, self).dispatch(request, pk)
 
                 else:

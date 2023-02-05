@@ -329,12 +329,13 @@
 
                                                 <div class="review-comments-avatar">
                                                     {% if comment.user.image %}
-                                                    <img src="{{ comment.user.image.url }}" class="img-fluid"
-                                                         alt="">
+                                                        <img src="{{ comment.user.image.url }}" class="img-fluid"
+                                                             alt="">
                                                     {% else %}
 
-                                                        <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid"
-                                                         alt="">
+                                                        <img src="{% static "assets/img/user-5.jpg" %}"
+                                                             class="img-fluid"
+                                                             alt="">
 
                                                     {% endif %}
                                                 </div>
@@ -463,15 +464,26 @@
 
 
 
+
+
                                             <a onclick="alert_capacity()"
                                                class="btn theme-bg enroll-btn">ثبت نام در دوره<i
                                                     class="ti-angle-left"></i></a>
 
                                         {% else %}
 
-                                            <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}"
-                                               class="btn theme-bg enroll-btn">ثبت نام در دوره<i
-                                                    class="ti-angle-left"></i></a>
+                                            {% if object.object.registration_time == True %}
+
+                                                <a href="{% url "Course_app:AddCourseToOrder" object.object.id %}"
+                                                   class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                                        class="ti-angle-left"></i></a>
+                                            {% else %}
+
+                                                <a onclick="alert_register_time()"
+                                                   class="btn theme-bg enroll-btn">ثبت نام در دوره<i
+                                                        class="ti-angle-left"></i></a>
+
+                                            {% endif %}
 
                                         {% endif %}
 
@@ -505,12 +517,24 @@
                             </div>
                             <div class="eld mb-3">
                                 <ul class="edu_list right">
+
+                                        {% if object.object.how_to_hold == "حضوری" %}
+                                    <li><i class="ti-time"></i>زمان شروع ثبت
+                                        نام:<strong>{{ object.object.get_start_register_to_jalali }}</strong>
+                                    </li>
+                                    <li><i class="ti-time"></i>زمان پایان ثبت
+                                        نام:<strong>{{ object.object.get_end_register_to_jalali }}</strong>
+                                    </li>
+                                {% endif %}
+
                                     <li><i class="ti-user"></i>تعداد شرکت
                                         کننده:<strong>{{ object.object.user.all.count }}</strong></li>
 
                                     {% if object.object.how_to_hold == "حضوری" %}
 
                                         {% if object.object.capacity <= 5 %}
+
+
 
                                             {% if object.object.capacity <= 0 %}
 
@@ -536,6 +560,7 @@
 
                                     <li><i class="ti-game"></i>تعداد
                                         پروژه:<strong>{{ object.object.project_count }}</strong></li>
+
                                     <li><i class="ti-time"></i>تعداد ویدیو
                                         ها:<strong>{{ object.object.corses_child.all.count }}</strong></li>
                                     <li><i class="ti-time"></i>تعداد بازدید ها:<strong>{{ object.object.view }}</strong>
@@ -694,6 +719,14 @@
             icon: 'error',
             title: 'خطا!',
             text: 'برای ثبت نظر باید وارد حساب کابری خود شوید!'
+        })
+    }
+
+    function alert_register_time() {
+        Swal.fire({
+            icon: 'error',
+            title: 'خطا!',
+            text: 'در بازه ثبت نام نیستید!'
         })
     }
 
