@@ -44,8 +44,21 @@
                             <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                                 <div class="crs_trt_grid">
                                     <div class="crs_trt_thumb circle">
-                                        <a href="{{ item.get_absoolut_url }}" class="crs_trt_thum_link"><img
-                                                src="{{ item.user.image.url }}" class="img-fluid circle" alt=""></a>
+                                        <a href="{{ item.get_absoolut_url }}" class="crs_trt_thum_link">
+
+                                            {% if item.uaer.image %}
+
+                                            <img
+                                                src="{{ item.user.image.url }}" class="img-fluid circle" alt="">
+
+                                                {% else %}
+
+                                                <img
+                                                src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle" alt="">
+
+                                            {% endif %}
+
+                                        </a>
                                     </div>
                                     <div class="crs_trt_caption">
                                         <div class="instructor_tag dark"><span>{{ item.position }}</span></div>
