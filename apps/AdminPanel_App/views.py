@@ -108,9 +108,9 @@ class AddVideoChild(CheckIsTeacherMixin, View):
             v.parent = parent
             v.save()
 
-            return redirect("/")
+            return redirect("AdminPanel:video_child_list")
 
-        print(form.errors)
+
 
         return render(request, "AdminPanel_App/add_video_cuorseChild.html", {"form": form})
 
@@ -145,7 +145,7 @@ class EditVideoChild(CheckIsTeacherMixin, UpdateView):
     model = CoursesChild
     form_class = AddVideoChildForm
     template_name = "AdminPanel_App/add_video_cuorseChild.html"
-    success_url = "/"
+    success_url = reverse_lazy("AdminPanel:video_child_list")
 
 
 class CategoryCourse(AdminEmployeMixin, ListView):
@@ -218,7 +218,7 @@ class CertificatesOfCoursesView(CheckTeacherMixin, View):
             return render(request, "AdminPanel_App/madrak.html", {"course": course, "context": context["errors"]})
 
 
-        return render(request, "AdminPanel_App/madrak.html", {"course": course,"context":context["errors"]})
+
 
     def get(self, request):
 
@@ -282,7 +282,7 @@ class RequestToTeacherView(CheckLoginMixin, View):
                 t.user = user
                 t.save()
 
-                return redirect("/")
+                return redirect("AdminPanel:Request_Teacher")
 
         return render(request, "AdminPanel_App/request_to_teacher.html", {"form": form})
 
