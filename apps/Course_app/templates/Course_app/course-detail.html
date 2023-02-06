@@ -167,7 +167,7 @@
 
                                                                     {% if request.user.is_authenticated %}
 
-                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True %}
+                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True or object.object.teacher.user == request.user %}
 
                                                                             <li class="complete">
                                                                                 <div class="lectures_lists_title"><i
@@ -207,18 +207,37 @@
 
                                                             {% else %}
 
-                                                                {% if request.user.is_authenticated %}
 
-                                                                    {% if request.user in object.object.user.all %}
+                                                                {% if item.lock == True %}
 
-                                                                        <li class="complete">
-                                                                            <div class="lectures_lists_title"><i
-                                                                                    class="fas fa-check dios"></i></div>
-                                                                            <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
-                                                                                    class="cls_timing">{{ item.time }}</span>
+                                                                    {% if request.user.is_authenticated %}
 
-                                                                            </a>
-                                                                        </li>
+                                                                        {% if request.user in object.object.user.all %}
+
+                                                                            <li class="complete">
+                                                                                <div class="lectures_lists_title"><i
+                                                                                        class="fas fa-check dios"></i>
+                                                                                </div>
+                                                                                <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
+                                                                                        class="cls_timing">{{ item.time }}</span>
+
+                                                                                </a>
+                                                                            </li>
+
+                                                                        {% else %}
+
+                                                                            <li class="unview">
+                                                                                <div class="lectures_lists_title"><i
+                                                                                        class="fa fa-lock dios lock"></i>
+                                                                                </div>
+                                                                                <a onclick="alert_register()">{{ item.topic }}<span
+                                                                                        class="cls_timing">{{ item.time }}</span>
+
+                                                                                </a>
+                                                                            </li>
+
+
+                                                                        {% endif %}
 
                                                                     {% else %}
 
@@ -226,28 +245,25 @@
                                                                             <div class="lectures_lists_title"><i
                                                                                     class="fa fa-lock dios lock"></i>
                                                                             </div>
-                                                                            <a onclick="alert_register()">{{ item.topic }}<span
+                                                                            <a onclick="alert_login()">{{ item.topic }}<span
                                                                                     class="cls_timing">{{ item.time }}</span>
-
                                                                             </a>
                                                                         </li>
 
 
                                                                     {% endif %}
-
                                                                 {% else %}
 
-                                                                    <li class="unview">
+                                                                    <li class="complete">
                                                                         <div class="lectures_lists_title"><i
-                                                                                class="fa fa-lock dios lock"></i></div>
-                                                                        <a onclick="alert_login()">{{ item.topic }}<span
+                                                                                class="fas fa-check dios"></i></div>
+                                                                        <a href="{{ item.get_absolut_url }}">{{ item.topic }}<span
                                                                                 class="cls_timing">{{ item.time }}</span>
+
                                                                         </a>
                                                                     </li>
 
-
                                                                 {% endif %}
-
 
                                                             {% endif %}
 
@@ -518,14 +534,14 @@
                             <div class="eld mb-3">
                                 <ul class="edu_list right">
 
-                                        {% if object.object.how_to_hold == "حضوری" %}
-                                    <li><i class="ti-time"></i>زمان شروع ثبت
-                                        نام:<strong>{{ object.object.get_start_register_to_jalali }}</strong>
-                                    </li>
-                                    <li><i class="ti-time"></i>زمان پایان ثبت
-                                        نام:<strong>{{ object.object.get_end_register_to_jalali }}</strong>
-                                    </li>
-                                {% endif %}
+                                    {% if object.object.how_to_hold == "حضوری" %}
+                                        <li><i class="ti-time"></i>زمان شروع ثبت
+                                            نام:<strong>{{ object.object.get_start_register_to_jalali }}</strong>
+                                        </li>
+                                        <li><i class="ti-time"></i>زمان پایان ثبت
+                                            نام:<strong>{{ object.object.get_end_register_to_jalali }}</strong>
+                                        </li>
+                                    {% endif %}
 
                                     <li><i class="ti-user"></i>تعداد شرکت
                                         کننده:<strong>{{ object.object.user.all.count }}</strong></li>

@@ -6,7 +6,7 @@ class TeacherListView(ListView):
 
     template_name = "Teacher_app/teachers_list.html"
     model=Teacher
-    paginate_by = 1
+    paginate_by = 10
 
     def get_queryset(self):
 
