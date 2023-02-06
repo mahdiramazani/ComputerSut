@@ -30,8 +30,8 @@
                 <div class="col-xl-7 col-lg-7 col-md-7 col-sm-12">
                     <div class="dlkio_452">
                         <div class="ed_detail_wrap">
-                            <div class="crs_cates cl_1"><span>گرافیک</span></div>
-                            <div class="crs_cates cl_3"><span>پروژه محور</span></div>
+                            <div class="crs_cates cl_1"><span>{{ object.object.category.all.0 }}</span></div>
+                            <div class="crs_cates cl_3"><span>{{ object.object.category.all.last }}</span></div>
                             <div class="ed_header_caption">
                                 <h2 class="ed_title">{{ object.object.titel }}</h2>
                             </div>
@@ -167,7 +167,7 @@
 
                                                                     {% if request.user.is_authenticated %}
 
-                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True or request.user == object.object.teacher.user %}
+                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True %}
 
                                                                             <li class="complete">
                                                                                 <div class="lectures_lists_title"><i
