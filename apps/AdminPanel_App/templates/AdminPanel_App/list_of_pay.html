@@ -75,7 +75,7 @@
 
                                                 {% for item in object_list %}
                                                     <tr>
-                                                        <th scope="row">1</th>
+                                                        <th scope="row">{{ forloop.counter }}</th>
                                                     {% if item.user.image %}
                                                         <td><img src="{{ item.user.image.url }}"
                                                                  class="img-fluid circle" width="40" alt=""/></td>

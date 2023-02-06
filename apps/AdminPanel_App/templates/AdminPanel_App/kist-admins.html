@@ -72,7 +72,7 @@
                                                     <th scope="col">#</th>
                                                     <th scope="col">تصویر</th>
                                                     <th scope="col">نام</th>
-                                                    <th scope="col">ایمیل</th>
+                                                    <th scope="col">شماره دانشجویی</th>
                                                     <th scope="col">عملیات</th>
                                                 </tr>
                                                 </thead>
@@ -84,7 +84,7 @@
 
 
                                                     <tr>
-                                                        <th scope="row">2</th>
+                                                        <th scope="row">{{ forloop.counter }}</th>
 
                                                         {% if item.image %}
                                                             <td><img src="{{ item.image.url }}" class="img-fluid circle"

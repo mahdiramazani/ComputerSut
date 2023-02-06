@@ -64,7 +64,7 @@
 
                                                 {% for user in object_list %}
                                                     <tr>
-                                                        <th scope="row">1</th>
+                                                        <th scope="row">{{ forloop.counter }}</th>
 
                                                     {% if user.user.image %}
 
@@ -119,7 +119,7 @@
 
                                 <div class="row align-items-center justify-content-between">
                                     <div class="col-xl-6 col-lg-6 col-md-12">
-                                        <p class="p-0">نمایش 1 تا 1 از 1</p>
+                                        <p class="p-0"></p>
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-md-12">
 

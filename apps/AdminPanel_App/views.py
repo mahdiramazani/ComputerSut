@@ -368,7 +368,7 @@ class StudentList(AdminEmployeMixin, View):
 
     def get(self, request):
         u = User.objects.all()
-        us = Paginator(u, 1)
+        us = Paginator(u, 20)
         page = request.GET.get("page")
         users = us.get_page(page)
 
@@ -397,7 +397,7 @@ class AddStudent(CheckAdmin, View):
                     if course.capacity >= 1:
                         course.user.add(student)
                         course.capacity -=1
-                        order=Checkout.objects.create(user=student,course=course,is_paid=True,price=course.price)
+                        order=Checkout.objects.create(user=student,course=course,is_paid=True,price=course.price,total_price=course.price)
                         course.save()
 
                         if TeachersIncome.objects.filter(Q(teacher__user=order.course.teacher.user), Q(course=order.course),

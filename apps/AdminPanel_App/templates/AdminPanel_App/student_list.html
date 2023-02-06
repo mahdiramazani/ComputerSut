@@ -68,7 +68,7 @@
                                                 {% for item in users %}
 
                                                     <tr>
-                                                        <th scope="row">1</th>
+                                                        <th scope="row">{{ forloop.counter }}</th>
                                                         {% if item.image %}
                                                             <td><img src="{{ item.image.url }}" class="img-fluid circle"
                                                                      width="40" alt=""/></td>

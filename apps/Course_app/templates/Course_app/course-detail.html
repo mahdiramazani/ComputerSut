@@ -167,7 +167,7 @@
 
                                                                     {% if request.user.is_authenticated %}
 
-                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True %}
+                                                                        {% if request.user in object.object.user.all or rqeuet.user.is_admin == True or request.user.is_employee == True or request.user == object.object.teacher.user %}
 
                                                                             <li class="complete">
                                                                                 <div class="lectures_lists_title"><i
