@@ -6,9 +6,9 @@
 
         <div class="d-user-avater">
             {% if request.user.image %}
-            <img src="{{ request.user.image.url }}" class="img-fluid avater" alt="">
-                {% else %}
-            <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid avater" alt="">
+                <img src="{{ request.user.image.url }}" class="img-fluid avater" alt="">
+            {% else %}
+                <img src="{% static "assets/img/user-5.jpg" %}" class="img-fluid avater" alt="">
             {% endif %}
             <h4>{{ request.user.full_name }}</h4>
             <span>{{ request.user.position }}</span>
@@ -20,28 +20,32 @@
             <ul id="side-menu">
                 <li class="active"><a href="{% url "AdminPanel:Userpanel" %}"><i class="fas fa-th"></i>پیشخوان</a></li>
 
-                {% if request.user.is_teacher == True or request.user.is_admin == True or request.user.is_employee == True %}
-
-                    <li class="dropdown">
-                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>دوره های آموزش<span
-                                class="ti-angle-left"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li><a href="{% url "AdminPanel:Course_list" %}">لیست دوره ها</a></li>
-
-                            {% if request.user.is_admin == True or request.user.is_employee == True %}
-                                <li><a href="{% url "AdminPanel:Add_course" %}">افزودن دوره جدید</a></li>
-                            {% endif %}
-
-                            <li><a href="{% url "AdminPanel:CertificatesOfCourses" %}">صدور مدرک</a></li>
-
-                            {% if request.user.is_admin == True %}
-
-                                <li><a href="{% url "AdminPanel:Category_course" %}">دسته بندی دوره</a></li>
+                {% if request.user == request.user.Teacher.all.last.user or request.user.is_admin == True or request.user.is_employee == True %}
 
 
-                            {% endif %}
-                        </ul>
-                    </li>
+                    {% if request.user.Teacher.all.last.status == True or request.user.is_admin == True or request.user.is_employee == True %}
+
+                        <li class="dropdown">
+                            <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>دوره های آموزش<span
+                                    class="ti-angle-left"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{% url "AdminPanel:Course_list" %}">لیست دوره ها</a></li>
+
+                                {% if request.user.is_admin == True or request.user.is_employee == True %}
+                                    <li><a href="{% url "AdminPanel:Add_course" %}">افزودن دوره جدید</a></li>
+                                {% endif %}
+
+                                <li><a href="{% url "AdminPanel:CertificatesOfCourses" %}">صدور مدرک</a></li>
+
+                                {% if request.user.is_admin == True %}
+
+                                    <li><a href="{% url "AdminPanel:Category_course" %}">دسته بندی دوره</a></li>
+
+
+                                {% endif %}
+                            </ul>
+                        </li>
+                    {% endif %}
                 {% endif %}
 
 

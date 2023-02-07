@@ -12,6 +12,11 @@ class CheckTeacherMixin:
 
             user = request.user
 
+
+            print(user.Teacher.all().last().status)
+
+
+
             if (user.is_teacher == True) or (user.is_admin == True) or (user.is_employee == True):
 
                 if ((user.is_admin == True) or (user.is_employee == True)):
