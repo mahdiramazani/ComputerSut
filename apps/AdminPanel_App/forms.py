@@ -89,7 +89,7 @@ class EditUserPanelForms(forms.ModelForm):
         super().__init__(*args,**kwargs)
         self.fields['phone'].disabled = True
         self.fields['student_number'].disabled = True
-        
+
 
 class AddCourseForm(forms.ModelForm):
 

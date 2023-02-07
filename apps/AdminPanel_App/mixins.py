@@ -14,7 +14,17 @@ class CheckTeacherMixin:
 
             if (user.is_teacher == True) or (user.is_admin == True) or (user.is_employee == True):
 
-                return super().dispatch(request, *args, **kwargs)
+                if ((user.is_admin == True) or (user.is_employee == True)):
+
+                    return super().dispatch(request, *args, **kwargs)
+                else:
+                    teacher=Teacher.objects.get(user=user)
+
+                    if teacher.status == True:
+                        return super().dispatch(request, *args, **kwargs)
+                    else:
+                        return redirect("Home_app:Home")
+
 
             else:
 
@@ -38,31 +48,36 @@ class CheckIsTeacherMixin:
                 else:
 
                     teacher = Teacher.objects.get(user=user)
-                    course = Courses.objects.filter(id=pk).exists()
-                    course_child = CoursesChild.objects.filter(id=pk).exists()
 
-                    if course:
+                    if teacher.status == True:
 
-                        c = Courses.objects.get(id=pk)
+                        course = Courses.objects.filter(id=pk).exists()
+                        course_child = CoursesChild.objects.filter(id=pk).exists()
 
-                        if c.teacher == teacher:
+                        if course:
 
-                            return super().dispatch(request, pk)
+                            c = Courses.objects.get(id=pk)
 
+                            if c.teacher == teacher:
+
+                                return super().dispatch(request, pk)
+
+                            else:
+
+                                return redirect("Home_app:Home")
+
+                        elif course_child:
+
+                            c = CoursesChild.objects.get(id=pk)
+
+                            if c.parent.teacher == teacher:
+                                return super().dispatch(request, pk)
                         else:
 
                             return redirect("Home_app:Home")
 
-                    elif course_child:
-
-                        c = CoursesChild.objects.get(id=pk)
-
-                        if c.parent.teacher == teacher:
-                            return super().dispatch(request, pk)
                     else:
-
                         return redirect("Home_app:Home")
-
             else:
                 return redirect("Home_app:Home")
         else:

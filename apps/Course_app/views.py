@@ -103,6 +103,7 @@ class CourseDetailVideoView(VidoChildMixin,DetailView):
     template_name = "Course_app/course_video_detail.html"
 
 
+
 class AddCourseToOrderView(CheckCapcityMixin,View):
 
     def get(self, request, pk):
