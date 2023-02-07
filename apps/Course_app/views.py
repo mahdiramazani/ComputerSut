@@ -75,7 +75,7 @@ class CourseDetailView(View):
 
         object.save()
         context["object"] = object
-        context["last_course"] = Courses.objects.all()[0:3]
+        context["last_course"] = Courses.objects.all()[0:7]
 
         if request.user in object.user.all():
             context["student"] = True

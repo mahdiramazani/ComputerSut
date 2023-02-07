@@ -598,88 +598,62 @@
 
     <!-- ============================ Related Cources ================================== -->
     <section>
-        <div class="container">
+				<div class="container">
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 mb-3">
-                    <h4 class="font-2">آخرین بازدید‌ و آموزش مرتبط</h4>
-                </div>
-            </div>
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12 mb-3">
+							<h4 class="font-2">آخرین بازدید‌ و آموزش مرتبط</h4>
+						</div>
+					</div>
 
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12">
-                    <div class="slide_items">
+					<div class="row">
+						<div class="col-xl-12 col-lg-12 col-md-12">
+							<div class="slide_items">
 
-                        {% for item in object.last_course %}
-                            <div class="lios_item">
-                            <div class="crs_grid shadow_none brd">
-                                <div class="crs_grid_thumb">
-                                    <a href="{{ item.get_absulot_url }}" class="crs_detail_link">
-                                        <img src="{{ item.cover.url }}" class="img-fluid rounded" alt=""/>
-                                    </a>
-                                    <div class="crs_video_ico">
-                                        <i class="fa fa-play"></i>
-                                    </div>
+                                {% for item in object.last_course %}
 
-                                </div>
-                                <div class="crs_grid_caption">
-                                    <div class="crs_flex">
-                                        <div class="crs_fl_first">
-                                            <div class="crs_cates cl_6"><span>{{ item.titel | safe }}</span></div>
-                                        </div>
-                                        <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span
-                                                    class="theme-cl">{{ item.get_price }}</span><span
-                                                    class="currency">تومان</span></h2></div>
-                                        </div>
+								<div class="lios_item">
+									<div class="crs_grid shadow_none brd">
+										<div class="crs_grid_thumb">
+											<a href="{{ item.get_absulot_url }}" class="crs_detail_link">
+												<img src="{{ item.cover.url }}" class="img-fluid rounded" alt="" />
+											</a>
+											<div class="crs_video_ico">
+												<i class="fa fa-play"></i>
+											</div>
 
-
-                                    </div>
-                                    <div class="crs_grid_foot">
-                                        <div class="crs_flex">
-                                            <div class="crs_fl_first">
-                                                <div class="crs_tutor">
-                                                    <div class="crs_tutor_thumb"><a href="{{ item.get_absulot_url }}">
-
-                                                        {% if item.teacher.user.image %}
-                                                            <img src="{{ item.teacher.user.image.url }}"
-                                                                 class="img-fluid circle"
-                                                                 alt=""/>
-                                                        {% else %}
-                                                            <img src="{% static "assets/img/user-5.jpg" %}"
-                                                                 class="img-fluid circle"
-                                                                 alt=""/>
-                                                        {% endif %}
-
-                                                    </a></div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
+										</div>
+										<div class="crs_grid_caption">
+											<div class="crs_flex">
+												<div class="crs_fl_first">
+													<div class="crs_cates cl_6"><span>{{ item.category.all.0 }}</span></div>
+												</div>
+												<div class="crs_fl_last">
+													<div class="crs_price"><h2><span class="theme-cl">{{ item.get_price }}</span><span class="currency">تومان</span></h2></div>
+												</div>
+											</div>
+											<div class="crs_title"><h4><a href="{{ item.get_absulot_url }}" class="crs_title_link">{{ item.titel }}</a></h4></div>
 
 
-                        </div>
-                    </div>
-                </div>
+										</div>
 
-            </div>
-    </section>
-    <!-- ============================ Related Cources ================================== -->
+									</div>
+								</div>
 
-    <!-- ============================ Call To Action ================================== -->
+                                {% endfor %}
 
-    <!-- ============================ Call To Action End ================================== -->
 
-    <!-- ============================ Footer Start ================================== -->
-    <!-- ============================ Footer Start ================================== -->
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
 
 
     {% include "include/footer.html" %}
-    <!-- ============================ Footer End ================================== -->
+
 
     <!-- Log In Modal -->
     {% include "include/login.html" %}
