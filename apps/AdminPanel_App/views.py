@@ -108,7 +108,7 @@ class AddVideoChild(CheckIsTeacherMixin, View):
             v.parent = parent
             v.save()
 
-            return redirect("AdminPanel:video_child_list")
+            return redirect(reverse("AdminPanel:video_child_list",kwargs={"pk":pk}))
 
 
 
@@ -126,7 +126,7 @@ class VideoChildList(CheckIsTeacherMixin, View):
 
         course_child = CoursesChild.objects.filter(parent_id=pk)
 
-        object_list = Paginator(course_child, 1)
+        object_list = Paginator(course_child, 10)
         page = request.GET.get("page")
 
         try:
@@ -145,7 +145,12 @@ class EditVideoChild(CheckIsTeacherMixin, UpdateView):
     model = CoursesChild
     form_class = AddVideoChildForm
     template_name = "AdminPanel_App/add_video_cuorseChild.html"
-    success_url = reverse_lazy("AdminPanel:video_child_list")
+
+    def get_success_url(self):
+
+        video_child=CoursesChild.objects.get(id=self.object.pk)
+
+        return reverse("AdminPanel:video_child_list",kwargs={"pk":video_child.parent.id})
 
 
 class CategoryCourse(AdminEmployeMixin, ListView):
@@ -524,7 +529,14 @@ class DeleteCourseView(AdminEmployeMixin, DeleteView):
 
 class DeleteCourseChild(CheckIsTeacherMixin, DeleteView):
     model = CoursesChild
-    success_url = reverse_lazy("AdminPanel:video_child_list")
+
+
+    def get_success_url(self):
+
+        video_child=CoursesChild.objects.get(id=self.object.pk)
+
+
+        return reverse("AdminPanel:video_child_list",kwargs={"pk":video_child.parent.id})
 
 
 class DeleteCategory(AdminEmployeMixin, DeleteView):

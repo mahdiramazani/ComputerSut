@@ -217,7 +217,13 @@ AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_S3_FILE_OVERWRITE = False
 
 
-# 'https://cmputersut.s3.ir-thr-at1.arvanstorage.com'
+
 
 RECAPTCHA_PUBLIC_KEY = "6Ldw_zYkAAAAADypITNQ5hSi_EWvtyghI1MVXJCE"
 RECAPTCHA_PRIVATE_KEY = "6Ldw_zYkAAAAAAj25lTYDVMAJM6-7czv0HAIo51c"
+
+#deoployment
+# RECAPTCHA_PUBLIC_KEY = "6LcrwEskAAAAAJ7YndVwLNhmBaTL4Q5tfr5ZeoFu"
+# RECAPTCHA_PRIVATE_KEY = "6LcrwEskAAAAABipVdH65Py9YORvJ7PqqZTRfKDe"
+#
+# SECURE_SSL_REDIRECT=True
