@@ -104,6 +104,8 @@ class CourseDetailVideoView(VidoChildMixin,DetailView):
 
 
 
+
+
 class AddCourseToOrderView(CheckCapcityMixin,View):
 
     def get(self, request, pk):

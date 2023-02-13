@@ -293,7 +293,7 @@
                                 <div class="blg_tag"><span>{{ item.category.all.0 }}</span></div>
                                 <div class="blg_title"><h4><a href="{{ item.get_absolut_url }}">{{ item.titel }}</a>
                                 </h4></div>
-                                <div class="blg_desc"><p>{{ item.text | truncatewords:15 | safe }}</p></div>
+                                <div class="blg_desc"><p>{{ item.text | truncatewords_html:15 | safe }}</p></div>
                             </div>
                             <div class="crs_grid_foot">
                                 <div class="crs_flex">
@@ -343,6 +343,13 @@
 
         </div>
     </section>
+
+
+
+
+
+
+
     <!-- ============================ Top Cources E-books ================================== -->
 
     <!-- ============================ Students Reviews ================================== -->
