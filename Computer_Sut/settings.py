@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "apps.AboutUs_app.apps.AboutusAppConfig",
     "apps.CountactByMe_app.apps.CountactbymeAppConfig",
     "apps.Message_App.apps.MessageAppConfig",
+    "apps.Society_app.apps.SocietyAppConfig",
 
 
 

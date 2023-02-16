@@ -31,7 +31,8 @@ urlpatterns = [
     path("about_us/",include("apps.AboutUs_app.urls")),
     path("contact/",include("apps.CountactByMe_app.urls")),
     path("message/",include("apps.Message_App.urls")),
-    path("ckeditor/",include("ckeditor_uploader.urls"))
+    path("ckeditor/",include("ckeditor_uploader.urls")),
+    path("society/",include("apps.Society_app.urls")),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
