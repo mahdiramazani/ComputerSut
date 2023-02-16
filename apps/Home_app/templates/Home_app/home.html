@@ -2,7 +2,13 @@
 {% load static %}
 
 {% block content %}
-    <!-- End Navigation -->
+    {% block titel %}
+
+
+        <title>انجمن علمی کامپیوتر صنعتی سیرجان</title>
+
+
+    {% endblock %}
     <div class="clearfix"></div>
     <!-- ============================================================== -->
     <!-- Top header  -->
@@ -138,11 +144,12 @@
                                 <div class="crs_tutor_thumb overl_top"><a href="{{ c.get_absulot_url }}">
 
                                     {% if c.teacher.user.image %}
-                                    <img
-                                        src="{{ c.teacher.user.image.url }}" class="img-fluid circle" alt=""/>
-                                        {% else %}
                                         <img
-                                        src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle" alt=""/>
+                                                src="{{ c.teacher.user.image.url }}" class="img-fluid circle" alt=""/>
+                                    {% else %}
+                                        <img
+                                                src="{% static "assets/img/user-5.jpg" %}" class="img-fluid circle"
+                                                alt=""/>
                                     {% endif %}
 
                                 </a></div>

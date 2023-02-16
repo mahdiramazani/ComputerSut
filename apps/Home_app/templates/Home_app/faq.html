@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+
+    {% block titel %}
+
+
+        <title>انجمن علمی کامپیوتر سیرجان</title>
+
+
+    {% endblock %}
+
 			<section class="page-title gray">
 				<div class="container">
 					<div class="row">
@@ -11,7 +20,7 @@
 								<h1 class="breadcrumb-title font-2">سوالات متداول</h1>
 								<nav class="transparent">
 									<ol class="breadcrumb p-0">
-										<li class="breadcrumb-item"><a href="#">خانه</a></li>
+										<li class="breadcrumb-item"><a href="{% url "Home_app:Home" %}">خانه</a></li>
 										<li class="breadcrumb-item active theme-cl" aria-current="page">سوالات متداول</li>
 									</ol>
 								</nav>

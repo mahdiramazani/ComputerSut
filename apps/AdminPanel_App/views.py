@@ -45,7 +45,7 @@ class CourseList(CheckTeacherMixin, ListView):
     def get_queryset(self):
         qs = super().get_queryset()
 
-        if self.request.user.is_admin == True:
+        if self.request.user.is_admin == True or self.request.user.is_employee == True:
 
             return qs
 
