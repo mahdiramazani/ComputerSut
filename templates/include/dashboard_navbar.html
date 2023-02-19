@@ -33,11 +33,12 @@
 
                                 {% if request.user.is_admin == True or request.user.is_employee == True %}
                                     <li><a href="{% url "AdminPanel:Add_course" %}">افزودن دوره جدید</a></li>
-                                {% endif %}
 
-                                <li><a href="{% url "AdminPanel:CertificatesOfCourses" %}">صدور مدرک</a></li>
 
-                                {% if request.user.is_admin == True %}
+                                    <li><a href="{% url "AdminPanel:CertificatesOfCourses" %}">صدور مدرک</a></li>
+                                
+
+
 
                                     <li><a href="{% url "AdminPanel:Category_course" %}">دسته بندی دوره</a></li>
 
