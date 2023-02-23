@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "django_cleanup",
     "storages",
 
-
     "ckeditor",
     "ckeditor_uploader",
     'allauth',
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     "captcha",
+
 
     # my apps
     "scripts",
@@ -63,9 +63,6 @@ INSTALLED_APPS = [
     "apps.AboutUs_app.apps.AboutusAppConfig",
     "apps.CountactByMe_app.apps.CountactbymeAppConfig",
     "apps.Message_App.apps.MessageAppConfig",
-
-
-
 
 ]
 
@@ -81,9 +78,8 @@ MIDDLEWARE = [
 
 ]
 
-
 ROOT_URLCONF = 'Computer_Sut.urls'
-#Ck editor setting
+# Ck editor setting
 CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
 
 TEMPLATES = [
@@ -119,7 +115,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # DATABASES = {
 #     'default': {
@@ -169,7 +164,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [path.join(BASE_DIR, "static")]
 
 MEDIA_ROOT = path.join(BASE_DIR, "media")
-STATIC_ROOT=path.join(BASE_DIR,"assets")
+STATIC_ROOT = path.join(BASE_DIR, "assets")
 MEDIA_URL = "/media/"
 
 # Default primary key field type
@@ -205,9 +200,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 AWS_ACCESS_KEY_ID = '161e6df9-2568-4022-9c7c-b9a84a4a9b20'
@@ -217,16 +209,15 @@ AWS_SERVICE_NAME = 's3'
 AWS_S3_ENDPOINT_URL = 'https://s3.ir-thr-at1.arvanstorage.ir'
 AWS_S3_FILE_OVERWRITE = False
 
-
-
-
 RECAPTCHA_PUBLIC_KEY = "6Ldw_zYkAAAAADypITNQ5hSi_EWvtyghI1MVXJCE"
 RECAPTCHA_PRIVATE_KEY = "6Ldw_zYkAAAAAAj25lTYDVMAJM6-7czv0HAIo51c"
 
-#deoployment
+# deoployment
 # RECAPTCHA_PUBLIC_KEY = "6LcrwEskAAAAAJ7YndVwLNhmBaTL4Q5tfr5ZeoFu"
 # RECAPTCHA_PRIVATE_KEY = "6LcrwEskAAAAABipVdH65Py9YORvJ7PqqZTRfKDe"
 #
 # SECURE_SSL_REDIRECT=True
 
-DATA_UPLOAD_MAX_MEMORY_SIZE=5000000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5000000
+
+
